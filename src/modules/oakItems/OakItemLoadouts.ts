@@ -7,7 +7,7 @@ import { Saveable } from '../DataStore/common/Saveable';
 import OakItemType from '../enums/OakItemType';
 
 export default class OakItemLoadouts implements Saveable {
-    private static MAX_SLOTS = 3;
+    private static MAX_SLOTS = 6;
 
     saveKey = 'oakItemLoadouts';
 

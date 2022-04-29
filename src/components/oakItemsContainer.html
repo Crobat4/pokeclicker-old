@@ -70,8 +70,8 @@
     <!-- ko if: !App.game.challenges.list.disableOakItems.active() -->
     <div id="oakItemLoadout">
       <table class="table table-bordered table-striped m-0">
-        <tr data-bind="foreach: App.game.oakItemLoadouts.loadouts">
-          <td class="p-1 tight">
+        <tr class="row w-100 m-0" data-bind="foreach: App.game.oakItemLoadouts.loadouts">
+          <td class="p-1 tight col-4">
             <button class='btn btn-block btn-primary' style="height: 100%;"
               data-bind='click: function(){ App.game.oakItemLoadouts.activateLoadout($index()) }, text: $index() + 1'>
               1
