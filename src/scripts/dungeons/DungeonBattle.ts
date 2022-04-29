@@ -47,7 +47,7 @@ class DungeonBattle extends Battle {
 
         // Attempting to catch Pokemon
         const isShiny: boolean = enemyPokemon.shiny;
-        const pokeBall: GameConstants.Pokeball = App.game.pokeballs.calculatePokeballToUse(enemyPokemon.id, isShiny);
+        const pokeBall: GameConstants.Pokeball = App.game.pokeballs.calculatePokeballToUse(enemyPokemon, isShiny);
         if (pokeBall !== GameConstants.Pokeball.None) {
             this.prepareCatch(enemyPokemon, pokeBall);
             setTimeout(

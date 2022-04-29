@@ -12,6 +12,12 @@ You can try out the current state at https://www.pokeclicker.com/
 
 You can reach out on discord to discuss your ideas and how to implement them: https://discord.gg/a6DFe4p
 
+# QoL Changelog
+4/28/2022
+* Dock added to Shortcuts window
+* Pokeball selection added for each type
+* Oak's Items loadouts increased from 3 to 6
+
 # Developer instructions
 
 ## Editor/IDE setup
