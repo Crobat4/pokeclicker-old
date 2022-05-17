@@ -1,7 +1,7 @@
 {
   "name": "pokeclicker",
   "version": "0.9.3",
-  "crobatVersion": "0.1.3",
+  "crobatVersion": "0.1.4",
   "description": "PokéClicker repository",
   "main": "index.js",
   "scripts": {
