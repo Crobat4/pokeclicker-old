@@ -16,6 +16,23 @@ export default class OakItemLoadouts implements Saveable {
     loadouts: Array<KnockoutObservableArray<number>> = Array(OakItemLoadouts.MAX_SLOTS).fill(0).map(() => ko.observableArray());
     selectedLoadout: KnockoutObservable<number> = ko.observable(0).extend({ numeric: 0 });
 
+    /*
+    constructor(){
+        this.setOakItemsMaxSlots();
+    }
+
+    setOakItemsMaxSlots(){
+        if(Settings.getSetting('addExtraOakItemsLoadouts').observableValue()){
+            OakItemLoadouts.MAX_SLOTS = 6;
+        }
+        else{
+            OakItemLoadouts.MAX_SLOTS = 3;
+        }
+        this.loadouts = Array(OakItemLoadouts.MAX_SLOTS).fill(0).map(() => ko.observableArray());
+        this.selectedLoadout = ko.observable(0).extend({ numeric: 0 });
+    }
+    */
+
     activateLoadout(index: number) {
         if (App.game.challenges.list.disableOakItems.active()) {
             return;

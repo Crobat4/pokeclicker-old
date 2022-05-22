@@ -95,6 +95,7 @@ import ProteinObtainRequirement from './requirements/ProteinObtainRequirement';
 import QuestRequirement from './requirements/QuestRequirement';
 import RouteKillRequirement from './requirements/RouteKillRequirement';
 import SeededDateRequirement from './requirements/SeededDateRequirement';
+import SettingRequirement from './requirements/SettingRequirement'; // Added
 import ShinyPokemonRequirement from './requirements/ShinyPokemonRequirement';
 import SubregionRequirement from './requirements/SubregionRequirement';
 import TokenRequirement from './requirements/TokenRequirement';
@@ -209,6 +210,7 @@ Object.assign(<any>window, {
     QuestRequirement,
     RouteKillRequirement,
     SeededDateRequirement,
+    SettingRequirement,
     ShinyPokemonRequirement,
     SubregionRequirement,
     TokenRequirement,

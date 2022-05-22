@@ -94,7 +94,21 @@ class GymRunner {
             GameHelper.incrementObservable(App.game.statistics.gymsDefeated[GameConstants.getGymIndex(gym.town)]);
 
             // Auto restart gym battle
+
             if (this.autoRestart()) {
+                if (Settings.getSetting('removeGymE4Charge').observableValue()) {
+                    this.startGym(this.gymObservable(), this.autoRestart(), false);
+                } else {
+                    const cost = (this.gymObservable().moneyReward || 10) * 2;
+                    const amt = new Amount(cost, GameConstants.Currency.money);
+                    // If the player can afford it, restart the gym
+                    if (App.game.wallet.loseAmount(amt)) {
+                        this.startGym(this.gymObservable(), this.autoRestart(), false);
+                        return;
+                    }
+                }
+                //comment this to remove penalty
+                /*
                 const cost = (this.gymObservable().moneyReward || 10) * 2;
                 const amt = new Amount(cost, GameConstants.Currency.money);
                 // If the player can afford it, restart the gym
@@ -102,7 +116,15 @@ class GymRunner {
                     this.startGym(this.gymObservable(), this.autoRestart(), false);
                     return;
                 }
+                */
+                //Uncomment this to give auto gym the normal behavior
+                //this.startGym(this.gymObservable(), this.autoRestart(), false);
+
+                // Award money for defeating gym
+                App.game.wallet.gainMoney(gym.moneyReward);
+                return;
             }
+
 
             // Award money for defeating gym
             App.game.wallet.gainMoney(gym.moneyReward);

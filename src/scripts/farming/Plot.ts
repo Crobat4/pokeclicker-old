@@ -356,6 +356,25 @@ class Plot implements Saveable {
         if (Rand.chance(GameConstants.WANDER_RATE * App.game.farming.externalAuras[AuraType.Attract]())) {
             // Get a random Pokemon from the list of possible encounters
             const availablePokemon: PokemonNameType[] = this.berryData.wander.filter(pokemon => PokemonHelper.calcNativeRegion(pokemon) <= player.highestRegion());
+            //Add Crabrawler to wandering list
+            if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
+                switch (this.berryData.type) {
+                    case BerryType.Sitrus:
+                    case BerryType.Lum:
+                    case BerryType.Kee:
+                    case BerryType.Maranga:
+                    case BerryType.Liechi:
+                    case BerryType.Ganlon:
+                    case BerryType.Salac:
+                    case BerryType.Petaya:
+                    case BerryType.Apicot:
+                        availablePokemon.push('Crabrawler');
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //console.log(availablePokemon);
             const wanderPokemon = Rand.fromArray(availablePokemon);
 
             const shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_FARM);

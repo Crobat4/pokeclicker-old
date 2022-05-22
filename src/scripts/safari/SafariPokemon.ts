@@ -133,6 +133,11 @@ class SafariPokemon implements PokemonInterface {
     }
 
     public static random() {
+        if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
+            SafariPokemon.list.push({ name: 'Dratini', weight: 20 });
+            SafariPokemon.list.push({ name: 'Dragonair', weight: 4 });
+        }
+        //console.log(SafariPokemon.list);
         const pokemon = Rand.fromWeightedArray(SafariPokemon.list, SafariPokemon.list.map(p => p.weight));
         return new SafariPokemon(pokemon.name);
     }

@@ -120,6 +120,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 8', GameConstants.Region.kanto, 8,
     new RoutePokemon({
         land: ['Pidgey', 'Pidgeotto', 'Rattata', 'Vulpix', 'Jigglypuff', 'Meowth', 'Abra', 'Kadabra'],
+        eggExclusive: ['Growlithe'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 10)],
     10.1
@@ -128,6 +129,8 @@ Routes.add(new RegionRoute(
     'Kanto Route 7', GameConstants.Region.kanto, 7,
     new RoutePokemon({
         land: ['Pidgey', 'Pidgeotto', 'Rattata', 'Vulpix', 'Jigglypuff', 'Meowth', 'Abra'],
+        eggExclusive: ['Growlithe'],
+        afterJohtoLeague: ['Houndour', 'Murkrow'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 8)],
     10.2
@@ -182,6 +185,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 16', GameConstants.Region.kanto, 16,
     new RoutePokemon({
         land: ['Rattata', 'Raticate', 'Spearow', 'Fearow', 'Doduo', 'Snorlax'],
+        afterJohtoLeague: ['Slugma', 'Murkrow'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Pokemon Tower'))]
 ));
@@ -190,6 +194,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Fearow', 'Ponyta', 'Doduo', 'Dodrio'],
         water: ['Magikarp', 'Poliwag', 'Goldeen', 'Tentacool', 'Shellder'],
+        afterJohtoLeague: ['Slugma'],
     }),
     [
         new OneFromManyRequirement([
@@ -203,6 +208,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Rattata', 'Raticate', 'Spearow', 'Fearow', 'Doduo'],
         water: ['Magikarp', 'Poliwag', 'Goldeen', 'Tentacool', 'Shellder'],
+        afterJohtoLeague: ['Slugma'],
     }),
     [
         new OneFromManyRequirement([
@@ -559,6 +565,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Poochyena', 'Gulpin', 'Minun', 'Oddish', 'Wingull', 'Plusle'],
         water: ['Tentacool', 'Wingull', 'Pelipper', 'Magikarp', 'Wailmer'],
+        eggExclusive: ['Electrike'],
     }),
     [
         new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Granite Cave')),
@@ -618,6 +625,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Surskit', 'Poochyena', 'Oddish', 'Marill', 'Illumise', 'Volbeat', 'Seedot'],
         water: ['Marill', 'Goldeen', 'Magikarp', 'Corphish'],
+        eggExclusive: ['Roselia'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.hoenn, 110)],
     110.1
@@ -627,6 +635,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Zigzagoon', 'Linoone', 'Wingull', 'Kecleon'],
         water: ['Tentacool', 'Wingull', 'Pelipper', 'Magikarp', 'Carvanha', 'Sharpedo'],
+        eggExclusive: ['Electrike', 'Manectric'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Balance)]
 ));
@@ -812,6 +821,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Hoothoot', 'Wurmple', 'Silcoon', 'Beautifly', 'Cascoon', 'Dustox', 'Bidoof', 'Kricketot', 'Budew', 'Buizel', 'Shellos (west)'],
         water: ['Psyduck', 'Golduck', 'Tentacool', 'Tentacruel', 'Shellder', 'Magikarp', 'Gyarados', 'Shellos (west)', 'Gastrodon (west)', 'Finneon', 'Lumineon', 'Barboach', 'Whiscash'],
+        eggExclusive: ['Pachirisu'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Valley Windworks'))]
 ));
@@ -1093,6 +1103,7 @@ Routes.add(new RegionRoute(
     'Unova Route 7', GameConstants.Region.unova, 7,
     new RoutePokemon({
         land: ['Zangoose', 'Seviper', 'Cubchoo', 'Deerling (Summer)', 'Deerling (Winter)', 'Watchog', 'Tranquill', 'Foongus'],
+        eggExclusive: ['Zebstrika'],
     }),
     [
         new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Chargestone Cave')),
@@ -1170,6 +1181,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Golduck', 'Gligar', 'Amoonguss', 'Mienfoo', 'Bouffalant', 'Rufflet', 'Vullaby'],
         water: ['Buizel', 'Basculin (Red-Striped)', 'Basculin (Blue-Striped)'],
+        eggExclusive: ['Throh', 'Sawk'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Giant Chasm'))]
 ));
@@ -1193,6 +1205,7 @@ Routes.add(new RegionRoute(
     'Unova Route 15', GameConstants.Region.unova, 15,
     new RoutePokemon({
         land: ['Sandslash', 'Gligar', 'Pupitar'],
+        eggExclusive: ['Throh', 'Sawk'],
     }),
     [
         new OneFromManyRequirement([
@@ -1207,6 +1220,7 @@ Routes.add(new RegionRoute(
     'Unova Route 3', GameConstants.Region.unova, 3,
     new RoutePokemon({
         land: ['Yanma', 'Watchog', 'Herdier', 'Purrloin', 'Tranquill'],
+        eggExclusive: ['Zebstrika'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Pinwheel Forest'))],
     23.1
@@ -1241,6 +1255,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Tropius', 'Carnivine', 'Watchog', 'Crustle', 'Scrafty'],
         water: ['Frillish', 'Alomomola'],
+        eggExclusive: ['Throh', 'Sawk'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.unova, 17)],
     23.5
@@ -1534,6 +1549,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Alolan Rattata', 'Fletchling', 'Trumbeak', 'Yungoos', 'Stufful'],
         water: ['Tentacool', 'Magikarp', 'Chinchou', 'Remoraid', 'Finneon', 'Mantyke', 'Wishiwashi (Solo)'],
+        eggExclusive: ['Wimpod'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Wela Volcano Park'))],
     undefined,
@@ -1674,6 +1690,7 @@ Routes.add(new RegionRoute(
     'Poni Breaker Coast', GameConstants.Region.alola, 26,
     new RoutePokemon({
         water: ['Tentacruel', 'Lapras', 'Magikarp', 'Pelipper', 'Carvanha', 'Wailmer', 'Relicanth', 'Gastrodon (east)', 'Lumineon'],
+        eggExclusive: ['Wimpod'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.alola, 25)],
     undefined,

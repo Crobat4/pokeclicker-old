@@ -3,10 +3,18 @@ class Discord implements Saveable {
 
     defaults: Record<string, any> = {
         ID: null,
+        TrainerID: null,
+        SecretID: null,
+        FinalID: null,
+        //RandomKey: null,
     };
 
 
     ID: KnockoutObservable<string> = ko.observable(null);
+    TrainerID: KnockoutObservable<string> = ko.observable(null);
+    SecretID: KnockoutObservable<string> = ko.observable(null);
+    FinalID: KnockoutObservable<string> = ko.observable(null);
+    //RandomKey: KnockoutObservable<string> = ko.observable(null);
     codes: Array<DiscordCode> = [
         new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (I)'], 700, 'Alternate form of Unown'),
@@ -45,6 +53,62 @@ class Discord implements Saveable {
     login(): void {
         // This will be updated from our config values
         location.href = `$DISCORD_LOGIN_PROXY?action=login&redirect_uri=${encodeURIComponent(location.href.replace(location.search, ''))}`;
+    }
+
+    generateRandomKey(): void {
+        /*
+        let min = 100000000000000000;
+        let max = 999999999999999999
+        let randomNumber = Math.random() * (max - min) + min
+        const randomID = randomNumber.toString();
+        */
+
+        //Numbers
+        const trainerID = this.generateTrainerID();
+        const secretID = this.generateSecretID();
+        const finalID = this.generateFinalID(trainerID, secretID);
+
+        //Strings
+        const trainerIDString = trainerID.toString();
+        const secretIDString = secretID.toString();
+        const finalIDString = finalID.toString();
+
+        if (trainerIDString && secretIDString && finalIDString) {
+            this.TrainerID(trainerIDString);
+            this.SecretID(secretIDString);
+            this.FinalID(finalIDString);
+            Notifier.notify({
+                message: 'Trainer ID generated successfully!',
+                type: NotificationConstants.NotificationOption.success,
+                timeout: GameConstants.MINUTE,
+            });
+            window.history.replaceState('', '', `${location.origin + location.pathname}`);
+        }
+    }
+
+    generateTrainerID(): number {
+        const min = 0;
+        const max = 65536;
+        let randomNumber = Math.random() * (max - min) + min;
+        randomNumber = Math.floor(randomNumber);
+        //const randTrainerID = randomNumber.toString();
+        const randTrainerID = randomNumber;
+        return randTrainerID;
+    }
+
+    generateSecretID(): number {
+        const min = 0;
+        const max = 65536;
+        let randomNumber = Math.random() * (max - min) + min;
+        randomNumber = Math.floor(randomNumber);
+        //const randSecretID = randomNumber.toString();
+        const randSecretID = randomNumber;
+        return randSecretID;
+    }
+
+    generateFinalID(trainerID, secretID): number {
+        const finalID = trainerID + (secretID * 65536);
+        return finalID;
     }
 
     logout(): void {
@@ -132,17 +196,25 @@ class Discord implements Saveable {
     }
 
     fromJSON(json): void {
-        if (!json || !json.ID) {
+        if (!json || !json.ID && !json.TrainerID && !json.SecretID && !json.FinalID) {
             return;
         }
 
         this.ID(json.ID || this.defaults.ID);
+        this.TrainerID(json.TrainerID || this.defaults.TrainerID);
+        this.SecretID(json.SecretID || this.defaults.SecretID);
+        this.FinalID(json.FinalID || this.defaults.FinalID);
+        //this.RandomKey(json.RandomKey || this.defaults.RandomKey);
         this.loadCodes(json.codes || []);
     }
 
     toJSON(): Record<string, any> {
         return {
             ID: this.ID(),
+            TrainerID: this.TrainerID(),
+            SecretID: this.SecretID(),
+            FinalID: this.FinalID(),
+            //RandomKey: this.RandomKey(),
             codes: this.codes.filter(c => c.claimed),
         };
     }

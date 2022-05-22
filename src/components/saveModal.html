@@ -31,6 +31,9 @@
                             <hr>
                             <!-- /ko -->
 
+                            <i data-bind="visible: !App.game.discord.FinalID()">Trainer ID needs to be generated in order to make Enigma Berry obtainable.</i>
+                            <button class="btn btn-primary btn-block" onClick="App.game.discord.generateRandomKey()" data-bind="visible: !App.game.discord.FinalID()">Generate Trainer ID</button>
+
                             <button class="btn btn-primary btn-block" onClick="Save.download()">Download Save</button>
                             <hr>
 

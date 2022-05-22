@@ -1,6 +1,7 @@
 {
   "name": "pokeclicker",
   "version": "0.9.3",
+  "crobatVersion": "0.2.0",
   "description": "PokéClicker repository",
   "main": "index.js",
   "scripts": {
@@ -14,19 +15,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pokeclicker/pokeclicker.git"
+    "url": "git+https://github.com/Crobat4/pokeclicker.git"
   },
   "babel": {
     "presets": [
       "env"
     ]
   },
-  "author": "RedSparr0w",
+  "author": "Crobat4",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pokeclicker/pokeclicker/issues"
+    "url": "https://github.com/Crobat4/pokeclicker/issues"
   },
-  "homepage": "https://github.com/pokeclicker/pokeclicker#readme",
+  "homepage": "https://github.com/Crobat4/pokeclicker#readme",
   "devDependencies": {
     "@types/gtag.js": "0.0.4",
     "@types/jquery": "^3.5.2",

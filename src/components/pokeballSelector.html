@@ -43,8 +43,8 @@
 </div>
 
 <!--Pokeball by type-->
-<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None">
-    <div class="card-header p-0" data-toggle="collapse" href="#pokeballByTypeSelectorBody">
+<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None && Settings.getSetting('enableBallSelectionByType').observableValue()">
+    <div class="card-header collapsed p-0" data-toggle="collapse" aria-expanded="false" href="#pokeballByTypeSelectorBody">
         <span>Pokéballs (by type)</span>
     </div>
     <button type="button" class="btn btn-info"
@@ -52,7 +52,7 @@
             data-bind="tooltip: { title: 'Select which Pokéball to use on Pokémon depending on their type', trigger: 'hover', placement:'left' }">
         ?
     </button>
-    <div id="pokeballByTypeSelectorBody" class="card-body p-0 show table-responsive">
+    <div id="pokeballByTypeSelectorBody" class="card-body p-0 table-responsive collapse">
         <table class="table table-sm m-0">
             <thead>
                 <!-- Normal, Fire, Water, Electric -->

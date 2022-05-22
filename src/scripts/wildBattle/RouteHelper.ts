@@ -32,8 +32,19 @@ class RouteHelper {
             pokemonList = pokemonList.concat(possiblePokemons.headbutt);
         }
 
+        // Egg exclusive Pokémon
+        if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
+            pokemonList = pokemonList.concat(possiblePokemons.eggExclusive);
+        }
+
+        // Johto Pokémon native from Kanto
+        if (Settings.getSetting('addEggExclusiveToWild').observableValue() && App.game.badgeCase.hasBadge(BadgeEnums.Elite_JohtoChampion)) {
+            pokemonList = pokemonList.concat(possiblePokemons.afterJohtoLeague);
+        }
+
         // Special requirement Pokémon
         pokemonList = pokemonList.concat(...possiblePokemons.special.filter(p => p.isAvailable()).map(p => p.pokemon));
+        //console.log(pokemonList);
 
         return pokemonList;
     }

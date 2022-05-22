@@ -74,6 +74,9 @@ class Farming implements Feature {
 
         //#region Berry Data
 
+        //Wandering Pokemon
+        //let sitrusArray: PokemonNameType[] = ['Flabébé (Yellow)', 'Oricorio (Pom-pom)'];
+
         //#region First Generation
         this.berryData[BerryType.Cheri]     = new Berry(BerryType.Cheri,    [5,10,20,30,60],
             2, 0.5, 5, 1,
