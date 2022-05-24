@@ -81,7 +81,6 @@ class DungeonRunner {
 
     public static lootInput() {
         const generatedLoot = Rand.fromWeightedArray(DungeonRunner.dungeon.itemList, DungeonRunner.dungeon.lootWeightList);
-        console.log(DungeonRunner.dungeon.lootWeightList);
         return generatedLoot;
     }
 

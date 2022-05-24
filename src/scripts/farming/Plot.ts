@@ -357,6 +357,7 @@ class Plot implements Saveable {
             // Get a random Pokemon from the list of possible encounters
             const availablePokemon: PokemonNameType[] = this.berryData.wander.filter(pokemon => PokemonHelper.calcNativeRegion(pokemon) <= player.highestRegion());
             //Add Crabrawler to wandering list
+            /*
             if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
                 switch (this.berryData.type) {
                     case BerryType.Sitrus:
@@ -374,6 +375,7 @@ class Plot implements Saveable {
                         break;
                 }
             }
+            */
             //console.log(availablePokemon);
             const wanderPokemon = Rand.fromArray(availablePokemon);
 

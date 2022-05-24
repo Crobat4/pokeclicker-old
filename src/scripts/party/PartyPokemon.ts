@@ -86,7 +86,7 @@ class PartyPokemon implements Saveable {
                 possibleEvolutions.push(evolution);
             }
         }
-        console.log(possibleEvolutions);
+        //console.log(possibleEvolutions);
         if (possibleEvolutions.length !== 0) {
             return Rand.fromArray(possibleEvolutions).evolve();
         }
