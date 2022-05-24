@@ -14,7 +14,7 @@
                     <th width="20%" data-toggle="tooltip" title="Previously captured Pokémon will use this ball selection">Caught</th>
                     <th width="20%" data-toggle="tooltip" title="Previously captured Shiny Pokémon will use this ball selection" style="filter: grayscale(80%);">✨</th>
                     <th width="20%" data-toggle="tooltip" title="Uncaptured Pokémon will use this ball selection">New</th>
-                    <th width="20%" data-toggle="tooltip" title="Uncaptured Shiny Pokémon will use this ball selection">✨</th>
+                    <th width="20%" data-toggle="tooltip" title="Uncaptured Shiny Pokémon will use this ball selection">New✨</th>
                 </tr>
                 <tr>
                     <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.alreadyCaughtSelection, 'field': App.game.pokeballs._alreadyCaughtSelection, 'title': 'Already Caught Pokémon'}}"></td>
@@ -43,7 +43,7 @@
 </div>
 
 <!--Pokeball by type-->
-<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None && Settings.getSetting('enableBallSelectionByType').observableValue()">
+<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None"> <!-- && Settings.getSetting('enableBallSelectionByType').observableValue()-->
     <div class="card-header collapsed p-0" data-toggle="collapse" aria-expanded="false" href="#pokeballByTypeSelectorBody">
         <span>Pokéballs (by type)</span>
     </div>
