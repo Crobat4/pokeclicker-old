@@ -10,7 +10,7 @@
 
 interface EnemyOptions {
     weight?: number,
-    requirement?: MultiRequirement | OneFromManyRequirement | Requirement,
+    requirement?: MultiRequirement | SettingRequirement | OneFromManyRequirement | Requirement,
     reward?: Amount,
     hide?: boolean,
 }
@@ -200,9 +200,12 @@ class Dungeon {
             if (loot.requirement && !loot.requirement.isCompleted()) {
                 return 0;
             }
+            //Nerf to early game dungeons
+            /*
             if (loot.weight < 2 && GameConstants.getDungeonRegion(this.name) < player.highestRegion() - 2) {
                 return 0.1 * Math.max(0.5,loot.weight);
             }
+            */
             // Minimum of 1 times cleared for division
             const timesCleared = Math.min(500, Math.max(1, App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(this.name)]()));
             // Calculate total weight based on times cleared, minimum weight being original number specified
@@ -1679,6 +1682,7 @@ dungeonList['Meteor Falls'] = new Dungeon('Meteor Falls',
     [
         new DungeonBossPokemon('Solrock', 1240000, 20),
         new DungeonBossPokemon('Lunatone', 1240000, 20),
+        new DungeonBossPokemon('Bagon', 1240000, 20/*, {requirement: new SettingRequirement(1)}*/),
         new DungeonTrainer('Dragon Tamer',
             [
                 new GymPokemon('Altaria', 640000, 37),
@@ -2545,7 +2549,10 @@ dungeonList['Wayward Cave'] = new Dungeon('Wayward Cave',
         {loot: 'Dusk_stone', weight: 0},
     ],
     903000,
-    [new DungeonBossPokemon('Bronzor', 4400000, 100)],
+    [
+        new DungeonBossPokemon('Bronzor', 4400000, 100),
+        new DungeonBossPokemon('Gible', 4400000, 100/*, {requirement: new SettingRequirement(1)}*/),
+    ],
     56500, 206);
 
 dungeonList['Mt. Coronet South'] = new Dungeon('Mt. Coronet South',
@@ -4485,6 +4492,7 @@ dungeonList['Victory Road Unova'] = new Dungeon('Victory Road Unova',
         new DungeonBossPokemon('Terrakion', 45000000, 100),
         new DungeonBossPokemon('Audino', 45000000, 100),
         new DungeonBossPokemon('Druddigon', 44000000, 100),
+        new DungeonBossPokemon('Zweilous', 44000000, 100/*, {requirement: new SettingRequirement(1)}*/),
     ],
     326500, 23);
 
@@ -5956,6 +5964,8 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
         {pokemon: 'Basculin (Blue-Striped)', options: { weight: 1.43 }},
         {pokemon: 'Alomomola', options: { weight: 1.43 }},
         {pokemon: 'Dewpider', options: { weight: 1.43 }},
+        //Added
+        {pokemon: 'Morelull', options: { weight: 1.43 }},
         new DungeonTrainer('Fisherman',
             [new GymPokemon('Tentacool', 12138060, 16)], { weight: 1 }, 'Hal'),
         new DungeonTrainer('Fisherman',
@@ -5977,6 +5987,8 @@ dungeonList['Brooklet Hill'] = new Dungeon('Brooklet Hill',
     [{loot: 'xClick', weight: 4}, {loot: 'Item_magnet', weight: 4}],
     12138060,
     [
+        //TODO (Crobat): Make a class for enemy minion
+        //new DungeonBossPokemon('Morelull', 60690300, 20, {requirement: new SettingRequirement(1)}),
         new DungeonBossPokemon('Wishiwashi (School)', 60690300, 20),
         new DungeonBossPokemon('Araquanid', 60690300, 20),
         new DungeonBossPokemon('Totem Wishiwashi', 82543791, 60, {requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
@@ -6015,10 +6027,25 @@ dungeonList['Wela Volcano Park'] = new Dungeon('Wela Volcano Park',
     () => DungeonGainGymBadge(GymList['Kiawe\'s Trial'], BadgeEnums.FiriumZ));
 
 dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
-    ['Metapod', 'Paras', 'Pinsir', 'Hoothoot', 'Bonsly', 'Trumbeak', 'Fomantis', 'Bounsweet', 'Steenee', 'Comfey', 'Oranguru', 'Passimian'],
+    [
+        'Metapod',
+        'Paras',
+        'Pinsir',
+        'Hoothoot',
+        'Bonsly',
+        'Trumbeak',
+        'Fomantis',
+        'Bounsweet',
+        'Steenee',
+        'Comfey',
+        'Oranguru',
+        'Passimian',
+        'Morelull',
+    ],
     [{loot: 'xClick', weight: 4}, {loot: 'Item_magnet', weight: 4}],
     13090332,
     [
+        //new DungeonBossPokemon('Morelull', 60690300, 20, {requirement: new SettingRequirement(1)}),
         new DungeonBossPokemon('Lurantis', 65451660, 24),
         new DungeonBossPokemon('Totem Lurantis', 82543791, 60, {requirement: new GymBadgeRequirement(BadgeEnums.Elite_AlolaChampion)}),
     ],
@@ -6515,6 +6542,7 @@ dungeonList['Mount Lanakila'] = new Dungeon('Mount Lanakila',
         new DungeonBossPokemon('Absol', 81064250, 50),
         new DungeonBossPokemon('Glalie', 81064250, 50),
         new DungeonBossPokemon('Vanilluxe', 81064250, 50),
+        new DungeonBossPokemon('Drampa', 81064250, 50/*, {requirement: new SettingRequirement(1)}*/),
         new DungeonBossPokemon('Necrozma', 83527125, 65),
     ],
     1175000, 26);

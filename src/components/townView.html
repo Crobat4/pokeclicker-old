@@ -50,10 +50,17 @@
                         tooltip: ($data.tooltip || $data.clears() ? { title: $data.clears() != undefined ? `Total Clears: ${$data.clears()}` : $data.tooltip, trigger: 'hover', placement: 'left' } : undefined)
                         "></button>
                     <!-- ko if: $data instanceof Gym -->
+                    <!-- tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' }, -->
+                    <!-- Original -->
                     <button class="btn btn-info p-0 btn-gym-auto-restart" data-bind="
-                        tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
+                    tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
                         click: () => GymRunner.startGym($data, true),
-                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100">↻</button>
+                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100 && !Settings.getSetting('removeGymE4Charge').observableValue()">↻</button>
+                    <!-- Changed -->
+                    <button class="btn btn-info p-0 btn-gym-auto-restart" data-bind="
+                    tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> 0 per battle<br/><br/><i class='text-warning'>You will receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
+                        click: () => GymRunner.startGym($data, true),
+                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100 && Settings.getSetting('removeGymE4Charge').observableValue()">↻</button>
                     <!-- /ko -->
                 </div>
                 <!-- /ko -->
@@ -85,7 +92,7 @@
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="
             hidden: !$data.lock,
             tooltip: {
-                title: 'Try talking to the locals. Sometimes they know more than you think.',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'
@@ -99,9 +106,10 @@
             <img class="dungeon-pokemon-preview" src="" data-bind="attr:{ src: $data.image },
             css: { 'dungeon-pokemon-locked': $data.hidden }" onerror="this.src='assets/images/trainers/Mysterious Trainer.png';"/>
             <sup class="shiny" data-bind="visible: $data.shiny">✨</sup>
+            <!-- title: 'Try talking to the locals. Sometimes they know more than you think.', -->
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="hidden: !$data.lock,
             tooltip: {
-                title: 'Try talking to the locals. Sometimes they know more than you think.',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'

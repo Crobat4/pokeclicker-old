@@ -13,11 +13,20 @@ You can try out the current state at https://www.pokeclicker.com/
 
 You can reach out on discord to discuss your ideas and how to implement them: https://discord.gg/a6DFe4p
 
-# QoL Changelog
+# Crobat fork Changelog
 4/28/2022
 * Dock added to Shortcuts window
 * Pokeball selection added for each type
 * Oak's Items loadouts increased from 3 to 6
+
+5/24/2022
+* Some egg exclusive pokémon added in the wild to reflect main games location ([Link](eggExclusives.md))
+* Dungeon tiles size now dynamically changes inside a 300px height container
+* Generic tooltip on locked bosses replaced by the actual requirement
+* Enigma Berry: Discord not required anymore but it requires to generate a Trainer ID (Menu > Save > Generate Trainer ID) *This probably killed discord integration but I don't really care*
+* Removed dungeon loot nerf if player's current region is 3 regions above the region where the selected dungeon is
+* Pokéball by type menu collapsed by default
+* Pikachu and Exeggcute now evolves into their alolan forms only inside Alola and into the normal ones only outside it
 
 # Developer instructions
 

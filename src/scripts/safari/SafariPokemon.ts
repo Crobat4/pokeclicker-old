@@ -38,6 +38,9 @@ class SafariPokemon implements PokemonInterface {
         { name: 'Cubone', weight: 10 },
         { name: 'Marowak', weight: 5 },
         { name: 'Tangela', weight: 4 },
+        //Added
+        { name: 'Dratini', weight: 20 },
+        { name: 'Dragonair', weight: 4 },
     ];
 
     public static calcPokemonWeight(pokemon): number {
@@ -133,6 +136,13 @@ class SafariPokemon implements PokemonInterface {
     }
 
     public static random() {
+        /*
+        if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
+            SafariPokemon.list.push({ name: 'Dratini', weight: 20 });
+            SafariPokemon.list.push({ name: 'Dragonair', weight: 4 });
+        }
+        */
+        //console.log(SafariPokemon.list);
         const pokemon = Rand.fromWeightedArray(SafariPokemon.list, SafariPokemon.list.map(p => p.weight));
         return new SafariPokemon(pokemon.name);
     }

@@ -9,6 +9,28 @@
 
 const pokemonBabyPrevolutionMap: { [name: string]: PokemonNameType } = {};
 
+//For regional evolutions, so it evolves in the respective region and not with a random chance
+const alolaOnly: Array<GameConstants.Region> = [GameConstants.Region.alola];
+const galarOnly: Array<GameConstants.Region> = [GameConstants.Region.galar];
+const allButAlola: Array<GameConstants.Region> = [
+    GameConstants.Region.kanto,
+    GameConstants.Region.johto,
+    GameConstants.Region.hoenn,
+    GameConstants.Region.sinnoh,
+    GameConstants.Region.unova,
+    GameConstants.Region.kalos,
+    GameConstants.Region.galar,
+];
+const allButGalar: Array<GameConstants.Region> = [
+    GameConstants.Region.kanto,
+    GameConstants.Region.johto,
+    GameConstants.Region.hoenn,
+    GameConstants.Region.sinnoh,
+    GameConstants.Region.unova,
+    GameConstants.Region.kalos,
+    GameConstants.Region.alola,
+];
+
 type PokemonListData = {
   id: number;
   name: PokemonNameType;
@@ -728,8 +750,9 @@ const pokemonList = createPokemonArray(
         'exp': 112,
         'eggCycles': 10,
         'evolutions': [
-            new StoneEvolution('Pikachu', 'Raichu', GameConstants.StoneType.Thunder_stone),
-            new RegionStoneEvolution(GameConstants.Region.alola, 'Pikachu', 'Alolan Raichu', GameConstants.StoneType.Thunder_stone),
+            //new StoneEvolution('Pikachu', 'Raichu', GameConstants.StoneType.Thunder_stone),
+            new RegionStoneEvolution(allButAlola, 'Pikachu', 'Raichu', GameConstants.StoneType.Thunder_stone),
+            new RegionStoneEvolution(alolaOnly, 'Pikachu', 'Alolan Raichu', GameConstants.StoneType.Thunder_stone),
         ],
         'base': {
             'hitpoints': 35,
@@ -2670,8 +2693,9 @@ const pokemonList = createPokemonArray(
         'exp': 65,
         'eggCycles': 20,
         'evolutions': [
-            new StoneEvolution('Exeggcute', 'Exeggutor', GameConstants.StoneType.Leaf_stone),
-            new RegionStoneEvolution(GameConstants.Region.alola, 'Exeggcute', 'Alolan Exeggutor', GameConstants.StoneType.Leaf_stone),
+            //new StoneEvolution('Exeggcute', 'Exeggutor', GameConstants.StoneType.Leaf_stone),
+            new RegionStoneEvolution(allButAlola, 'Exeggcute', 'Exeggutor', GameConstants.StoneType.Leaf_stone),
+            new RegionStoneEvolution(alolaOnly, 'Exeggcute', 'Alolan Exeggutor', GameConstants.StoneType.Leaf_stone),
         ],
         'base': {
             'hitpoints': 60,
@@ -2855,8 +2879,9 @@ const pokemonList = createPokemonArray(
         'exp': 68,
         'eggCycles': 20,
         'evolutions': [
-            new LevelEvolution('Koffing', 'Weezing', 35),
-            new RegionLevelEvolution(GameConstants.Region.galar, 'Koffing', 'Galarian Weezing', 35),
+            //new LevelEvolution('Koffing', 'Weezing', 35),
+            new RegionLevelEvolution(allButGalar, 'Koffing', 'Weezing', 35),
+            new RegionLevelEvolution(galarOnly, 'Koffing', 'Galarian Weezing', 35),
         ],
         'base': {
             'hitpoints': 40,
@@ -9700,8 +9725,9 @@ const pokemonList = createPokemonArray(
         'evolutions': [
             // Evolves when leveled up while knowing Mimic
             // Learns mimic at level 32
-            new LevelEvolution('Mime Jr.', 'Mr. Mime', 32),
-            new RegionLevelEvolution(GameConstants.Region.galar, 'Mime Jr.', 'Galarian Mr. Mime', 32),
+            //new LevelEvolution('Mime Jr.', 'Mr. Mime', 32),
+            new RegionLevelEvolution(allButGalar, 'Mime Jr.', 'Mr. Mime', 32),
+            new RegionLevelEvolution(galarOnly, 'Mime Jr.', 'Galarian Mr. Mime', 32),
         ],
         'baby': true,
         'base': {
@@ -11605,6 +11631,7 @@ const pokemonList = createPokemonArray(
         'exp': 59,
         'catchRate': 190,
         'evolutions': [new LevelEvolution('Blitzle', 'Zebstrika', 27)],
+        'baby': true,
         'base': {
             'hitpoints': 45,
             'attack': 60,
@@ -13785,6 +13812,7 @@ const pokemonList = createPokemonArray(
         'exp': 60,
         'catchRate': 45,
         'evolutions': [new LevelEvolution('Deino', 'Zweilous', 50)],
+        'baby': true,
         'base': {
             'hitpoints': 52,
             'attack': 65,

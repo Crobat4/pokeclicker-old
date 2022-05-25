@@ -649,7 +649,7 @@
                     <th width="20%" data-toggle="tooltip" title="Previously captured Pokémon will use this ball selection">Caught</th>
                     <th width="20%" data-toggle="tooltip" title="Previously captured Shiny Pokémon will use this ball selection" style="filter: grayscale(80%);">✨</th>
                     <th width="20%" data-toggle="tooltip" title="Uncaptured Pokémon will use this ball selection">New</th>
-                    <th width="20%" data-toggle="tooltip" title="Uncaptured Shiny Pokémon will use this ball selection">✨</th>
+                    <th width="20%" data-toggle="tooltip" title="Uncaptured Shiny Pokémon will use this ball selection">New✨</th>
                 </tr>
                 <tr>
                     <td data-bind="template: {name: 'selectedPokeballDisplayTemplate', data: { 'value': App.game.pokeballs.alreadyCaughtSelection, 'field': App.game.pokeballs._alreadyCaughtSelection, 'title': 'Already Caught Pokémon'}}"></td>
@@ -678,8 +678,8 @@
 </div>
 
 <!--Pokeball by type-->
-<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None">
-    <div class="card-header p-0" data-toggle="collapse" href="#pokeballByTypeSelectorBody">
+<div id="pokeballByTypeSelector" class="card sortable border-secondary mb-3" data-bind="visible: player.starter() != GameConstants.Starter.None"> <!-- && Settings.getSetting('enableBallSelectionByType').observableValue()-->
+    <div class="card-header collapsed p-0" data-toggle="collapse" aria-expanded="false" href="#pokeballByTypeSelectorBody">
         <span>Pokéballs (by type)</span>
     </div>
     <button type="button" class="btn btn-info"
@@ -687,7 +687,7 @@
             data-bind="tooltip: { title: 'Select which Pokéball to use on Pokémon depending on their type', trigger: 'hover', placement:'left' }">
         ?
     </button>
-    <div id="pokeballByTypeSelectorBody" class="card-body p-0 show table-responsive">
+    <div id="pokeballByTypeSelectorBody" class="card-body p-0 table-responsive collapse">
         <table class="table table-sm m-0">
             <thead>
                 <!-- Normal, Fire, Water, Electric -->
@@ -1472,10 +1472,17 @@
                         tooltip: ($data.tooltip || $data.clears() ? { title: $data.clears() != undefined ? `Total Clears: ${$data.clears()}` : $data.tooltip, trigger: 'hover', placement: 'left' } : undefined)
                         "></button>
                     <!-- ko if: $data instanceof Gym -->
+                    <!-- tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' }, -->
+                    <!-- Original -->
                     <button class="btn btn-info p-0 btn-gym-auto-restart" data-bind="
-                        tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
+                    tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
                         click: () => GymRunner.startGym($data, true),
-                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100">↻</button>
+                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100 && !Settings.getSetting('removeGymE4Charge').observableValue()">↻</button>
+                    <!-- Changed -->
+                    <button class="btn btn-info p-0 btn-gym-auto-restart" data-bind="
+                    tooltip: { html: true, title: `Auto restart Gym fight<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> 0 per battle<br/><br/><i class='text-warning'>You will receive money for clearing the gym</i>`, trigger: 'hover', placement:'right' },
+                        click: () => GymRunner.startGym($data, true),
+                        visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100 && Settings.getSetting('removeGymE4Charge').observableValue()">↻</button>
                     <!-- /ko -->
                 </div>
                 <!-- /ko -->
@@ -1507,7 +1514,7 @@
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="
             hidden: !$data.lock,
             tooltip: {
-                title: 'Try talking to the locals. Sometimes they know more than you think.',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'
@@ -1521,9 +1528,10 @@
             <img class="dungeon-pokemon-preview" src="" data-bind="attr:{ src: $data.image },
             css: { 'dungeon-pokemon-locked': $data.hidden }" onerror="this.src='assets/images/trainers/Mysterious Trainer.png';"/>
             <sup class="shiny" data-bind="visible: $data.shiny">✨</sup>
+            <!-- title: 'Try talking to the locals. Sometimes they know more than you think.', -->
             <img class="lock" src="assets/images/breeding/lock.svg" data-bind="hidden: !$data.lock,
             tooltip: {
-                title: 'Try talking to the locals. Sometimes they know more than you think.',
+                title: $data.lockMessage,
                 html: true,
                 placement: 'bottom',
                 trigger: 'hover'
@@ -17647,6 +17655,8 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                     <li class="nav-item"><a class="nav-link" href="#settings-notifications" data-toggle="tab">Notifications</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings-hotkeys" data-toggle="tab">Hotkeys</a></li>
                     <li class="nav-item"><a class="nav-link" href="#settings-other" data-toggle="tab">Other</a></li>
+                    <!-- Custom changes Settings -->
+                    <!--<li class="nav-item"><a class="nav-link" href="#settings-custom" data-toggle="tab">Custom changes</a></li>-->
                 </ul>
 
                 <div class="tab-content">
@@ -17846,6 +17856,31 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                             <button type="button" class="btn btn-danger" onclick="Settings.resetDefault();">Reset Default Settings</button>
                         </div>
                     </div>
+
+                    <!-- Custom changes Settings -->
+                    <!--
+                    <div class="tab-pane" id="settings-custom">
+                        <table class="table table-striped table-hover m-0">
+                            <tbody>
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('enableBallSelectionByType')}"></tr>
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('addEggExclusiveToWild')}"></tr>
+                                <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('removeGymE4Charge')}"></tr>
+                            </tbody>
+                        </table>
+                        <small>
+                            [1]: This will also add the following Johto Pokémon to Kanto routes: Houndour, Murkrow, Slugma <br />
+                            (Requires the Indigo Plateau Johto to be completed)
+                        </small>
+                        
+                        <div class="btn-group btn-block">
+                            <button type="button" class="btn btn-primary" onclick="Settings.saveDefault();">Save As Default Settings</button>
+                            <button type="button" class="btn btn-warning" onclick="Settings.loadDefault();">Load From Default Settings</button>
+                            <button type="button" class="btn btn-danger" onclick="Settings.resetDefault();">Reset Default Settings</button>
+                        </div>
+
+                    </div>
+                    -->
+
                 </div>
             </div>
 
@@ -17868,7 +17903,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
 
 <script type="text/html" id="BooleanSettingTemplate">
     <td class="p-2">
-        <label class="m-0" data-bind="attr: { for: 'checkbox-' + $data.name }, text: `${$data.displayName}:`">
+        <label style="white-space: pre-wrap;" class="m-0" data-bind="attr: { for: 'checkbox-' + $data.name }, text: `${$data.displayName}:`">
             setting name
         </label>
     </td>
@@ -18099,37 +18134,63 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
 
 <!-- Changelog Modal -->
 <div class="modal fade noselect" id="changelogModal" tabindex="-1" role="dialog" aria-badgeledby="changelogModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-       <div class="modal-content">
-           <div class="modal-header">
-               <h5>Changelog</h5>
-               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                   <span aria-hidden="true">&times;</span>
-               </button>
-           </div>
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5>Changelog</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-           <div class="modal-body p-0">
-               <table class="table table-striped table-hover table-bordered table-sm m-0">
-                   <thead>
-                     <tr>
-                       <th>Type</th>
-                       <th>Message</th>
-                     </tr>
-                   </thead>
-                   <tbody data-bind="foreach: ChangelogItems">
-                     <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
-                       <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
-                       <td class="text-left" data-bind="html: description">-</td>
-                     </tr>
-                   </tbody>
-               </table>
-           </div>
+      <div class="modal-body p-0">
+        <ul class="nav nav-tabs nav-fill">
+          <li class="nav-item"><a class="nav-link active" href="#changelog-official" data-toggle="tab">Official</a></li>
+          <li class="nav-item"><a class="nav-link" href="#changelog-crobat" data-toggle="tab">Crobat Fork</a></li>
+        </ul>
 
-           <div class="modal-footer">
-               <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-           </div>
-       </div>
+        <div class="tab-content">
+          <div class="tab-pane active" id="changelog-official">
+            <table class="table table-striped table-hover table-bordered table-sm m-0">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: ChangelogItems">
+                <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
+                  <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
+                  <td class="text-left" data-bind="html: description">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="changelog-crobat">
+            <table class="table table-striped table-hover table-bordered table-sm m-0">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: ChangelogCrobatItems">
+                <tr data-bind="css: { 'table-dark': type.label == 'UPDATE' }">
+                  <td class="tight" data-bind="html: type.label, class: 'table-' + type.display"></td>
+                  <td class="text-left" data-bind="html: description">-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
 </div>
 
 
@@ -19569,6 +19630,12 @@ aria-labelledby="badgeCaseModalLabel">
                             <i class="text-warning"><strong>Note:</strong> This is <strong>not</strong> used for cloud saves,<br/>this just allows you to enter codes received from the Discord bot.</i>
                             <hr>
                             <!-- /ko -->
+                            <!-- ko if: App.game.discord.FinalID() -->
+                            <i data-bind="visible: App.game.discord.FinalID()">Trainer ID: </i>
+                            <i data-bind="visible: App.game.discord.FinalID(), html: App.game.discord.FinalID().slice(-6)">Trainer ID.</i>
+                            <!-- /ko -->
+                            <i data-bind="visible: !App.game.discord.FinalID()">Trainer ID needs to be generated in order to make Enigma Berry obtainable.</i>
+                            <button class="btn btn-primary btn-block" onClick="App.game.discord.generateRandomKey()" data-bind="visible: !App.game.discord.FinalID()">Generate Trainer ID</button>
 
                             <button class="btn btn-primary btn-block" onClick="Save.download()">Download Save</button>
                             <hr>

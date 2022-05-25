@@ -38,6 +38,7 @@ import Notifier from './notifications/Notifier';
 import LogBook from './logbook/LogBook';
 import { LogBookTypes } from './logbook/LogBookTypes';
 import ChangelogItems from './changelog/ChangelogItems';
+import ChangelogCrobatItems from './changelog/ChangelogCrobatItems'; // Added
 import RedeemableCode from './codes/RedeemableCode';
 import RedeemableCodes from './codes/RedeemableCodes';
 import RedeemableCodeController from './codes/RedeemableCodeController';
@@ -95,6 +96,7 @@ import ProteinObtainRequirement from './requirements/ProteinObtainRequirement';
 import QuestRequirement from './requirements/QuestRequirement';
 import RouteKillRequirement from './requirements/RouteKillRequirement';
 import SeededDateRequirement from './requirements/SeededDateRequirement';
+import SettingRequirement from './requirements/SettingRequirement'; // Added
 import ShinyPokemonRequirement from './requirements/ShinyPokemonRequirement';
 import SubregionRequirement from './requirements/SubregionRequirement';
 import TokenRequirement from './requirements/TokenRequirement';
@@ -149,6 +151,7 @@ Object.assign(<any>window, {
     LogBook,
     LogBookTypes,
     ChangelogItems,
+    ChangelogCrobatItems, // Added
     RedeemableCode,
     RedeemableCodes,
     RedeemableCodeController,
@@ -209,6 +212,7 @@ Object.assign(<any>window, {
     QuestRequirement,
     RouteKillRequirement,
     SeededDateRequirement,
+    SettingRequirement,
     ShinyPokemonRequirement,
     SubregionRequirement,
     TokenRequirement,

@@ -36,7 +36,8 @@ class KantoBerryMasterNPC extends NPC {
         mutationToShow.hintSeen = true;
 
         if (mutationToShow instanceof EnigmaMutation) {
-            if (App.game.discord.ID()) {
+            //if (App.game.discord.ID()) {
+            if (App.game.discord.FinalID()) {
                 mutationToShow.hintsSeen[mutationToShow.hintIndex](true);
             }
             return mutationToShow.partialHint;

@@ -10,9 +10,12 @@ class RouteHelper {
      * @param route
      * @param region
      * @param includeHeadbutt
+     * //
+     * @param includeEggExclusive
+     * //
      * @returns {string[]} list of all Pokémons that can be caught
      */
-    public static getAvailablePokemonList(route: number, region: GameConstants.Region, includeHeadbutt = true): PokemonNameType[] {
+    public static getAvailablePokemonList(route: number, region: GameConstants.Region, includeHeadbutt = true, includeEggExclusive = true): PokemonNameType[] {
         // If the route is somehow higher than allowed, use the first route to generateWildPokemon Pokémon
         const possiblePokemons = Routes.getRoute(region, route)?.pokemon;
         if (!possiblePokemons) {
@@ -32,8 +35,21 @@ class RouteHelper {
             pokemonList = pokemonList.concat(possiblePokemons.headbutt);
         }
 
+        // Egg exclusive Pokémon
+        //if (Settings.getSetting('addEggExclusiveToWild').observableValue()) {
+        if (includeEggExclusive) {
+            pokemonList = pokemonList.concat(possiblePokemons.eggExclusive);
+        }
+
+        // Johto Pokémon native from Kanto (Houndour, Murkrow, Slugma)
+        //if (Settings.getSetting('addEggExclusiveToWild').observableValue() && App.game.badgeCase.hasBadge(BadgeEnums.Elite_JohtoChampion)) {
+        if (App.game.badgeCase.hasBadge(BadgeEnums.Elite_JohtoChampion)) {
+            pokemonList = pokemonList.concat(possiblePokemons.afterJohtoLeague);
+        }
+
         // Special requirement Pokémon
         pokemonList = pokemonList.concat(...possiblePokemons.special.filter(p => p.isAvailable()).map(p => p.pokemon));
+        //console.log(pokemonList);
 
         return pokemonList;
     }
@@ -44,11 +60,14 @@ class RouteHelper {
      * @param region
      * @param includeShiny
      * @param includeHeadbutt
+     * //
+     * @param includeEggExclusive
+     * //
      * @returns {boolean} true if all Pokémon on this route are caught.
      */
 
-    public static routeCompleted(route: number, region: GameConstants.Region, includeShiny: boolean, includeHeadbutt = true): boolean {
-        const possiblePokemon: PokemonNameType[] = RouteHelper.getAvailablePokemonList(route, region, includeHeadbutt);
+    public static routeCompleted(route: number, region: GameConstants.Region, includeShiny: boolean, includeHeadbutt = true, includeEggExclusive = true): boolean {
+        const possiblePokemon: PokemonNameType[] = RouteHelper.getAvailablePokemonList(route, region, includeHeadbutt, includeEggExclusive);
         return RouteHelper.listCompleted(possiblePokemon, includeShiny);
     }
 

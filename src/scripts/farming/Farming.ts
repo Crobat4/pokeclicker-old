@@ -74,6 +74,17 @@ class Farming implements Feature {
 
         //#region Berry Data
 
+        //Wandering Pokemon
+        const sitrusWandering:  PokemonNameType[] = ['Flabébé (Yellow)', 'Oricorio (Pom-pom)', 'Crabrawler'];
+        const lumWandering:     PokemonNameType[] = ['Crabrawler'];
+        const keeWandering:     PokemonNameType[] = ['Flabébé (Yellow)', 'Oricorio (Pom-pom)', 'Crabrawler'];
+        const marangaWandering: PokemonNameType[] = ['Flabébé (Blue)', 'Crabrawler'];
+        const liechiWandering:  PokemonNameType[] = ['Manaphy', 'Oricorio (Baile)', 'Crabrawler'];
+        const ganlonWandering:  PokemonNameType[] = ['Oricorio (Sensu)', 'Crabrawler'];
+        const salacWandering:   PokemonNameType[] = ['Crabrawler'];
+        const petayaWandering:  PokemonNameType[] = ['Mew', 'Oricorio (Pa\'u)', 'Crabrawler'];
+        const apicotWandering:  PokemonNameType[] = ['Flabébé (Blue)', 'Crabrawler'];
+
         //#region First Generation
         this.berryData[BerryType.Cheri]     = new Berry(BerryType.Cheri,    [5,10,20,30,60],
             2, 0.5, 5, 1,
@@ -106,7 +117,8 @@ class Farming implements Feature {
         this.berryData[BerryType.Sitrus]    = new Berry(BerryType.Sitrus,   [150, 300, 450, 600, 1200],
             9, 0.5, 30, 8,
             [0, 10, 10, 10, 10], BerryColor.Yellow,
-            ['Sitrus came from the same family as Oran. It is larger and smoother tasting than Oran.'], undefined, ['Flabébé (Yellow)', 'Oricorio (Pom-pom)']);
+            ['Sitrus came from the same family as Oran. It is larger and smoother tasting than Oran.'], undefined,
+            sitrusWandering);
         //#endregion
 
         //#region Second Generation
@@ -162,7 +174,8 @@ class Farming implements Feature {
             [
                 'This Berry\'s gradual process of storing nutrients beneficial to Pokémon health causes it to mature slowly.',
                 'This Berry multiplies the effect of Berry plants around it.',
-            ], new Aura(AuraType.Boost, [1.01, 1.02, 1.03]));
+            ], new Aura(AuraType.Boost, [1.01, 1.02, 1.03]),
+            lumWandering);
         //#endregion
 
         //#region Third Generation
@@ -380,25 +393,30 @@ class Farming implements Feature {
         this.berryData[BerryType.Kee]       = new Berry(BerryType.Kee,      [4680, 9360, 18360, 36360, 72720],
             1, 0.05, 3000, 20,
             [30, 30, 10, 10, 10], BerryColor.Yellow,
-            ['This Berry remains poisonous until fully ripened. Once ripe it has a spicy and sweet complex flavor.'], undefined, ['Flabébé (Yellow)', 'Oricorio (Pom-pom)']);
+            ['This Berry remains poisonous until fully ripened. Once ripe it has a spicy and sweet complex flavor.'], undefined,
+            keeWandering);
         this.berryData[BerryType.Maranga]   = new Berry(BerryType.Maranga,  [5040, 10080, 20160, 40320, 80640],
             1, 0.05, 3100, 20,
             [10, 10, 30, 30, 10], BerryColor.Blue,
-            ['This Berry resembles the Durin Berry, however its spikes are less pronounced. It is quite delicious when roasted.'], undefined, ['Flabébé (Blue)']);
+            ['This Berry resembles the Durin Berry, however its spikes are less pronounced. It is quite delicious when roasted.'], undefined,
+            marangaWandering);
 
         this.berryData[BerryType.Liechi]    = new Berry(BerryType.Liechi,   [21600, 43200, 86400, 172800, 345600],
             0.5, 0, 10000, 20,
             [30, 10, 30, 0, 0], BerryColor.Red,
             ['This Berry is surrounded by mystery. It is rumored to be imbued with the power of the sea.'],
-            undefined, ['Manaphy', 'Oricorio (Baile)']);
+            undefined,
+            liechiWandering);
         this.berryData[BerryType.Ganlon]    = new Berry(BerryType.Ganlon,   [21600, 43200, 86400, 172800, 345600],
             0.5, 0, 10000, 20,
             [0, 30, 10, 30, 0], BerryColor.Purple,
-            ['This Berry is surrounded by mystery. It is rumored to be imbued with the power of the land.'], undefined, ['Oricorio (Sensu)']);
+            ['This Berry is surrounded by mystery. It is rumored to be imbued with the power of the land.'], undefined,
+            ganlonWandering);
         this.berryData[BerryType.Salac]     = new Berry(BerryType.Salac,    [21600, 43200, 86400, 172800, 345600],
             0.5, 0, 10000, 20,
             [0, 0, 30, 10, 30], BerryColor.Green,
-            ['This Berry is surrounded by mystery. It is rumored to be imbued with the power of the sky.']);
+            ['This Berry is surrounded by mystery. It is rumored to be imbued with the power of the sky.'], undefined,
+            salacWandering);
         this.berryData[BerryType.Petaya]    = new Berry(BerryType.Petaya,   [10800, 21600, 43200, 86400, 432000],
             0.5, 0, 15000, 20,
             [30, 0, 0, 30, 10], BerryColor.Pink,
@@ -406,11 +424,13 @@ class Farming implements Feature {
                 'This Berry is surrounded by mystery. It is rumored to be imbued with the power of all living things.',
                 'This power keeps other Berries alive for longer.',
             ],
-            undefined, ['Mew', 'Oricorio (Pa\'u)']);
+            undefined,
+            petayaWandering);
         this.berryData[BerryType.Apicot]    = new Berry(BerryType.Apicot,   [10800, 21600, 43200, 86400, 432000],
             0.5, 0, 15000, 20,
             [10, 30, 0, 0, 30], BerryColor.Blue,
-            ['This is a very, very mystifying Berry. There is no telling how it can be used, or what may happen if it is used.'], undefined, ['Flabébé (Blue)']);
+            ['This is a very, very mystifying Berry. There is no telling how it can be used, or what may happen if it is used.'], undefined,
+            apicotWandering);
         this.berryData[BerryType.Lansat]    = new Berry(BerryType.Lansat,   [10800, 21600, 43200, 86400, 432000],
             0.5, 0, 15000, 20,
             [30, 10, 30, 10, 30], BerryColor.Red,
