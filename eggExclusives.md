@@ -1,4 +1,4 @@
-Egg exclusives
+# Egg exclusives
 5/24/2022
 * Growlithe (Kanto Route 7, 8)
 * Dratini (Kanto Safari Zone)
