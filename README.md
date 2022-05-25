@@ -1,6 +1,5 @@
 [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/pokeclicker/pokeclicker/develop?label=dev%20version)](https://github.com/pokeclicker/pokeclicker/tree/develop)<br/>
 [![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/pokeclicker/pokeclicker/master?label=live%20version)](https://www.pokeclicker.com/)<br/>
-[![GitHub package.json crobat-version (branch)](https://img.shields.io/github/package-json/v/Crobat4/pokeclicker/master?label=Crobat%20version)](https://crobat4.github.io/pokeclicker/)<br/>
 [![Build Status](https://img.shields.io/travis/com/pokeclicker/pokeclicker?logo=travis)](https://travis-ci.com/pokeclicker/pokeclicker)<br/>
 [![Discord](https://img.shields.io/discord/450412847017754644?color=7289DA&label=Discord&logo=discord)](https://discord.gg/a6DFe4p)
 
@@ -26,6 +25,7 @@ You can reach out on discord to discuss your ideas and how to implement them: ht
 * Enigma Berry: Discord not required anymore but it requires to generate a Trainer ID (Menu > Save > Generate Trainer ID) *This probably killed discord integration but I don't really care*
 * Removed dungeon loot nerf if player's current region is 3 regions above the region where the selected dungeon is
 * Pokéball by type menu collapsed by default
+* "Uncaught Shiny Pokémon" ball selection label changed from ✨ to New✨
 * Pikachu and Exeggcute now evolves into their alolan forms only inside Alola and into the normal ones only outside it
 
 # Developer instructions
