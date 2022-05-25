@@ -4492,7 +4492,7 @@ dungeonList['Victory Road Unova'] = new Dungeon('Victory Road Unova',
         new DungeonBossPokemon('Terrakion', 45000000, 100),
         new DungeonBossPokemon('Audino', 45000000, 100),
         new DungeonBossPokemon('Druddigon', 44000000, 100),
-        new DungeonBossPokemon('Deino', 44000000, 100/*, {requirement: new SettingRequirement(1)}*/),
+        new DungeonBossPokemon('Zweilous', 44000000, 100/*, {requirement: new SettingRequirement(1)}*/),
     ],
     326500, 23);
 

@@ -38,6 +38,7 @@ import Notifier from './notifications/Notifier';
 import LogBook from './logbook/LogBook';
 import { LogBookTypes } from './logbook/LogBookTypes';
 import ChangelogItems from './changelog/ChangelogItems';
+import ChangelogCrobatItems from './changelog/ChangelogCrobatItems'; // Added
 import RedeemableCode from './codes/RedeemableCode';
 import RedeemableCodes from './codes/RedeemableCodes';
 import RedeemableCodeController from './codes/RedeemableCodeController';
@@ -150,6 +151,7 @@ Object.assign(<any>window, {
     LogBook,
     LogBookTypes,
     ChangelogItems,
+    ChangelogCrobatItems, // Added
     RedeemableCode,
     RedeemableCodes,
     RedeemableCodeController,

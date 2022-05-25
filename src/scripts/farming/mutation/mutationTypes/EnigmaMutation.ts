@@ -93,7 +93,7 @@ class EnigmaMutation extends GrowMutation {
         }
         */
         if (!App.game.discord.FinalID()) {
-            return 'There is a Berry that requires you to generate a Random Key to appear...';
+            return 'There is a Berry that requires you to generate a Trainer ID to appear...';
         }
         const idx = this.hintIndex;
         return `There's a mysterious berry that requires ${this.getHint(idx)}.`;
@@ -128,7 +128,7 @@ class EnigmaMutation extends GrowMutation {
         }
         */
         if (!App.game.discord.FinalID()) {
-            return 'There is a Berry that requires you to generate a Random Key to appear...';
+            return 'There is a Berry that requires you to generate a Trainer ID to appear...';
         }
 
         const hints = [];
