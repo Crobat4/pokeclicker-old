@@ -10,15 +10,19 @@ import ChangelogUpdate from './ChangelogUpdate';
  */
 const ChangelogCrobatItems = [
     // note that month is 0 indexed, that's why -1
+    new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/blob/master/eggExclusives.md">List of egg exclusives to wild</a></div>'),
+    // v0.2.1
+    new ChangelogUpdate('v0.2.1', new Date(2022, 5 - 1, 25)),
+    new Changelog(changelogType.FIXED, 'Height of dungeon tiles now works as intended in the desktop build'),
     // v0.2.0
     new ChangelogUpdate('v0.2.0', new Date(2022, 5 - 1, 24)),
     new Changelog(changelogType.NEW, 'Added changelog for this fork'),
-    new Changelog(changelogType.CHANGE, 'Added some egg exclusives to the wild (Check repository for the list)'),
+    new Changelog(changelogType.CHANGE, 'Added some egg exclusives to the wild (<a href="https://github.com/Crobat4/pokeclicker/blob/master/eggExclusives.md">List</a>)'),
     new Changelog(changelogType.CHANGE, 'Height of dungeons tiles now changes dynamically'),
     new Changelog(changelogType.CHANGE, 'Locked bosses now show the unlock requirement in the tooltip'),
     new Changelog(changelogType.NEW, 'Trainer ID added (Menu > Save > Generate Trainer ID)'),
     new Changelog(changelogType.CHANGE, 'Enigma Berry: Discord not required anymore but it requires Trainer ID'),
-    new Changelog(changelogType.CHANGE, 'Removed dungeon loot nerf on earlier regions'),
+    new Changelog(changelogType.REMOVED, 'Removed dungeon loot nerf on earlier regions'),
     new Changelog(changelogType.CHANGE, '"Pokéball (by type)" menu is now collapsed by default'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their alolan forms only in Alola'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their normal forms only outside Alola'),
