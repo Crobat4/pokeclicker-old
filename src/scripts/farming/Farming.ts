@@ -1396,9 +1396,7 @@ class Farming implements Feature {
         }
 
         const mutations = json['mutations'];
-        if (mutations == null) {
-            this.mutations.forEach(mutation => mutation.fromJSON({}));
-        } else {
+        if (mutations) {
             this.mutations.forEach((mutation, i) => mutation.fromJSON(mutations[i]));
         }
 
