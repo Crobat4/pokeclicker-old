@@ -14,7 +14,7 @@ const ChangelogCrobatItems = [
 
     // v0.2.2
     new ChangelogUpdate('v0.2.2', new Date(2022, 5 - 1, 26)),
-    new Changelog(changelogType.NEW, 'Added Official update v0.9.4'),
+    new Changelog(changelogType.NEW, 'Added Official update v0.9.4 and v0.9.5 (bug fixes)'),
     new Changelog(changelogType.CHANGE, 'Reverted Gen 3+ berries removal in dungeons'),
     // v0.2.1
     new ChangelogUpdate('v0.2.1', new Date(2022, 5 - 1, 25)),
@@ -29,9 +29,9 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Enigma Berry: Discord not required anymore but it requires Trainer ID'),
     new Changelog(changelogType.CHANGE, '"Pokéball (by type)" menu is now collapsed by default'),
     new Changelog(changelogType.CHANGE, '"Uncaptured Shiny Pokémon" ball selection label changed from "✨" to "New✨"'),
-    new Changelog(changelogType.REMOVED, 'Removed dungeon loot nerf on earlier regions'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their alolan forms only in Alola'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their normal forms only outside Alola'),
+    new Changelog(changelogType.REMOVED, 'Removed dungeon loot nerf on earlier regions'),
 
     // v0.1.0
     new ChangelogUpdate('v0.1.0', new Date(2022, 4 - 1, 28)),
