@@ -27,6 +27,9 @@ You can reach out on discord to discuss your ideas and how to implement them: ht
 * Pokéball by type menu collapsed by default
 * Pikachu and Exeggcute now evolves into their alolan forms only inside Alola and into the normal ones only outside it
 
+5/26/2022
+* Added Official fork update (v0.9.4)
+
 # Developer instructions
 
 ## Editor/IDE setup
