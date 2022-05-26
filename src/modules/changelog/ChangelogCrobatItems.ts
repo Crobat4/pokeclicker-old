@@ -10,7 +10,7 @@ import ChangelogUpdate from './ChangelogUpdate';
  */
 const ChangelogCrobatItems = [
     // note that month is 0 indexed, that's why -1
-    new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/blob/master/eggExclusives.md">List of egg exclusives to wild</a></div>'),
+    new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/blob/master/eggExclusives.md" target="_blank">List of egg exclusives to wild</a></div>'),
     // v0.2.1
     new ChangelogUpdate('v0.2.1', new Date(2022, 5 - 1, 25)),
     new Changelog(changelogType.FIXED, 'Height of dungeon tiles now works as intended in the desktop build'),
@@ -24,6 +24,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Enigma Berry: Discord not required anymore but it requires Trainer ID'),
     new Changelog(changelogType.REMOVED, 'Removed dungeon loot nerf on earlier regions'),
     new Changelog(changelogType.CHANGE, '"Pokéball (by type)" menu is now collapsed by default'),
+    new Changelog(changelogType.CHANGE, '"Uncaptured Shiny Pokémon" ball selection label changed from "✨" to "New✨"'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their alolan forms only in Alola'),
     new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their normal forms only outside Alola'),
 
