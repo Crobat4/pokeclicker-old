@@ -1,6 +1,21 @@
 @import "variables.less";
 
 #map {
+  @-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to { opacity: 0.6; }
+  }
+
+  @-moz-keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 0.6; }
+  }
+
+  @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 0.6; }
+  }
+
   rect, path {
     cursor: pointer;
     fill: transparent;
@@ -28,6 +43,9 @@
   .questAtLocation {
     fill: var(--questAtLocation);
     opacity: 0.6;
+    -webkit-animation: fadein 1s ease-in alternate infinite;
+    -moz-animation: fadein 1s ease-in alternate infinite;
+    animation: fadein 1s ease-in alternate infinite;
   }
 
   .uncaughtPokemon {
