@@ -22,6 +22,7 @@ class LevelEvolution extends Evolution {
     }
 
     evolve(): boolean {
+        //Comment these two IF for evolution testing purpose
         if (this.triggered) {
             return false;
         }

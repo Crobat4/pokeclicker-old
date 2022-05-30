@@ -2767,9 +2767,12 @@ const pokemonList = createPokemonArray(
         'exp': 64,
         'eggCycles': 20,
         'evolutions': [
-            new LevelEvolution('Cubone', 'Marowak', 28),
+            //new LevelEvolution('Cubone', 'Marowak', 28),
             // TODO: Regional restricted as well as night restricted
-            TimeRestrictedLevelEvolution(18, 6, 'Cubone', 'Alolan Marowak', 28),
+            //TimeRestrictedLevelEvolution(18, 6, 'Cubone', 'Alolan Marowak', 28),
+            new RegionLevelEvolution(allButAlola, 'Cubone', 'Marowak', 28),
+            new RegionNightTimedLevelEvolution(alolaOnly, 'Cubone', 'Alolan Marowak', 28),
+            //new RegionDayTimedLevelEvolution(alolaOnly, 'Cubone', 'Alolan Marowak', 28),
         ],
         'base': {
             'hitpoints': 50,
@@ -5303,7 +5306,8 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 86,
         'eggCycles': 20,
-        'evolutions': [new StoneEvolution('Gligar', 'Gliscor', GameConstants.StoneType.Razor_fang)],
+        //'evolutions': [new StoneEvolution('Gligar', 'Gliscor', GameConstants.StoneType.Razor_fang)],
+        'evolutions': [new NightTimedStoneEvolution('Gligar', 'Gliscor', GameConstants.StoneType.Razor_fang)],
         'base': {
             'hitpoints': 65,
             'attack': 75,
@@ -5442,7 +5446,8 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 86,
         'eggCycles': 20,
-        'evolutions': [new StoneEvolution('Sneasel', 'Weavile', GameConstants.StoneType.Razor_claw)],
+        //'evolutions': [new StoneEvolution('Sneasel', 'Weavile', GameConstants.StoneType.Razor_claw)],
+        'evolutions': [new NightTimedStoneEvolution('Sneasel', 'Weavile', GameConstants.StoneType.Razor_claw)],
         'base': {
             'hitpoints': 55,
             'attack': 95,
@@ -7938,6 +7943,11 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 147,
         'catchRate': 45,
+        'evolutions': [
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (sunny)', 1, [WeatherType.Sunny]),
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (rainy)', 1, [WeatherType.Rain, WeatherType.Thunderstorm]),
+            new WeatherRestrictedLevelEvolution('Castform', 'Castform (snowy)', 1, [WeatherType.Snow, WeatherType.Blizzard, WeatherType.Hail, WeatherType.Fog]),
+        ],
         'base': {
             'hitpoints': 70,
             'attack': 70,
@@ -15937,7 +15947,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.slow,
         'exp': 158,
         'catchRate': 45,
-        'evolutions': [new WeatherRestrictedLevelEvolution('Sliggoo', 'Goodra', 50, [WeatherType.Rain, WeatherType.Fog])],
+        'evolutions': [new WeatherRestrictedLevelEvolution('Sliggoo', 'Goodra', 50, [WeatherType.Rain, WeatherType.Fog, WeatherType.Thunderstorm])],
         'base': {
             'hitpoints': 68,
             'attack': 75,

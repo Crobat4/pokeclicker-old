@@ -22,7 +22,6 @@ abstract class Evolution {
         if (PokemonHelper.calcNativeRegion(evolvedPokemon) > player.highestRegion()) {
             return false;
         }
-
         // Notify the player if they haven't already caught the evolution, or notifications are forced
         if (!App.game.party.alreadyCaughtPokemonByName(evolvedPokemon) || notification) {
             Notifier.notify({
@@ -32,6 +31,18 @@ abstract class Evolution {
                 setting: NotificationConstants.NotificationSetting.General.new_catch,
             });
         }
+        /*
+        else if(App.game.party.alreadyCaughtPokemonByName(evolvedPokemon) || notification){
+            if(this.basePokemon == 'Cubone'){
+                Notifier.notify({
+                    message: `Your ${this.basePokemon} evolved into a ${evolvedPokemon}`,
+                    type: NotificationConstants.NotificationOption.success,
+                    sound: NotificationConstants.NotificationSound.General.new_catch,
+                    setting: NotificationConstants.NotificationSetting.General.new_catch,
+                });
+            }
+        }
+        */
 
         const shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_STONE);
         App.game.party.gainPokemonById(PokemonHelper.getPokemonByName(evolvedPokemon).id, shiny, true);
