@@ -195,8 +195,17 @@ class MapHelper {
             $('#ShipModal').modal('show');
         };
         if (player.highestRegion() > 0 && (TownList[GameConstants.DockTowns[player.region]].isUnlocked())) {
-            openModal();
-        } else {
+            if (App.game.gameState == GameConstants.GameState.battleFrontier) {
+                Notifier.notify({
+                    message: 'You cannot access to the dock while you are inside the Battle Frontier',
+                    type: NotificationConstants.NotificationOption.warning,
+                });
+            }
+            else {
+                openModal();
+            }
+        } 
+        else {
             Notifier.notify({
                 message: 'You cannot access this dock yet',
                 type: NotificationConstants.NotificationOption.warning,
