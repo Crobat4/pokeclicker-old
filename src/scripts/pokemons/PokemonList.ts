@@ -608,7 +608,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 51,
         'eggCycles': 15,
-        'evolutions': [new LevelEvolution('Alolan Rattata', 'Alolan Raticate', 20)],
+        'evolutions': [
+            //new LevelEvolution('Alolan Rattata', 'Alolan Raticate', 20),
+            new NightTimedLevelEvolution('Alolan Rattata', 'Alolan Raticate', 20),
+        ],
         'base': {
             'hitpoints': 30,
             'attack': 56,
@@ -3373,9 +3376,9 @@ const pokemonList = createPokemonArray(
             new NightTimedStoneEvolution('Eevee', 'Umbreon', GameConstants.StoneType.Soothe_bell),
             new DungeonRestrictedLevelEvolution('Eterna Forest', 'Eevee', 'Leafeon', 20),
             new DungeonRestrictedLevelEvolution('Pinwheel Forest', 'Eevee', 'Leafeon', 20),
-            new DungeonRestrictedLevelEvolution('Pokémon Village', 'Eevee', 'Leafeon', 20),
+            new DungeonRestrictedLevelEvolution('Pokémon Village', 'Eevee', 'Leafeon', 20), //TODO: Change to Kalos Route 20
             new DungeonRestrictedLevelEvolution('Lush Jungle', 'Eevee', 'Leafeon', 20),
-            new DungeonRestrictedLevelEvolution('Lake Acuity','Eevee','Glaceon', 20),
+            new DungeonRestrictedLevelEvolution('Lake Acuity','Eevee','Glaceon', 20), //RODO: Change to Sinnoh Route 217
             new DungeonRestrictedLevelEvolution('Twist Mountain','Eevee','Glaceon', 20),
             new DungeonRestrictedLevelEvolution('Frost Cavern','Eevee','Glaceon', 20),
             new DungeonRestrictedLevelEvolution('Mount Lanakila','Eevee','Glaceon', 20),
@@ -7026,7 +7029,7 @@ const pokemonList = createPokemonArray(
             new DungeonRestrictedLevelEvolution('Mt. Coronet North', 'Nosepass', 'Probopass', 20),
             new DungeonRestrictedLevelEvolution('Mt. Coronet South', 'Nosepass', 'Probopass', 20),
             new DungeonRestrictedLevelEvolution('Chargestone Cave', 'Nosepass', 'Probopass', 20),
-            new DungeonRestrictedLevelEvolution('Kalos Power Plant', 'Nosepass', 'Probopass', 20),
+            new DungeonRestrictedLevelEvolution('Kalos Power Plant', 'Nosepass', 'Probopass', 20), //TODO: Change to Kalos Route 13
             new DungeonRestrictedLevelEvolution('Vast Poni Canyon', 'Nosepass', 'Probopass', 20),
         ],
         'base': {
@@ -15790,7 +15793,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 72,
         'catchRate': 45,
-        'evolutions': [new LevelEvolution('Tyrunt', 'Tyrantrum', 39)],
+        'evolutions': [
+            //new LevelEvolution('Tyrunt', 'Tyrantrum', 39),
+            new DayTimedLevelEvolution('Tyrunt', 'Tyrantrum', 39),
+        ],
         'base': {
             'hitpoints': 58,
             'attack': 89,
@@ -15825,7 +15831,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 72,
         'catchRate': 45,
-        'evolutions': [new LevelEvolution('Amaura', 'Aurorus', 39)],
+        'evolutions': [
+            //new LevelEvolution('Amaura', 'Aurorus', 39),
+            new NightTimedLevelEvolution('Amaura', 'Aurorus', 39),
+        ],
         'base': {
             'hitpoints': 77,
             'attack': 59,
@@ -16453,7 +16462,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 51,
         'catchRate': 255,
-        'evolutions': [new LevelEvolution('Yungoos', 'Gumshoos', 20)],
+        'evolutions': [
+            //new LevelEvolution('Yungoos', 'Gumshoos', 20),
+            new DayTimedLevelEvolution('Yungoos', 'Gumshoos', 20),
+        ],
         'base': {
             'hitpoints': 48,
             'attack': 70,
@@ -16523,7 +16535,13 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 140,
         'catchRate': 120,
-        'evolutions': [new DungeonRestrictedLevelEvolution('Vast Poni Canyon', 'Charjabug', 'Vikavolt', 20)],
+        'evolutions': [
+            new DungeonRestrictedLevelEvolution('Mt. Coronet North', 'Charjabug', 'Vikavolt', 20),
+            new DungeonRestrictedLevelEvolution('Mt. Coronet South', 'Charjabug', 'Vikavolt', 20),
+            new DungeonRestrictedLevelEvolution('Chargestone Cave', 'Charjabug', 'Vikavolt', 20),
+            new DungeonRestrictedLevelEvolution('Kalos Power Plant', 'Charjabug', 'Vikavolt', 20),
+            new DungeonRestrictedLevelEvolution('Vast Poni Canyon', 'Charjabug', 'Vikavolt', 20),
+        ],
         'base': {
             'hitpoints': 57,
             'attack': 82,
@@ -16961,7 +16979,10 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 50,
         'catchRate': 190,
-        'evolutions': [new LevelEvolution('Fomantis', 'Lurantis', 34)],
+        'evolutions': [
+            //new LevelEvolution('Fomantis', 'Lurantis', 34),
+            new DayTimedLevelEvolution('Fomantis', 'Lurantis', 34),
+        ],
         'base': {
             'hitpoints': 40,
             'attack': 55,
