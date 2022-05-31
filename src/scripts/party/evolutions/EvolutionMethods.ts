@@ -50,8 +50,9 @@ const RegionStoneEvolution = RegionRestricted(StoneEvolution);
 // new RegionLevelEvolution(region: GameConstants.Region, basePokemon: string, evolvedPokemon: string, level: number)
 const RegionLevelEvolution = RegionRestricted(LevelEvolution);
 
-//
-// new RegionLevelEvolution(region: GameConstants.Region, basePokemon: string, evolvedPokemon: string, level: number)
+//Added
+// new RegionDayTimedLevelEvolution(region: GameConstants.Region, basePokemon: string, evolvedPokemon: string, stone: GameConstants.StoneType)
 const RegionDayTimedLevelEvolution = RegionRestricted(DayTimedLevelEvolution);
-// new RegionLevelEvolution(region: GameConstants.Region, basePokemon: string, evolvedPokemon: string, level: number)
+
+// new RegionNightTimedLevelEvolution(region: GameConstants.Region, basePokemon: string, evolvedPokemon: string, stone: GameConstants.StoneType)
 const RegionNightTimedLevelEvolution = RegionRestricted(NightTimedLevelEvolution);

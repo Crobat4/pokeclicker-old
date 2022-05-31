@@ -31,7 +31,7 @@ abstract class Evolution {
                 setting: NotificationConstants.NotificationSetting.General.new_catch,
             });
         }
-        /*
+        /* Uncomment for testing purposes
         else if(App.game.party.alreadyCaughtPokemonByName(evolvedPokemon) || notification){
             if(this.basePokemon == 'Cubone'){
                 Notifier.notify({
