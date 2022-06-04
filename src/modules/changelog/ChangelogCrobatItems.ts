@@ -11,7 +11,21 @@ import ChangelogUpdate from './ChangelogUpdate';
 const ChangelogCrobatItems = [
     // note that month is 0 indexed, that's why -1
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
-
+    new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
+    //⥂⥄
+    new ChangelogUpdate('v0.2.3', new Date(2022, 6 - 1, 4)),
+    new Changelog(changelogType.CHANGE, 'Changed sort icons: ⥂ to <i class="bi bi-sort-up"></i> (asc) and ⥄ to <i class="bi bi-sort-down"></i> (desc)'),
+    new Changelog(changelogType.CHANGE, 'Pokémon in Profile Card can now be selected as either normal or shiny (if possible)'),
+    new Changelog(changelogType.CHANGE, 'Locations highlighted due to active quest now blinks infinitely'),
+    new Changelog(changelogType.CHANGE, 'Dock is now locked if you are inside the Battle Frontier'),
+    new Changelog(changelogType.CHANGE, 'Some changes in the styles'),
+    new Changelog(changelogType.CHANGE, 'Castform now changes its form depending on the current weather'),
+    new Changelog(changelogType.CHANGE, 'Sliggoo now also evolves if the weather is Thunderstorm'),
+    new Changelog(changelogType.CHANGE, 'Fomantis/Tyrunt/Yungoos now evolves only at day'),
+    new Changelog(changelogType.CHANGE, 'Gligar/Sneasel/Amaura/Alolan Rattata now evolves only at night'),
+    new Changelog(changelogType.CHANGE, 'Cubone now evolves into Alolan Marowak only in Alola at night'),
+    new Changelog(changelogType.CHANGE, 'Cubone now evolves into Marowak only outside Alola'),
+    new Changelog(changelogType.CHANGE, 'Charjabug now evolves in areas with special magnetic field from Sinnoh/Unova/Kalos'),
     // v0.2.2
     new ChangelogUpdate('v0.2.2', new Date(2022, 5 - 1, 26)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.4 and v0.9.5 (bug fixes)'),
@@ -29,8 +43,8 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Enigma Berry: Discord not required anymore but it requires Trainer ID'),
     new Changelog(changelogType.CHANGE, '"Pokéball (by type)" menu is now collapsed by default'),
     new Changelog(changelogType.CHANGE, '"Uncaptured Shiny Pokémon" ball selection label changed from "✨" to "New✨"'),
-    new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their alolan forms only in Alola'),
-    new Changelog(changelogType.FIXED, 'Pikachu/Exeggcute now evolves into their normal forms only outside Alola'),
+    new Changelog(changelogType.CHANGE, 'Pikachu/Exeggcute now evolves into their alolan forms only in Alola'),
+    new Changelog(changelogType.CHANGE, 'Pikachu/Exeggcute now evolves into their normal forms only outside Alola'),
     new Changelog(changelogType.REMOVED, 'Removed dungeon loot nerf on earlier regions'),
 
     // v0.1.0
