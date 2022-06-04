@@ -75,6 +75,7 @@ const srcs = {
     libs: [
         'node_modules/bootstrap/dist/js/bootstrap.min.js',
         'node_modules/bootstrap/dist/css/bootstrap.min.css',
+        'node_modules/bootstrap-icons/font/bootstrap-icons.css', //Added
         'node_modules/intro.js/minified/intro.min.js',
         'node_modules/intro.js/introjs.css',
         'node_modules/intro.js/themes/introjs-modern.css',
@@ -85,12 +86,18 @@ const srcs = {
         'node_modules/sortablejs/Sortable.min.js',
         'src/libs/*.js',
     ],
+    fonts: [
+        'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff', //Added
+        'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2', //Added
+        'src/libs/fonts/*.woff*',
+    ]
 };
 
 
 const dests = {
     base: 'build',
     libs: 'build/libs/',
+    fonts: 'build/libs/fonts/',
     assets: 'build/assets/',
     scripts: 'build/scripts/',
     declarations: 'src/declarations/',
@@ -104,6 +111,10 @@ gulp.task('copy', (done) => {
 
     gulp.src(srcs.libs)
         .pipe(gulp.dest(dests.libs))
+        .pipe(browserSync.reload({stream: true}));
+
+    gulp.src(srcs.fonts)
+        .pipe(gulp.dest(dests.fonts))
         .pipe(browserSync.reload({stream: true}));
 
     done();

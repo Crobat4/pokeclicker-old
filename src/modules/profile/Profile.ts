@@ -18,6 +18,7 @@ export default class Profile implements Saveable {
     public trainer: KnockoutObservable<number>;
     public pokemon: KnockoutObservable<number>;
     public pokemonShiny: KnockoutObservable<boolean>;
+    public shinySelected: KnockoutObservable<boolean>;
     public background: KnockoutObservable<number>;
     public textColor: KnockoutObservable<string>;
 
@@ -32,6 +33,7 @@ export default class Profile implements Saveable {
         this.trainer = ko.observable(trainer).extend({ numeric: 0 });
         this.pokemon = ko.observable(pokemon).extend({ numeric: 2 });
         this.pokemonShiny = ko.observable(false).extend({ boolean: null });
+        this.shinySelected = ko.observable(false).extend({ boolean: null });
         this.background = ko.observable(background).extend({ numeric: 0 });
         this.textColor = ko.observable(textColor);
     }
@@ -65,7 +67,12 @@ export default class Profile implements Saveable {
         card.addEventListener('click', () => {
             // If no key provided, this is a preview
             if (key === undefined) {
-                Notifier.notify({ message: 'What a lovely profile!' });
+                if (pokemon === 169) {
+                    Notifier.notify({ message: '<img src="assets/images/based-department.jpg"> ' });
+                }
+                else {
+                    Notifier.notify({ message: 'What a lovely profile!' });
+                }
                 return;
             }
             document.querySelector('#saveSelector').remove();
@@ -114,11 +121,21 @@ export default class Profile implements Saveable {
             document.documentElement.style.setProperty('--trainer-image', `url('../assets/images/profile/trainer-${val}.png')`);
         });
         this.pokemon.subscribe((value: number) => {
-            const shiny = App.game.party.alreadyCaughtPokemon(value, true);
-            this.pokemonShiny(shiny);
+            //const shiny = App.game.party.alreadyCaughtPokemon(value, true);
+            App.game.party.alreadyCaughtPokemon(value, false);
             // Update preview after checking for shiny
+            this.pokemonShiny(false);
+            this.shinySelected(false);
             this.updatePreview();
         });
+        this.shinySelected.subscribe((isShiny: boolean) => {
+            let shiny = false;
+            if (isShiny) {
+                shiny = App.game.party.alreadyCaughtPokemon(this.pokemon(), true);
+            }
+            this.pokemonShiny(shiny);
+            this.updatePreview();
+        })
         this.background.subscribe(() => this.updatePreview());
         this.textColor.subscribe(() => this.updatePreview());
         this.updatePreview();
@@ -150,6 +167,7 @@ export default class Profile implements Saveable {
         if (json.trainer !== undefined) this.trainer(json.trainer);
         if (json.pokemon !== undefined) this.pokemon(json.pokemon);
         if (json.pokemonShiny !== undefined) this.pokemonShiny(json.pokemonShiny);
+        if (json.shinySelected !== undefined) this.shinySelected(json.shinySelected);
         if (json.background !== undefined) this.background(json.background);
         if (json.textColor) this.textColor(json.textColor);
     }
@@ -160,6 +178,7 @@ export default class Profile implements Saveable {
             trainer: this.trainer(),
             pokemon: this.pokemon(),
             pokemonShiny: this.pokemonShiny(),
+            shinySelected: this.shinySelected(),
             background: this.background(),
             textColor: this.textColor(),
         };
