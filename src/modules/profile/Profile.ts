@@ -69,8 +69,7 @@ export default class Profile implements Saveable {
             if (key === undefined) {
                 if (pokemon === 169) {
                     Notifier.notify({ message: '<img src="assets/images/based-department.jpg"> ' });
-                }
-                else {
+                } else {
                     Notifier.notify({ message: 'What a lovely profile!' });
                 }
                 return;
@@ -121,7 +120,7 @@ export default class Profile implements Saveable {
             document.documentElement.style.setProperty('--trainer-image', `url('../assets/images/profile/trainer-${val}.png')`);
         });
         this.pokemon.subscribe((value: number) => {
-            //const shiny = App.game.party.alreadyCaughtPokemon(value, true);
+            // const shiny = App.game.party.alreadyCaughtPokemon(value, true);
             App.game.party.alreadyCaughtPokemon(value, false);
             // Update preview after checking for shiny
             this.pokemonShiny(false);
@@ -135,7 +134,7 @@ export default class Profile implements Saveable {
             }
             this.pokemonShiny(shiny);
             this.updatePreview();
-        })
+        });
         this.background.subscribe(() => this.updatePreview());
         this.textColor.subscribe(() => this.updatePreview());
         this.updatePreview();

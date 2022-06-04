@@ -29,6 +29,9 @@
     <link href="libs/bootstrap.min.css" rel="stylesheet">
     <script src="libs/bootstrap.min.js"></script>
 
+    <!--Bootstrap Icons-->
+    <link href="libs/bootstrap-icons.css" rel="stylesheet">
+
     <!--Notify-->
     <script src="libs/bootstrap-notify.min.js"></script>
 
@@ -309,12 +312,28 @@
                         <input autocomplete="off" class="form-control" oninput="App.game.profile.name(this.value)" placeholder="name" data-bind="value: App.game.profile.name()"/>
                     </div>
                     <div class="form-group col-12">
-                        <label>Pokemon</label>
-                        <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value)">
-                            <!-- ko foreach: App.game.party.caughtPokemon -->
-                            <option data-bind="attr: { value: $data.id, selected: App.game.profile.pokemon() === $data.id }, text: $data.name">Pokemon</option>
-                            <!-- /ko -->
-                        </select>
+                        <div class="row">
+                            <div class="col-8">
+                                <label>Pokemon</label>
+                                <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value)">
+                                    <!-- ko foreach: App.game.party.caughtPokemon -->
+                                    <option data-bind="attr: { value: $data.id, selected: App.game.profile.pokemon() === $data.id }, text: $data.name">Pokemon</option>
+                                    <!-- /ko -->
+                                </select>
+                            </div>
+                            <div class="col-4" id="shiny-switch" >
+                                <label>Shiny</label>
+                                <label class="my-0 mx-1" data-bind="tooltip: { title: 'The shiny color will be available only if the selected Pokémon was already caught as shiny', trigger: 'hover', placement:'top' }">
+                                    <i class="bi bi-question-circle rounded-circle bg-info"></i>
+                                </label>
+                                <div>
+                                    <label class="switch m-0">
+                                        <input type="checkbox" class="clickable" data-bind="checked: App.game.profile.shinySelected()" onchange="App.game.profile.shinySelected(this.checked)"/>
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group col-12">
                         <label>Text Color</label>
@@ -322,6 +341,14 @@
                           <label style="width:100%; min-height: 28px; padding:0px; margin: 0px;"><input style="opacity: 0;" type="color" data-bind="value: App.game.profile.textColor"/></label>
                         </p>
                     </div>
+                    <!--
+                    <div class="form-group col-12">
+                        <label>Shiny</label>
+                        <label style="width:100%; min-height: 28px; padding:0px; margin: 0px;">
+                            <input class="clickable" type="checkbox" data-bind="checked: App.game.profile.shinySelected()" onchange="App.game.profile.shinySelected(this.checked)"/>
+                        </label>
+                    </div>
+                    -->
                     <div class="form-group col-12">
                         <a class="btn btn-block btn-primary text-left" href="#profileTrainerModal" data-toggle="modal">Trainer <img style="position:absolute; right: 10px;" data-bind="attr: { src: `assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png` }"/></a>
                     </div>
@@ -934,12 +961,12 @@
             <div class="input-group-append bg-primary text-light">
                 <label
                     for="partySortDirection"
-                    class="clickable m-0 pl-2 pr-2"
+                    class="clickable m-0 pl-2 pr-2 sort-icons"
                     style="font-size: 22px;"
                     data-bind="
-                        text: Settings.getSetting('partySortDirection').observableValue() ? '⥄' : '⥂',
+                    html: Settings.getSetting('partySortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
                         tooltip: { title: Settings.getSetting('partySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }"
-                >⥂</label>
+                >⥂⥄</label>
                 <input
                     id="partySortDirection"
                     style="vertical-align: middle"
@@ -1737,29 +1764,79 @@
                     <div class="card-header p-0" data-toggle="collapse" href="#mapBody">
                         <span data-bind="text: `Town Map (${GameConstants.camelCaseToString(GameConstants.Region[player.region])})`">Town Map</span>
                     </div>
-                    <button class='btn btn-sm' style="position: absolute; left: 0px; top: 0px; width: auto; height: 41px;" data-toggle="popover" data-trigger="hover" data-html="true" data-title="Map Legend:"
-                    data-content="Map locations will be coloured based on the following:
-                    <br/>
-                    <br/><span>Current Location:</span>
-                    <span class='float-right px-4 bg-currentPlace'>&nbsp;</span>
-                    <br/><span>Locked:</span>
-                    <span class='float-right px-4 bg-locked'>&nbsp;</span>
-                    <br/><span>Incomplete:</span>
-                    <span class='float-right px-4 bg-incomplete'>&nbsp;</span>
-                    <br/><span>Quest at Location:</span>
-                    <span class='float-right px-4 bg-questAtLocation'>&nbsp;</span>
-                    <br/><span>Uncaught Pokemon:</span>
-                    <span class='float-right px-4 bg-uncaughtPokemon'>&nbsp;</span>
-                    <br/><span>Uncaught Shiny Pokemon and Missing Achievement:</span>
-                    <span class='float-right px-4 bg-uncaughtShinyPokemonAndMissingAchievement'>&nbsp;</span>
-                    <br/><span>Uncaught Shiny Pokemon:</span>
-                    <span class='float-right px-4 bg-uncaughtShinyPokemon'>&nbsp;</span>
-                    <br/><span>Missing Achievement:</span>
-                    <span class='float-right px-4 bg-missingAchievement'>&nbsp;</span>
-                    <br/><span>Completed:</span>
-                    <span class='float-right px-4 bg-completed'>&nbsp;</span>
-                    <br/>
-                    <br/><i>NOTE:<br/>These colors can be customized in the settings menu</i>" data-placement="bottom">ⓘ</button>
+                    <button class='btn btn-sm' style="position: absolute; left: 0px; top: 0px; width: auto; height: 41px;" 
+                    data-toggle="popover" data-trigger="hover" data-html="true" 
+                    data-title="Map Legend:"
+                    data-content="
+                    <div class='row map-legend'>
+                        <div class='col-12'>Map locations will be coloured based on the following:</div>
+                        <div class='col-10'>
+                            <span>Current Location:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-currentPlace'>&nbsp;</span>
+                        </div>
+                        
+                        <div class='col-10'>
+                            <span>Locked:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-locked'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Incomplete:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-incomplete'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Quest at Location:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-questAtLocation'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Uncaught Pokemon:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-uncaughtPokemon'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Uncaught Shiny Pokemon and Missing Achievement:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-uncaughtShinyPokemonAndMissingAchievement'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Uncaught Shiny Pokemon:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-uncaughtShinyPokemon'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Missing Achievement:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-missingAchievement'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-10'>
+                            <span>Completed:</span>
+                        </div>
+                        <div class='col-2'>
+                            <span class='float-right px-4 bg-completed'>&nbsp;</span>
+                        </div>
+
+                        <div class='col-12'><i>NOTE: These colors can be customized in the settings menu</i></div>
+                    </div>
+                    " 
+                    data-placement="bottom">ⓘ</button>
                     <button class='btn btn-sm' style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px;"
                     data-bind='style: { background: Weather.color() },
                         tooltip: {
@@ -17342,7 +17419,7 @@
           </tr>
           <tr data-bind="visible: player.highestRegion() > 0">
             <td class="p-0">
-              <button class="btn btn-block btn-primary m-0" onclick="MapHelper.openShipModal()">
+              <button class="btn btn-block btn-primary m-0" data-bind="css: {disabled: App.game.gameState == GameConstants.GameState.battleFrontier}" onclick="MapHelper.openShipModal()">
                   Dock
               </button>
             </td>
@@ -17614,10 +17691,10 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                                             <option data-bind="text: $data.text, value: $data.value"></option>
                                         </select>
                                         <div class="input-group-append bg-primary text-light">
-                                            <label for="achievementSortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                                            text: Settings.getSetting('achievementSortDirection').observableValue() ? '⥄' : '⥂',
+                                            <label for="achievementSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                                            html: Settings.getSetting('achievementSortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
                                             tooltip: { title: Settings.getSetting('achievementSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                                            ">⥂</label>
+                                            ">⥂⥄</label>
                                             <input id="achievementSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                                    data-bind="checked: Settings.getSetting('achievementSortDirection').observableValue()"
                                                    onchange="Settings.setSettingByName('achievementSortDirection', this.checked)"/>
@@ -19050,11 +19127,11 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                         <option data-bind="text: $data.text, value: $data.value"></option>
                                     </select>
                                     <div class="input-group-append bg-primary text-light">
-                                        <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                                        text: Settings.getSetting('hatcherySortDirection').observableValue() ? '⥄' : '⥂',
+                                        <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                                        html: Settings.getSetting('hatcherySortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
                                         tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
 
-                                        ">⥂</label>
+                                        ">⥂⥄</label>
                                         <input id="hatcherySortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                                             data-bind="checked: Settings.getSetting('hatcherySortDirection').observableValue()"
                                             onchange="Settings.setSettingByName('hatcherySortDirection', this.checked)"/>
@@ -19208,11 +19285,11 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                                 <div class="input-group input-group-sm">
                                                     <select autocomplete="off" class="custom-select" data-bind="options: GameHelper.enumSelectOption(SortOptions), optionsValue: 'value', optionsText: i => GameConstants.camelCaseToString(i.name), value: $data.sortOption"></select>
                                                     <div class="input-group-append bg-primary text-light">
-                                                        <label class="clickable m-0 px-2" style="font-size: 20px;" data-bind="
+                                                        <label class="clickable m-0 px-2 sort-icons" style="font-size: 20px;" data-bind="
                                                             attr: {for: 'hatcheryHelperSortDirection' + $index() },
-                                                            text: $data.sortDirection() ? '⥄' : '⥂',
+                                                            html: $data.sortDirection() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
                                                             tooltip: { title: $data.sortDirection() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                                                            ">⥂</label>
+                                                            ">⥂⥄</label>
                                                         <input class="hidden" type="checkbox"
                                                             data-bind="attr: { id: 'hatcheryHelperSortDirection' + $index() }, checked:  $data.sortDirection" />
                                                     </div>
@@ -19872,10 +19949,10 @@ aria-labelledby="pokedexModalLabel">
                           <option data-bind="text: $data.text, value: $data.value"></option>
                       </select>
                       <div class="input-group-append bg-primary text-light">
-                          <label for="proteinSortDirection" class="clickable m-0 pl-2 pr-2" style="font-size: 22px;" data-bind="
-                            text: Settings.getSetting('proteinSortDirection').observableValue() ? '⥄' : '⥂',
+                          <label for="proteinSortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                            html: Settings.getSetting('proteinSortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
                             tooltip: { title: Settings.getSetting('proteinSortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-                            ">⥂</label>
+                            ">⥂⥄</label>
                           <input id="proteinSortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
                               data-bind="checked: Settings.getSetting('proteinSortDirection').observableValue()"
                               onchange="Settings.setSettingByName('proteinSortDirection', this.checked)"/>

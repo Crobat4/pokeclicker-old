@@ -12,7 +12,7 @@ const ChangelogCrobatItems = [
     // note that month is 0 indexed, that's why -1
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
-    //⥂⥄
+    // ⥂⥄
     new ChangelogUpdate('v0.2.3', new Date(2022, 6 - 1, 4)),
     new Changelog(changelogType.CHANGE, 'Changed sort icons: ⥂ to <i class="bi bi-sort-up"></i> (asc) and ⥄ to <i class="bi bi-sort-down"></i> (desc)'),
     new Changelog(changelogType.CHANGE, 'Pokémon in Profile Card can now be selected as either normal or shiny (if possible)'),

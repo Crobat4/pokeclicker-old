@@ -200,12 +200,10 @@ class MapHelper {
                     message: 'You cannot access to the dock while you are inside the Battle Frontier',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            }
-            else {
+            } else {
                 openModal();
             }
-        } 
-        else {
+        } else {
             Notifier.notify({
                 message: 'You cannot access this dock yet',
                 type: NotificationConstants.NotificationOption.warning,
