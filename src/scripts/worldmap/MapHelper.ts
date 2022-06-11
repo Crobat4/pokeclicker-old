@@ -195,12 +195,19 @@ class MapHelper {
             $('#ShipModal').modal('show');
         };
         if (player.highestRegion() > 0 && (TownList[GameConstants.DockTowns[player.region]].isUnlocked())) {
-            if (App.game.gameState == GameConstants.GameState.battleFrontier) {
+            if (App.game.gameState === GameConstants.GameState.battleFrontier) {
                 Notifier.notify({
                     message: 'You cannot access to the dock while you are inside the Battle Frontier',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            } else {
+            } 
+            else if (App.game.gameState === GameConstants.GameState.dungeon) {
+                Notifier.notify({
+                    message: 'You cannot access to the dock while you are inside a dungeon',
+                    type: NotificationConstants.NotificationOption.warning,
+                });
+            }
+            else {
                 openModal();
             }
         } else {

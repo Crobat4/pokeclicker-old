@@ -120,11 +120,18 @@ export default class Profile implements Saveable {
             document.documentElement.style.setProperty('--trainer-image', `url('../assets/images/profile/trainer-${val}.png')`);
         });
         this.pokemon.subscribe((value: number) => {
-            // const shiny = App.game.party.alreadyCaughtPokemon(value, true);
+            const shiny = App.game.party.alreadyCaughtPokemon(value, true);
             App.game.party.alreadyCaughtPokemon(value, false);
             // Update preview after checking for shiny
-            this.pokemonShiny(false);
-            this.shinySelected(false);
+            //If shiny option selected and selected pokemon has shiny color unlocked
+            if (this.shinySelected() && shiny) {
+                this.pokemonShiny(true);
+                this.shinySelected(true);
+            }
+            else {
+                this.pokemonShiny(false);
+                this.shinySelected(false);
+            }
             this.updatePreview();
         });
         this.shinySelected.subscribe((isShiny: boolean) => {
