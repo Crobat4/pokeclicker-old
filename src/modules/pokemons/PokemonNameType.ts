@@ -583,7 +583,7 @@ export type PokemonNameType
     | 'Rotom (frost)'
     | 'Rotom (fan)'
     | 'Rotom (mow)'
-    | 'Rotom (discord)'
+    | 'Rotom (Crobat)'
     | 'Uxie'
     | 'Mesprit'
     | 'Azelf'
