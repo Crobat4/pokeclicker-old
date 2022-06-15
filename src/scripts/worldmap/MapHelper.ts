@@ -200,14 +200,12 @@ class MapHelper {
                     message: 'You cannot access to the dock while you are inside the Battle Frontier',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            } 
-            else if (App.game.gameState === GameConstants.GameState.dungeon) {
+            } else if (App.game.gameState === GameConstants.GameState.dungeon) {
                 Notifier.notify({
                     message: 'You cannot access to the dock while you are inside a dungeon',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            }
-            else {
+            } else {
                 openModal();
             }
         } else {

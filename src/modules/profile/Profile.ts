@@ -123,12 +123,11 @@ export default class Profile implements Saveable {
             const shiny = App.game.party.alreadyCaughtPokemon(value, true);
             App.game.party.alreadyCaughtPokemon(value, false);
             // Update preview after checking for shiny
-            //If shiny option selected and selected pokemon has shiny color unlocked
+            // If shiny option selected and selected pokemon has shiny color unlocked
             if (this.shinySelected() && shiny) {
                 this.pokemonShiny(true);
                 this.shinySelected(true);
-            }
-            else {
+            } else {
                 this.pokemonShiny(false);
                 this.shinySelected(false);
             }

@@ -111,13 +111,13 @@ Settings.add(new BooleanSetting('useWebWorkerForGameTicks', 'Make use of web wor
 // Custom changes settings
 Settings.add(new BooleanSetting('fullWidthContainer', 'Increase game width', false));
 
-//Settings.add(new BooleanSetting('enableBallSelectionByType', 'Enable Pokéball selection by type', false));
-//Settings.add(new BooleanSetting('enableDockButtonInShortcutsPanel', 'Enable the "Dock" button in Shortcuts panel', false));
-//Settings.add(new BooleanSetting('addExtraOakItemsLoadouts', "Add 3 extra Oak's Items loadouts", false));
-//Settings.add(new BooleanSetting('addEggExclusiveToWild', 'Add egg exclusive Pokémon to the wild (keeping the same locations as the main games, only routes and Safari) [1]', false));
-//Settings.add(new BooleanSetting('removeGymE4Charge', 'Remove fee when doing Gym/E4 auto fight and receive money normally', false));
-//Settings.add(new BooleanSetting('enableBallSelectionOnRoaming', 'Enable Pokéball selection on Roaming Pokémon and Shiny Roaming Pokémon', false));
-//Settings.add(new BooleanSetting('enableBallSelectionOnRoaming', 'Enable Pokéball selection on Roaming Pokémon and Shiny Roaming Pokémon', false));
+// Settings.add(new BooleanSetting('enableBallSelectionByType', 'Enable Pokéball selection by type', false));
+// Settings.add(new BooleanSetting('enableDockButtonInShortcutsPanel', 'Enable the "Dock" button in Shortcuts panel', false));
+// Settings.add(new BooleanSetting('addExtraOakItemsLoadouts', "Add 3 extra Oak's Items loadouts", false));
+// Settings.add(new BooleanSetting('addEggExclusiveToWild', 'Add egg exclusive Pokémon to the wild (keeping the same locations as the main games, only routes and Safari) [1]', false));
+// Settings.add(new BooleanSetting('removeGymE4Charge', 'Remove fee when doing Gym/E4 auto fight and receive money normally', false));
+// Settings.add(new BooleanSetting('enableBallSelectionOnRoaming', 'Enable Pokéball selection on Roaming Pokémon and Shiny Roaming Pokémon', false));
+// Settings.add(new BooleanSetting('enableBallSelectionOnRoaming', 'Enable Pokéball selection on Roaming Pokémon and Shiny Roaming Pokémon', false));
 
 // Sound settings
 Object.values(NotificationConstants.NotificationSound).forEach((soundGroup) => {

@@ -15,6 +15,7 @@ class Discord implements Saveable {
     SecretID: KnockoutObservable<string> = ko.observable(null);
     FinalID: KnockoutObservable<string> = ko.observable(null);
     //RandomKey: KnockoutObservable<string> = ko.observable(null);
+    // eslint-disable-next-line array-bracket-newline
     codes: Array<DiscordCode> = [
         /*
         new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'Alternate form of Unown'),
@@ -32,6 +33,7 @@ class Discord implements Saveable {
         //new DiscordPokemonCode(pokemonMap['Unown (T)'], 700, 'Alternate form of Unown'),
         //new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
         //new DiscordPokemonCode(pokemonMap['Rotom (Crobat)'], 10000, 'A Discord style Rotom!'),
+        // eslint-disable-next-line array-bracket-newline
     ];
 
     get enabled(): boolean {
