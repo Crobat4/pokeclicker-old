@@ -1549,7 +1549,7 @@ Routes.add(new RegionRoute(
     new RoutePokemon({
         land: ['Alolan Rattata', 'Fletchling', 'Trumbeak', 'Yungoos', 'Stufful'],
         water: ['Tentacool', 'Magikarp', 'Chinchou', 'Remoraid', 'Finneon', 'Mantyke', 'Wishiwashi (Solo)'],
-        //eggExclusive: ['Wimpod'],
+        eggExclusive: ['Wimpod'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Wela Volcano Park'))],
     undefined,
@@ -1672,6 +1672,7 @@ Routes.add(new RegionRoute(
     'Poni Wilds', GameConstants.Region.alola, 24,
     new RoutePokemon({
         land: ['Granbull', 'Pelipper', 'Gastrodon (east)', 'Furfrou', 'Inkay'],
+        eggExclusive: ['Wimpod'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Aether Foundation'))],
     undefined,
@@ -1690,7 +1691,7 @@ Routes.add(new RegionRoute(
     'Poni Breaker Coast', GameConstants.Region.alola, 26,
     new RoutePokemon({
         water: ['Tentacruel', 'Lapras', 'Magikarp', 'Pelipper', 'Carvanha', 'Wailmer', 'Relicanth', 'Gastrodon (east)', 'Lumineon'],
-        //eggExclusive: ['Wimpod'],
+        eggExclusive: ['Wimpod'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.alola, 25)],
     undefined,
