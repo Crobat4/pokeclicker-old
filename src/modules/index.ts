@@ -15,7 +15,7 @@ addListener(
     ? 'devtools status: open'
     : 'devtools status: close')
     */
-        window.location.replace('../assets/images/crobatgun.png')
+        window.location.replace('/assets/images/crobatgun.png')
     ),
 );
 // 2. launch detect
