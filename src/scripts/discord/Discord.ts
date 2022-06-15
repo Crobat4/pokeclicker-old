@@ -16,14 +16,22 @@ class Discord implements Saveable {
     FinalID: KnockoutObservable<string> = ko.observable(null);
     //RandomKey: KnockoutObservable<string> = ko.observable(null);
     codes: Array<DiscordCode> = [
+        /*
         new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (I)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (S)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (C)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'Alternate form of Unown'),
         new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
-        new DiscordPokemonCode(pokemonMap['Rotom (discord)'], 10000, 'A Discord style Rotom!'),
+        */
+        //new DiscordPokemonCode(pokemonMap['Unown (C)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (B)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (A)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (T)'], 700, 'Alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
+        //new DiscordPokemonCode(pokemonMap['Rotom (Crobat)'], 10000, 'A Discord style Rotom!'),
     ];
 
     get enabled(): boolean {
@@ -187,6 +195,7 @@ class Discord implements Saveable {
     }
 
     loadCodes(codes) {
+        console.log(codes);
         codes.forEach(code => {
             const c = this.codes.find(c => c.name == code.name);
             if (c) {
