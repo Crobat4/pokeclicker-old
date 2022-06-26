@@ -72,3 +72,10 @@ ItemList['Black_Flute']        = new FluteItem(GameConstants.FluteItemType.Black
 ItemList['Red_Flute']         = new FluteItem(GameConstants.FluteItemType.Red_Flute, 'Egg Steps', ['Fire', 'Rock', 'Dragon'], 'eggStep', 1.02);
 ItemList['White_Flute']         = new FluteItem(GameConstants.FluteItemType.White_Flute, 'Shiny Chance', ['Normal', 'Fairy', 'Ice'], 'shiny', 1.02);
 ItemList['Blue_Flute']        = new FluteItem(GameConstants.FluteItemType.Blue_Flute, 'Dungeon Token Yield', ['Water', 'Bug', 'Ghost'], 'dungeonToken', 1.02);
+//Remove these
+ItemList['Poke_Flute']        = new FluteItem(GameConstants.FluteItemType.Poke_Flute, 'This flute is disabled', [], undefined, 1);
+ItemList['Azure_Flute']        = new FluteItem(GameConstants.FluteItemType.Azure_Flute, 'This flute is disabled', [], undefined, 1);
+ItemList['Eon_Flute']        = new FluteItem(GameConstants.FluteItemType.Eon_Flute, 'This flute is disabled', [], undefined, 1);
+ItemList['Sun_Flute']        = new FluteItem(GameConstants.FluteItemType.Sun_Flute, 'This flute is disabled', [], undefined, 1);
+ItemList['Moon_Flute']        = new FluteItem(GameConstants.FluteItemType.Moon_Flute, 'This flute is disabled', [], undefined, 1);
+ItemList['Grass_Flute']        = new FluteItem(GameConstants.FluteItemType.Grass_Flute, 'This flute is disabled', [], undefined, 1);
