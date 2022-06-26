@@ -664,12 +664,13 @@ export enum FluteItemType {
     'Red_Flute' = 'Red_Flute',
     'White_Flute' = 'White_Flute',
     'Blue_Flute' = 'Blue_Flute',
-    // 'Poke_Flute' = 'Poke_Flute',
-    // 'Azure_Flute' = 'Azure_Flute',
-    // 'Eon_Flute' = 'Eon_Flute',
-    // 'Sun_Flute' = 'Sun_Flute',
-    // 'Moon_Flute' = 'Moon_Flute',
-    // 'Grass_Flute' = 'Grass_Flute',
+    //Comment these
+    'Poke_Flute' = 'Poke_Flute',
+    'Azure_Flute' = 'Azure_Flute',
+    'Eon_Flute' = 'Eon_Flute',
+    'Sun_Flute' = 'Sun_Flute',
+    'Moon_Flute' = 'Moon_Flute',
+    'Grass_Flute' = 'Grass_Flute',
 }
 
 export enum PokemonItemType {
