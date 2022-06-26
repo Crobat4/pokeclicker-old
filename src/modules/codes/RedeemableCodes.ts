@@ -106,9 +106,9 @@ export default class RedeemableCodes implements Saveable {
                 }
             }),
             // Flutes gem refund
-            
-            new RedeemableCode('azure-flute-refund', 267666929, false, () => { //AZUREFLUTE
-                if (player.itemList['Azure_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('azure-flute-refund', 267666929, false, () => { // AZUREFLUTE
+                if (player.itemList.Azure_Flute()) {
                     // Give the player the Azure Flute cost
                     App.game.gems.gainGems(50000, PokemonType.Dragon);
                     App.game.gems.gainGems(50000, PokemonType.Ghost);
@@ -120,8 +120,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -130,8 +129,9 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            new RedeemableCode('eon-flute-refund', -606755684, false, () => { //EONFLUTE
-                if (player.itemList['Eon_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('eon-flute-refund', -606755684, false, () => { // EONFLUTE
+                if (player.itemList.Eon_Flute()) {
                     // Give the player the Eon Flute cost
                     App.game.gems.gainGems(50000, PokemonType.Dragon);
                     App.game.gems.gainGems(50000, PokemonType.Flying);
@@ -143,8 +143,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -153,8 +152,9 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            new RedeemableCode('poke-flute-refund', 1561299719, false, () => { //POKEFLUTE
-                if (player.itemList['Poke_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('poke-flute-refund', 1561299719, false, () => { // POKEFLUTE
+                if (player.itemList.Poke_Flute()) {
                     // Give the player the Poke Flute cost
                     App.game.gems.gainGems(10000, PokemonType.Fighting);
                     App.game.gems.gainGems(10000, PokemonType.Ice);
@@ -166,8 +166,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -176,8 +175,9 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            new RedeemableCode('sun-flute-refund', -947159980, false, () => { //SUNFLUTE
-                if (player.itemList['Sun_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('sun-flute-refund', -947159980, false, () => { // SUNFLUTE
+                if (player.itemList.Sun_Flute()) {
                     // Give the player the Sun Flute cost
                     App.game.gems.gainGems(50000, PokemonType.Fire);
                     App.game.gems.gainGems(50000, PokemonType.Ground);
@@ -189,8 +189,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -199,8 +198,9 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            new RedeemableCode('moon-flute-refund', -2093561697, false, () => { //MOONFLUTE
-                if (player.itemList['Moon_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('moon-flute-refund', -2093561697, false, () => { // MOONFLUTE
+                if (player.itemList.Moon_Flute()) {
                     // Give the player the Moon Flute cost
                     App.game.gems.gainGems(50000, PokemonType.Rock);
                     App.game.gems.gainGems(50000, PokemonType.Ground);
@@ -212,8 +212,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -222,8 +221,9 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            new RedeemableCode('grass-flute-refund', 1455163178, false, () => { //GRASSFLUTE
-                if (player.itemList['Grass_Flute']()) {
+            // eslint-disable-next-line consistent-return
+            new RedeemableCode('grass-flute-refund', 1455163178, false, () => { // GRASSFLUTE
+                if (player.itemList.Grass_Flute()) {
                     // Give the player the Grass Flute cost
                     App.game.gems.gainGems(50000, PokemonType.Grass);
                     App.game.gems.gainGems(50000, PokemonType.Bug);
@@ -235,8 +235,7 @@ export default class RedeemableCodes implements Saveable {
                         type: NotificationConstants.NotificationOption.success,
                         timeout: 1e4,
                     });
-                }
-                else {
+                } else {
                     Notifier.notify({
                         message: 'You didn\'t buy the flute before the update.',
                         type: NotificationConstants.NotificationOption.danger,
@@ -245,7 +244,7 @@ export default class RedeemableCodes implements Saveable {
                     return false;
                 }
             }),
-            
+
         ];
     }
 
@@ -338,20 +337,6 @@ export default class RedeemableCodes implements Saveable {
         const redeemableCode = this.codeList.find((c) => c.hash === hash);
 
         if (!redeemableCode) {
-            
-            console.log(`Red_Flute: ${player.itemList.Red_Flute() ? 'true' : 'false'}`);
-            console.log(`White_Flute: ${player.itemList.White_Flute() ? 'true' : 'false'}`);
-            console.log(`Black_Flute: ${player.itemList.Black_Flute() ? 'true' : 'false'}`);
-            console.log(`Yellow_Flute: ${player.itemList.Yellow_Flute() ? 'true' : 'false'}`);
-            console.log(`Blue_Flute: ${player.itemList.Blue_Flute() ? 'true' : 'false'}`);
-            console.log(`Poke_Flute: ${player.itemList.Poke_Flute() ? 'true' : 'false'}`);
-            console.log(`Azure_Flute: ${player.itemList.Azure_Flute() ? 'true' : 'false'}`);
-            console.log(`Eon_Flute: ${player.itemList.Eon_Flute() ? 'true' : 'false'}`);
-            console.log(`Sun_Flute: ${player.itemList.Sun_Flute() ? 'true' : 'false'}`);
-            console.log(`Moon_Flute: ${player.itemList.Moon_Flute() ? 'true' : 'false'}`);
-            console.log(`Time_Flute: ${player.itemList.Time_Flute() ? 'true' : 'false'}`);
-            console.log(`Grass_Flute: ${player.itemList.Grass_Flute() ? 'true' : 'false'}`);
-            
             Notifier.notify({
                 message: `Invalid code ${code}`,
                 type: NotificationConstants.NotificationOption.danger,

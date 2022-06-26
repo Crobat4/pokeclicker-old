@@ -42,6 +42,7 @@ export default class Profile implements Saveable {
         name = 'Trainer',
         trainer = Rand.floor(Profile.MAX_TRAINER),
         pokemon = Rand.intBetween(1, 151),
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         shinySelected = false,
         pokemonShiny = false,
         background = Rand.floor(Profile.MAX_BACKGROUND),
@@ -115,7 +116,7 @@ export default class Profile implements Saveable {
     initialize() {
         const throttledTimePlayed = ko.pureComputed(() => App.game.statistics.secondsPlayed()).extend({ rateLimit: 60 * 1000 });
         // Load trainer card preview
-/*
+        /*
         this.name.subscribe(() => this.updatePreview());
         this.trainer.subscribe((val) => {
             this.updatePreview();
@@ -135,7 +136,7 @@ export default class Profile implements Saveable {
                 this.pokemonShiny(false);
                 this.shinySelected(false);
             }
-            //this.updatePreview();
+            // this.updatePreview();
         });
         this.shinySelected.subscribe((isShiny: boolean) => {
             let shiny = false;
@@ -143,7 +144,7 @@ export default class Profile implements Saveable {
                 shiny = App.game.party.alreadyCaughtPokemon(this.pokemon(), true);
             }
             this.pokemonShiny(shiny);
-            //this.updatePreview();
+            // this.updatePreview();
         });
         /*
         this.background.subscribe(() => this.updatePreview());
@@ -153,9 +154,9 @@ export default class Profile implements Saveable {
     }
 
     updatePreview(throttledTimePlayed): void {
-        //const throttledTimePlayed = ko.pureComputed(() => App.game.statistics.secondsPlayed()).extend({ rateLimit: 60 * 1000 });
-        //document.getElementById('profile-trainer-card').innerHTML = '';
-        //document.getElementById('profile-trainer-card').appendChild(Profile.getTrainerCard(
+        // const throttledTimePlayed = ko.pureComputed(() => App.game.statistics.secondsPlayed()).extend({ rateLimit: 60 * 1000 });
+        // document.getElementById('profile-trainer-card').innerHTML = '';
+        // document.getElementById('profile-trainer-card').appendChild(Profile.getTrainerCard(
 
         const preview = ko.pureComputed(() => Profile.getTrainerCard(
             this.name(),

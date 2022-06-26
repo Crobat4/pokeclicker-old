@@ -11,11 +11,11 @@ import { addListener, launch } from 'devtools-detector';
 // eslint-disable-next-line no-unused-vars
 addListener(
     () => (
-    
+
     //(view.innerText = isOpen
     //? 'devtools status: open'
     //: 'devtools status: close')
-    
+
         window.location.replace('assets/images/crobatgun.png')
     ),
 );

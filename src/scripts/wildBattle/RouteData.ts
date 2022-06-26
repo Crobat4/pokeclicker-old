@@ -120,7 +120,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 8', GameConstants.Region.kanto, 8,
     new RoutePokemon({
         land: ['Pidgey', 'Ekans', 'Sandshrew', 'Vulpix', 'Meowth', 'Growlithe'],
-		eggExclusive: ['Growlithe'],
+        eggExclusive: ['Growlithe'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 10)],
     10.1
@@ -129,7 +129,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 7', GameConstants.Region.kanto, 7,
     new RoutePokemon({
         land: ['Pidgey', 'Vulpix', 'Oddish', 'Meowth', 'Growlithe', 'Bellsprout'],
-		eggExclusive: ['Growlithe'],
+        eggExclusive: ['Growlithe'],
         afterJohtoLeague: ['Houndour', 'Murkrow'],
     }),
     [new RouteKillRequirement(10, GameConstants.Region.kanto, 8)],
@@ -184,7 +184,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 16', GameConstants.Region.kanto, 16,
     new RoutePokemon({
         land: ['Rattata', 'Raticate', 'Spearow', 'Doduo', 'Snorlax'],
-		afterJohtoLeague: ['Slugma', 'Murkrow'],
+        afterJohtoLeague: ['Slugma', 'Murkrow'],
     }),
     [new ClearDungeonRequirement(1, GameConstants.getDungeonIndex('Pokémon Tower'))]
 ));
@@ -192,7 +192,7 @@ Routes.add(new RegionRoute(
     'Kanto Route 17', GameConstants.Region.kanto, 17,
     new RoutePokemon({
         land: ['Rattata', 'Raticate', 'Spearow', 'Fearow', 'Doduo'],
-		afterJohtoLeague: ['Slugma'],
+        afterJohtoLeague: ['Slugma'],
     }),
     [
         new OneFromManyRequirement([

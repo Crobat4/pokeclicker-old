@@ -219,75 +219,74 @@ class Breeding implements Feature {
     }
 
     public fillHatcheryQueue() {
-        let hatcheryList = PartyController.getHatcherySortedList();
-        let hatcheryListFiltered = [];
+        const hatcheryList = PartyController.getHatcherySortedList();
+        const hatcheryListFiltered = [];
 
-        for (let partyPokemonObject of hatcheryList) {
+        for (const partyPokemonObject of hatcheryList) {
             if (this.filterFillQueue(partyPokemonObject)) {
                 //console.log(partyPokemonObject);
                 hatcheryListFiltered.push(partyPokemonObject);
             }
         }
-        
+
         let hideHatchery;
-        
-        for (let pokemonObject of hatcheryListFiltered) {
+
+        for (const pokemonObject of hatcheryListFiltered) {
             if (Settings.getSetting('hideHatchery').value == 'queue') {
                 hideHatchery = !this.hasFreeEggSlot() && !this.hasFreeQueueSlot();
-            }
-            else if (Settings.getSetting('hideHatchery').value == 'egg') {
+            } else if (Settings.getSetting('hideHatchery').value == 'egg') {
                 hideHatchery = !this.hasFreeEggSlot();
-            }
-            else {
+            } else {
                 hideHatchery = true;
             }
-            
+
             if (!hideHatchery) {
                 this.addPokemonToHatchery(pokemonObject);
                 this.checkCloseModal();
-            }
-            else {
+            } else {
                 break;
             }
         }
-        
+
     }
 
-    public filterFillQueue(partyPokemon){
+    public filterFillQueue(partyPokemon) {
         // Only breedable Pokemon
         if (partyPokemon.breeding || partyPokemon.level < 100) {
             return false;
         }
 
-        if (!BreedingController.filter.search().test(partyPokemon.name)) {
+        if (!BreedingFilters.search.value().test(partyPokemon.name)) {
             return false;
         }
 
         // Check based on category
-        if (BreedingController.filter.category() >= 0) {
-            if (partyPokemon.category !== BreedingController.filter.category()) {
+        if (BreedingFilters.category.value() >= 0) {
+            if (partyPokemon.category !== BreedingFilters.category.value()) {
                 return false;
             }
         }
 
         // Check based on shiny status
-        
-        if (BreedingController.filter.shinyStatus() >= 0) {
-            if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
+        //if (BreedingController.filter.shinyStatus() >= 0) {
+        //    if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
+
+        if (BreedingFilters.shinyStatus.value() >= 0) {
+            if (+partyPokemon.shiny !== BreedingFilters.shinyStatus.value()) {
                 return false;
             }
         }
 
         // Check based on native region
-        if (BreedingController.filter.region() > -2) {
-            if (PokemonHelper.calcNativeRegion(partyPokemon.name) !== BreedingController.filter.region()) {
+        if (BreedingFilters.region.value() > -2) {
+            if (PokemonHelper.calcNativeRegion(partyPokemon.name) !== BreedingFilters.region.value()) {
                 return false;
             }
         }
 
         // Check if either of the types match
-        const type1: (PokemonType | null) = BreedingController.filter.type1() > -2 ? BreedingController.filter.type1() : null;
-        const type2: (PokemonType | null) = BreedingController.filter.type2() > -2 ? BreedingController.filter.type2() : null;
+        const type1: (PokemonType | null) = BreedingFilters.type1.value() > -2 ? BreedingFilters.type1.value() : null;
+        const type2: (PokemonType | null) = BreedingFilters.type2.value() > -2 ? BreedingFilters.type2.value() : null;
         if (type1 !== null || type2 !== null) {
             const { type: types } = pokemonMap[partyPokemon.name];
             if ([type1, type2].includes(PokemonType.None)) {
