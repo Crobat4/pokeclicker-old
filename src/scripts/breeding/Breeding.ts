@@ -213,6 +213,90 @@ class Breeding implements Feature {
         return this.multiplier.getBonus('eggStep');
     }
 
+    public fillHatcheryQueue() {
+        let hatcheryList = PartyController.getHatcherySortedList();
+        let hatcheryListFiltered = [];
+
+        for (let partyPokemonObject of hatcheryList) {
+            if (this.filterFillQueue(partyPokemonObject)) {
+                //console.log(partyPokemonObject);
+                hatcheryListFiltered.push(partyPokemonObject);
+            }
+        }
+        
+        let hideHatchery;
+        
+        for (let pokemonObject of hatcheryListFiltered) {
+            if (Settings.getSetting('hideHatchery').value == 'queue') {
+                hideHatchery = !this.hasFreeEggSlot() && !this.hasFreeQueueSlot();
+            }
+            else if (Settings.getSetting('hideHatchery').value == 'egg') {
+                hideHatchery = !this.hasFreeEggSlot();
+            }
+            else {
+                hideHatchery = true;
+            }
+            
+            if (!hideHatchery) {
+                this.addPokemonToHatchery(pokemonObject);
+                this.checkCloseModal();
+            }
+            else {
+                break;
+            }
+        }
+        
+    }
+
+    public filterFillQueue(partyPokemon){
+        // Only breedable Pokemon
+        if (partyPokemon.breeding || partyPokemon.level < 100) {
+            return false;
+        }
+
+        if (!BreedingController.filter.search().test(partyPokemon.name)) {
+            return false;
+        }
+
+        // Check based on category
+        if (BreedingController.filter.category() >= 0) {
+            if (partyPokemon.category !== BreedingController.filter.category()) {
+                return false;
+            }
+        }
+
+        // Check based on shiny status
+        
+        if (BreedingController.filter.shinyStatus() >= 0) {
+            if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
+                return false;
+            }
+        }
+
+        // Check based on native region
+        if (BreedingController.filter.region() > -2) {
+            if (PokemonHelper.calcNativeRegion(partyPokemon.name) !== BreedingController.filter.region()) {
+                return false;
+            }
+        }
+
+        // Check if either of the types match
+        const type1: (PokemonType | null) = BreedingController.filter.type1() > -2 ? BreedingController.filter.type1() : null;
+        const type2: (PokemonType | null) = BreedingController.filter.type2() > -2 ? BreedingController.filter.type2() : null;
+        if (type1 !== null || type2 !== null) {
+            const { type: types } = pokemonMap[partyPokemon.name];
+            if ([type1, type2].includes(PokemonType.None)) {
+                const type = (type1 == PokemonType.None) ? type2 : type1;
+                if (!BreedingController.isPureType(partyPokemon, type)) {
+                    return false;
+                }
+            } else if ((type1 !== null && !types.includes(type1)) || (type2 !== null && !types.includes(type2))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {
         // If they have a free eggslot, add the pokemon to the egg now
         if (this.hasFreeEggSlot()) {
