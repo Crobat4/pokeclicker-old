@@ -23,7 +23,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.NEW, 'Added setting to increase the game width'),
     new Changelog(changelogType.NEW, 'Pokémon shows Rare Hold Item image in the Pokédex'),
     new Changelog(changelogType.NEW, 'Battle Frontier now shows highest stage cleared before enter'),
-    new Changelog(changelogType.CHANGE, 'Discord codes are now generic codes (Check codes <a href="https://github.com/Crobat4/pokeclicker/wiki/Codes">here</a>)'),
+    new Changelog(changelogType.CHANGE, 'Discord codes are now generic codes (Check codes <a target="_blank" href="https://github.com/Crobat4/pokeclicker/wiki/Codes">here</a>)'),
     new Changelog(changelogType.CHANGE, 'Rotom (discord) changed to Rotom (Crobat)'),
     new Changelog(changelogType.CHANGE, 'Some Unown letters from Discord codes changed'),
     new Changelog(changelogType.CHANGE, 'Pokédex width increased'),

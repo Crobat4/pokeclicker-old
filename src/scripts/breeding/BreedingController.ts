@@ -154,6 +154,9 @@ class BreedingController {
             }
 
             // Check based on shiny status
+			//if (BreedingController.filter.shinyStatus() >= 0) {
+            //    if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
+			
             if (BreedingFilters.shinyStatus.value() >= 0) {
                 if (+partyPokemon.shiny !== BreedingFilters.shinyStatus.value()) {
                     return false;
@@ -185,7 +188,7 @@ class BreedingController {
         });
     }
 
-    private static isPureType(pokemon: PartyPokemon, type: (PokemonType | null)): boolean {
+    public static isPureType(pokemon: PartyPokemon, type: (PokemonType | null)): boolean {
         const pokemonData = pokemonMap[pokemon.name];
         return ((type == null || pokemonData.type[0] === type) && (pokemonData.type[1] == undefined || pokemonData.type[1] == PokemonType.None));
     }
