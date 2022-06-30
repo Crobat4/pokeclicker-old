@@ -64,7 +64,8 @@ class PokemonFactory {
 
     public static routeLevel(route: number, region: GameConstants.Region): number {
         //return Math.floor(Math.pow(20 * MapHelper.normalizeRoute(route, region),(1 / 2.25))); //v0.9.6 EXP rebalance
-        return Math.floor(MapHelper.normalizeRoute(route, region) * 2 + 20 * Math.pow(region, 2.3));
+        //return Math.floor(MapHelper.normalizeRoute(route, region) * 2 + 20 * Math.pow(region, 2.3));
+        return Math.floor(20 * Math.pow(MapHelper.normalizeRoute(route, region),(1 / 2.25))); //v0.9.7 EXP fix
     }
 
     public static routeHealth(route: number, region: GameConstants.Region): number {
