@@ -218,6 +218,7 @@ class Breeding implements Feature {
         return this.multiplier.getBonus('eggStep');
     }
 
+    //Fill queue button
     public fillHatcheryQueue() {
         const hatcheryList = PartyController.getHatcherySortedList();
         const hatcheryListFiltered = [];
@@ -250,6 +251,7 @@ class Breeding implements Feature {
 
     }
 
+    //Return pokemon list according to current filters
     public filterFillQueue(partyPokemon) {
         // Only breedable Pokemon
         if (partyPokemon.breeding || partyPokemon.level < 100) {
@@ -299,6 +301,22 @@ class Breeding implements Feature {
             }
         }
         return true;
+    }
+
+    public removeAllPokemonFromQueue(){
+        const queueList = this.queueList();
+        //console.log(queueList);
+        /*
+        queueList.forEach(function (value, i) {
+            //console.log(i+': '+value);
+            this.removeFromQueue(i);
+        });
+        */
+        while (queueList.length) {
+            this.removeFromQueue(0);
+        }
+        
+        
     }
 
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {
