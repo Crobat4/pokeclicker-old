@@ -7,7 +7,7 @@ import * as GameConstants from '../GameConstants'; // added
 import Rand from '../utilities/Rand';
 import OakItemType from '../enums/OakItemType';
 import BadgeEnums from '../enums/Badges';
-import PokemonType from '../enums/PokemonType';
+// import PokemonType from '../enums/PokemonType';
 // import * as PokemonFactory from '../../scripts/pokemons/PokemonFactory'; //added
 
 export default class RedeemableCodes implements Saveable {

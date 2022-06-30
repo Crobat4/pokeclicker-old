@@ -303,7 +303,7 @@ class Breeding implements Feature {
         return true;
     }
 
-    public removeAllPokemonFromQueue(){
+    public removeAllPokemonFromQueue() {
         const queueList = this.queueList();
         //console.log(queueList);
         /*
@@ -315,8 +315,8 @@ class Breeding implements Feature {
         while (queueList.length) {
             this.removeFromQueue(0);
         }
-        
-        
+
+
     }
 
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {

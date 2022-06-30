@@ -13,6 +13,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    new ChangelogUpdate('v0.2.6', new Date(2022, 6 - 1, 29)),
+    new Changelog(changelogType.NEW, 'Added Official update v0.9.7'),
+    new Changelog(changelogType.NEW, 'Added button to empty hatchery queue automatically'),
+    new Changelog(changelogType.CHANGE, 'Temporarily reverted update: EXP rebalance fix'),
+    new Changelog(changelogType.CHANGE, 'Pokémon seen but not caught are now more noticeable in the Pokédex'),
+    new Changelog(changelogType.REMOVED, 'Removed codes to refund gems'),
     new ChangelogUpdate('v0.2.5', new Date(2022, 6 - 1, 26)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.6'),
     new Changelog(changelogType.NEW, 'Added button to fill hatchery queue automatically'),
