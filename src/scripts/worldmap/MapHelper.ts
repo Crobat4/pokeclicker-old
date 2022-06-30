@@ -127,25 +127,32 @@ class MapHelper {
         // Is this location a dungeon
         if (dungeonList[townName]) {
             if (!App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(townName)]()) {
-                return areaStatus[areaStatus.unlockedUnfinished];
+                states.push(areaStatus.unlockedUnfinished);
             } else  if (DungeonRunner.isThereQuestAtLocation(dungeonList[townName])) {
-                return areaStatus[areaStatus.questAtLocation];
+                states.push(areaStatus.questAtLocation);
             } else if (!DungeonRunner.dungeonCompleted(dungeonList[townName], false)) {
-                return areaStatus[areaStatus.uncaughtPokemon];
+                states.push(areaStatus.uncaughtPokemon);
             } else if (!DungeonRunner.dungeonCompleted(dungeonList[townName], true) && !DungeonRunner.isAchievementsComplete(dungeonList[townName])) {
-                return areaStatus[areaStatus.uncaughtShinyPokemonAndMissingAchievement];
+                states.push(areaStatus.uncaughtShinyPokemonAndMissingAchievement);
             } else if (!DungeonRunner.dungeonCompleted(dungeonList[townName], true)) {
-                return areaStatus[areaStatus.uncaughtShinyPokemon];
+                states.push(areaStatus.uncaughtShinyPokemon);
             } else if (!DungeonRunner.isAchievementsComplete(dungeonList[townName])) {
-                return areaStatus[areaStatus.missingAchievement];
+                states.push(areaStatus.missingAchievement);
             }
         }
         const town = TownList[townName];
         town.content.forEach(c => {
-            states.push(c.areaStatus());
+            // If the town itself is not locked, it should never show locked
+            if (c.areaStatus() != areaStatus.locked) {
+                states.push(c.areaStatus());
+            }
         });
         if (states.length) {
-            return areaStatus[Math.min(...states)];
+            const importantState = Math.min(...states);
+            if (importantState >= areaStatus.uncaughtShinyPokemon && states.includes(areaStatus.uncaughtShinyPokemon) && states.includes(areaStatus.missingAchievement)) {
+                return areaStatus[areaStatus.uncaughtShinyPokemonAndMissingAchievement];
+            }
+            return areaStatus[importantState];
         }
         return areaStatus[areaStatus.completed];
     }
@@ -200,14 +207,12 @@ class MapHelper {
                     message: 'You cannot access to the dock while you are inside the Battle Frontier',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            } 
-            else if (App.game.gameState === GameConstants.GameState.dungeon) {
+            } else if (App.game.gameState === GameConstants.GameState.dungeon) {
                 Notifier.notify({
                     message: 'You cannot access to the dock while you are inside a dungeon',
                     type: NotificationConstants.NotificationOption.warning,
                 });
-            }
-            else {
+            } else {
                 openModal();
             }
         } else {
@@ -224,13 +229,11 @@ class MapHelper {
             return false;
         }
 
-        // Check if player doesn't require complete dex to move on to the next region and has access to next regions starter town
-        if (!App.game.challenges.list.requireCompletePokedex.active()) {
-            return TownList[GameConstants.StartingTowns[player.highestRegion() + 1]]?.isUnlocked() ?? false;
-        }
+        const challengeActive = App.game.challenges.list.requireCompletePokedex.active();
+        const nextStartingTownUnlocked = TownList[GameConstants.StartingTowns[player.highestRegion() + 1]]?.isUnlocked() ?? false;
+        const fullDex = AchievementHandler.findByName(`${GameConstants.camelCaseToString(GameConstants.Region[player.highestRegion()])} Master`).isCompleted();
 
-        // Check if all regional pokemon are obtained
-        return AchievementHandler.findByName(`${GameConstants.camelCaseToString(GameConstants.Region[player.highestRegion()])} Master`).isCompleted();
+        return nextStartingTownUnlocked && (fullDex || !challengeActive);
     }
 
     public static travelToNextRegion() {

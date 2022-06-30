@@ -1,3 +1,4 @@
+/// <reference path="../../declarations/settings/BreedingFilters.d.ts" />
 /// <reference path="../../declarations/GameHelper.d.ts" />
 /// <reference path="../../declarations/DataStore/common/Feature.d.ts" />
 /// <reference path="../../declarations/breeding/EggType.d.ts" />
@@ -33,11 +34,11 @@ class Breeding implements Feature {
         this._eggList.forEach((egg) => {
             egg.extend({deferred: true});
         });
-        BreedingController.filter.category(Settings.getSetting('breedingCategoryFilter').value);
-        BreedingController.filter.region(Settings.getSetting('breedingRegionFilter').value);
-        BreedingController.filter.type1(Settings.getSetting('breedingTypeFilter1').value);
-        BreedingController.filter.type2(Settings.getSetting('breedingTypeFilter2').value);
-        BreedingController.filter.shinyStatus(Settings.getSetting('breedingShinyFilter').value);
+        BreedingFilters.category.value(Settings.getSetting('breedingCategoryFilter').value);
+        BreedingFilters.region.value(Settings.getSetting('breedingRegionFilter').value);
+        BreedingFilters.type1.value(Settings.getSetting('breedingTypeFilter1').value);
+        BreedingFilters.type2.value(Settings.getSetting('breedingTypeFilter2').value);
+        BreedingFilters.shinyStatus.value(Settings.getSetting('breedingShinyFilter').value);
         BreedingController.displayValue(Settings.getSetting('breedingDisplayFilter').value);
     }
 
@@ -152,10 +153,10 @@ class Breeding implements Feature {
         return App.game.party.hasMaxLevelPokemon() && (this.hasFreeEggSlot() || this.hasFreeQueueSlot());
     }
 
-    public hasFreeEggSlot(): boolean {
+    public hasFreeEggSlot(isHelper = false): boolean {
         let counter = 0;
-        for (const egg of this._eggList) {
-            if (!egg().isNone()) {
+        for (let i = 0; i < this._eggList.length; i++) {
+            if (!this._eggList[i]().isNone() || (!isHelper && this.hatcheryHelpers.hired()[i])) {
                 counter++;
             }
         }
@@ -167,12 +168,12 @@ class Breeding implements Feature {
         return slots && this.queueList().length < slots;
     }
 
-    public gainEgg(e: Egg) {
+    public gainEgg(e: Egg, isHelper = false) {
         if (e.isNone()) {
             return false;
         }
         for (let i = 0; i < this._eggList.length; i++) {
-            if (this._eggList[i]().isNone()) {
+            if (this._eggList[i]().isNone() && (isHelper || !this.hatcheryHelpers.hired()[i])) {
                 this._eggList[i](e);
                 return true;
             }
@@ -201,6 +202,10 @@ class Breeding implements Feature {
                 continue;
             }
             const egg = this.eggList[index]();
+            const partyPokemon = App.game.party.caughtPokemon.find(p => p.name == egg.pokemon);
+            if (!egg.isNone() && partyPokemon && partyPokemon.canCatchPokerus() && !partyPokemon.pokerus) {
+                partyPokemon.pokerus = partyPokemon.calculatePokerus();
+            }
             egg.addSteps(amount, this.multiplier);
             if (this.queueList().length && egg.progress() >= 100) {
                 this.hatchPokemonEgg(index);
@@ -211,6 +216,89 @@ class Breeding implements Feature {
 
     private getStepMultiplier() {
         return this.multiplier.getBonus('eggStep');
+    }
+
+    public fillHatcheryQueue() {
+        const hatcheryList = PartyController.getHatcherySortedList();
+        const hatcheryListFiltered = [];
+
+        for (const partyPokemonObject of hatcheryList) {
+            if (this.filterFillQueue(partyPokemonObject)) {
+                //console.log(partyPokemonObject);
+                hatcheryListFiltered.push(partyPokemonObject);
+            }
+        }
+
+        let hideHatchery;
+
+        for (const pokemonObject of hatcheryListFiltered) {
+            if (Settings.getSetting('hideHatchery').value == 'queue') {
+                hideHatchery = !this.hasFreeEggSlot() && !this.hasFreeQueueSlot();
+            } else if (Settings.getSetting('hideHatchery').value == 'egg') {
+                hideHatchery = !this.hasFreeEggSlot();
+            } else {
+                hideHatchery = true;
+            }
+
+            if (!hideHatchery) {
+                this.addPokemonToHatchery(pokemonObject);
+                this.checkCloseModal();
+            } else {
+                break;
+            }
+        }
+
+    }
+
+    public filterFillQueue(partyPokemon) {
+        // Only breedable Pokemon
+        if (partyPokemon.breeding || partyPokemon.level < 100) {
+            return false;
+        }
+
+        if (!BreedingFilters.search.value().test(partyPokemon.name)) {
+            return false;
+        }
+
+        // Check based on category
+        if (BreedingFilters.category.value() >= 0) {
+            if (partyPokemon.category !== BreedingFilters.category.value()) {
+                return false;
+            }
+        }
+
+        // Check based on shiny status
+        //if (BreedingController.filter.shinyStatus() >= 0) {
+        //    if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
+
+        if (BreedingFilters.shinyStatus.value() >= 0) {
+            if (+partyPokemon.shiny !== BreedingFilters.shinyStatus.value()) {
+                return false;
+            }
+        }
+
+        // Check based on native region
+        if (BreedingFilters.region.value() > -2) {
+            if (PokemonHelper.calcNativeRegion(partyPokemon.name) !== BreedingFilters.region.value()) {
+                return false;
+            }
+        }
+
+        // Check if either of the types match
+        const type1: (PokemonType | null) = BreedingFilters.type1.value() > -2 ? BreedingFilters.type1.value() : null;
+        const type2: (PokemonType | null) = BreedingFilters.type2.value() > -2 ? BreedingFilters.type2.value() : null;
+        if (type1 !== null || type2 !== null) {
+            const { type: types } = pokemonMap[partyPokemon.name];
+            if ([type1, type2].includes(PokemonType.None)) {
+                const type = (type1 == PokemonType.None) ? type2 : type1;
+                if (!BreedingController.isPureType(partyPokemon, type)) {
+                    return false;
+                }
+            } else if ((type1 !== null && !types.includes(type1)) || (type2 !== null && !types.includes(type2))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public addPokemonToHatchery(pokemon: PartyPokemon): boolean {
@@ -253,8 +341,8 @@ class Breeding implements Feature {
         return false;
     }
 
-    public gainPokemonEgg(pokemon: PartyPokemon | PokemonListData): boolean {
-        if (!this.hasFreeEggSlot()) {
+    public gainPokemonEgg(pokemon: PartyPokemon | PokemonListData, isHelper = false): boolean {
+        if (!this.hasFreeEggSlot(isHelper)) {
             Notifier.notify({
                 message: 'You don\'t have any free egg slots',
                 type: NotificationConstants.NotificationOption.warning,
@@ -267,7 +355,7 @@ class Breeding implements Feature {
             pokemon.breeding = true;
         }
 
-        return this.gainEgg(egg);
+        return this.gainEgg(egg, isHelper);
     }
 
     public hatchPokemonEgg(index: number): void {

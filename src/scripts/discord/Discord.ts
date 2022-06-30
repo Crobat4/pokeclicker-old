@@ -15,15 +15,25 @@ class Discord implements Saveable {
     SecretID: KnockoutObservable<string> = ko.observable(null);
     FinalID: KnockoutObservable<string> = ko.observable(null);
     //RandomKey: KnockoutObservable<string> = ko.observable(null);
+    // eslint-disable-next-line array-bracket-newline
     codes: Array<DiscordCode> = [
-        new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Unown (I)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Unown (S)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Unown (C)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'Alternate form of Unown'),
-        new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
-        new DiscordPokemonCode(pokemonMap['Rotom (discord)'], 10000, 'A Discord style Rotom!'),
+        /*
+        new DiscordPokemonCode(pokemonMap['Unown (D)'], 700, 'An alternate form of Unown'),
+        new DiscordPokemonCode(pokemonMap['Unown (I)'], 700, 'An alternate form of Unown'),
+        new DiscordPokemonCode(pokemonMap['Unown (S)'], 700, 'An alternate form of Unown'),
+        new DiscordPokemonCode(pokemonMap['Unown (C)'], 700, 'An alternate form of Unown'),
+        new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'An alternate form of Unown'),
+        new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'An alternate form of Unown'),
+        */
+        //new DiscordPokemonCode(pokemonMap['Unown (C)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (R)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (O)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (B)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (A)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Unown (T)'], 700, 'An alternate form of Unown'),
+        //new DiscordPokemonCode(pokemonMap['Surfing Pikachu'], 1500, 'It\'s a Pikachu on a surfboard!'),
+        //new DiscordPokemonCode(pokemonMap['Rotom (Crobat)'], 10000, 'A Discord style Rotom!'),
+        // eslint-disable-next-line array-bracket-newline
     ];
 
     get enabled(): boolean {
@@ -163,7 +173,7 @@ class Discord implements Saveable {
         // User not logged in to Discord
         if (!this.ID()) {
             Notifier.notify({
-                message: 'You must sign in to Discord before attempting this code',
+                message: 'You must sign in to Discord before attempting to use this code',
                 type: NotificationConstants.NotificationOption.danger,
             });
             return false;
@@ -187,6 +197,7 @@ class Discord implements Saveable {
     }
 
     loadCodes(codes) {
+        console.log(codes);
         codes.forEach(code => {
             const c = this.codes.find(c => c.name == code.name);
             if (c) {
