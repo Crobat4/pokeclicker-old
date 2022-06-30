@@ -13,6 +13,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    new ChangelogUpdate('v0.2.5', new Date(2022, 6 - 1, 26)),
+    new Changelog(changelogType.NEW, 'Added Official update v0.9.6'),
+    new Changelog(changelogType.NEW, 'Added button to fill hatchery queue automatically'),
+    new Changelog(changelogType.NEW, 'Added codes to refund gems used on removed flutes (They will be removed after a while)'),
+    new Changelog(changelogType.CHANGE, 'Reverted update: EXP rebalance'),
+    new Changelog(changelogType.FIXED, 'Shiny checkbox in Profile Card not working properly after the update'),
     new ChangelogUpdate('v0.2.4', new Date(2022, 6 - 1, 14)),
     new Changelog(changelogType.NEW, 'Added setting to increase the game width'),
     new Changelog(changelogType.NEW, 'Pokémon shows Rare Hold Item image in the Pokédex'),
