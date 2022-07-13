@@ -39,6 +39,14 @@
                     Start<br/>
                         <span data-bind="template: { name: 'currencyTemplate', data: {'amount': player.town().dungeon.tokenCost, 'currency': GameConstants.Currency.dungeonToken}}"></span>
                 </button>
+                <!-- ko if: player.town() instanceof DungeonTown -->
+                <button class="btn btn-info p-0 btn-gym-auto-restart" data-bind="
+                    tooltip: { html: true, title: `Auto restart Dungeon<br/>Cost: <img src='assets/images/currency/money.svg' height='18px'></button> ${($data.moneyReward * 2).toLocaleString('en-US')} per battle<br/><br/><i class='text-warning'>You will not receive Pokédollars for clearing the gym</i>`, trigger: 'hover', placement:'right' },
+                    click: () => DungeonRunner.initializeDungeon(player.town().dungeon)"
+                >↻
+                </button>
+                <!--visible: $data.isUnlocked() && App.game.statistics.gymsDefeated[GameConstants.getGymIndex($data.town)]() >= 100-->
+                <!-- /ko -->
 
                 <!-- ko foreach: player.town().content -->
                 <div class="btn-group btn-block" style="margin-top: 0px;">

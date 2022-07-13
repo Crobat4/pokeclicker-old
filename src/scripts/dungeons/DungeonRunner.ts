@@ -223,7 +223,7 @@ class DungeonRunner {
         if (!DungeonRunner.dungeonFinished()) {
             DungeonRunner.dungeonFinished(true);
             GameHelper.incrementObservable(App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(DungeonRunner.dungeon.name)]);
-            MapHelper.moveToTown(DungeonRunner.dungeon.name);
+            //MapHelper.moveToTown(DungeonRunner.dungeon.name);
             DungeonRunner.dungeon.rewardFunction();
             // TODO award loot with a special screen
             Notifier.notify({
@@ -231,6 +231,8 @@ class DungeonRunner {
                 type: NotificationConstants.NotificationOption.success,
             });
         }
+        //Auto dungeon
+        this.initializeDungeon(DungeonRunner.dungeon);
     }
 
     public static timeLeftSeconds = ko.pureComputed(() => {
