@@ -52,6 +52,9 @@ type PokemonListData = {
   baby?: boolean;
   attack?: number;
   heldItem?: BagItem;
+  genderType?: number;
+  hasFemaleDifference?: boolean;
+  genderRatio?: number;
 }
 
 function createPokemonArray<T extends readonly PokemonListData[] & Array<{name: V}>, V extends string>(...args: T) {
@@ -2288,6 +2291,7 @@ const pokemonList = createPokemonArray(
             'speed': 45,
         },
         'heldItem': {type: ItemType.item, id: 'Metal_coat'},
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 82,
@@ -13121,6 +13125,9 @@ const pokemonList = createPokemonArray(
             'specialDefense': 85,
             'speed': 40,
         },
+        'genderType': GameConstants.MALE_FEMALE,
+        'hasFemaleDifference': true,
+        'genderRatio': GameConstants.MALE_50,
     },
     {
         'id': 593,

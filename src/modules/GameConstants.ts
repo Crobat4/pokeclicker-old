@@ -233,6 +233,19 @@ export const STONE_EP_YIELD = 10;
 export const EP_EV_RATIO = 10;
 export const EP_CHALLENGE_MODIFIER = 10;
 
+// Gender types
+export const GENDERLESS = 0;
+export const MALE_ONLY = 1;
+export const FEMALE_ONLY = 2;
+export const MALE_FEMALE = 3; // Default
+
+// Gender ratio
+export const MALE_12_5 = 8 / 7;
+export const MALE_25 = 4 / 3;
+export const MALE_50 = 2; // Default
+export const MALE_75 = 4;
+export const MALE_87_5 = 8;
+
 /**
  * idle: The game is not doing anything, the battle view isn't shown
  * paused: The battle view is shown, but there are no game ticks

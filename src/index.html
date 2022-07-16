@@ -232,7 +232,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="text: Battle.enemyPokemon().name">Pokémon name</knockout>
+                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 
@@ -241,7 +241,7 @@
                             <div>
                                 <div data-bind="visible: !Battle.catching()">
                                     <img class="enemy"
-                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny) }"
+                                         data-bind="attr:{ src: PokemonHelper.getImage(Battle.enemyPokemon(), Battle.enemyPokemon().shiny, Battle.enemyPokemon().isFemale) }"
                                          src=""/>
                                 </div>
                                 <div data-bind="visible: Battle.catching()" class="catchChance">

@@ -140,6 +140,15 @@ namespace GameConstants {
     declare const STONE_EP_YIELD: number;
     declare const EP_EV_RATIO: number;
     declare const EP_CHALLENGE_MODIFIER: number;
+    declare const GENDERLESS;
+    declare const MALE_ONLY;
+    declare const FEMALE_ONLY;
+    declare const MALE_FEMALE;
+    declare const MALE_12_5;
+    declare const MALE_25;
+    declare const MALE_50;
+    declare const MALE_75;
+    declare const MALE_87_5;
     declare const DNA_ITEM_CHANCE: number;
     declare enum GameState {
         idle,
