@@ -155,22 +155,94 @@ class PokedexHelper {
         return res;
     }
 
-    public static getImage(id: number) {
+    public static getImage(id: number, isFemale = false) {
         let src = 'assets/images/';
         if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
             src += 'shiny';
         }
-        src += `pokemon/${id}.png`;
+
+        let genderString = '';
+        if (isFemale) {
+            genderString = '-f';
+        }
+
+        src += `pokemon/${id}${genderString}.png`;
         return src;
     }
 
-    public static getImageStatistics(id: number) {
+    public static getImageStatistics(id: number, isFemale = false) {
         let src = 'assets/images/';
         if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleStatisticShiny()) {
             src += 'shiny';
         }
-        src += `pokemon/${id}.png`;
+
+        let genderString = '';
+        if (isFemale) {
+            genderString = '-f';
+        }
+
+        src += `pokemon/${id}${genderString}.png`;
         return src;
+    }
+
+    public static getGenderTypeTooltip(pokemon, isFemale = false) {
+        let genderTooltip = '';
+        const genderless = pokemon.genderType === GameConstants.GENDERLESS;
+        const maleFemale = pokemon.genderType === GameConstants.MALE_FEMALE;
+        const maleOnly = pokemon.genderType === GameConstants.MALE_ONLY;
+        const femaleOnly = pokemon.genderType === GameConstants.FEMALE_ONLY;
+        if (pokemon.id === 169) {
+            genderTooltip = 'Gigachad';
+        } else if (genderless) {
+            genderTooltip = 'Genderless';
+        } else if (maleFemale && !pokemon.hasFemaleDifference) {
+            genderTooltip = 'Male/Female';
+        } else if (maleOnly || (maleFemale && !isFemale)) {
+            genderTooltip = 'Male';
+        } else if (femaleOnly || (maleFemale && isFemale)) {
+            genderTooltip = 'Female';
+        }
+        return genderTooltip;
+    }
+
+    public static getGenderRatioText(pokemon, isFemale = false) {
+        const genderType = pokemon.genderType;
+        const genderRatio = pokemon.genderRatio;
+        let genderRatioMale = '';
+        let genderRatioFemale = '';
+        console.log(pokemon);
+        if (genderType === GameConstants.MALE_ONLY) {
+            genderRatioMale = '100';
+            genderRatioFemale = '0';
+        } else if (genderType === GameConstants.FEMALE_ONLY) {
+            genderRatioMale = '0';
+            genderRatioFemale = '100';
+        } else {
+            switch (genderRatio) {
+                case GameConstants.MALE_12_5:
+                    genderRatioMale = '12.5';
+                    genderRatioFemale = '87.5';
+                    break;
+                case GameConstants.MALE_25:
+                    genderRatioMale = '25';
+                    genderRatioFemale = '75';
+                    break;
+                case GameConstants.MALE_50:
+                    genderRatioMale = '50';
+                    genderRatioFemale = '50';
+                    break;
+                case GameConstants.MALE_75:
+                    genderRatioMale = '75';
+                    genderRatioFemale = '25';
+                    break;
+                case GameConstants.MALE_87_5:
+                    genderRatioMale = '87.5';
+                    genderRatioFemale = '12.5';
+                    break;
+                default:
+            }
+        }
+        return !isFemale ? genderRatioMale : genderRatioFemale;
     }
 
     private static isPureType(pokemon: PokemonListData, type: (PokemonType | null)): boolean {

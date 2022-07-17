@@ -95,11 +95,7 @@ class PokemonHelper {
             src += 'shiny';
         }
 
-        //const gender = ["male", "female"];
-        //const randomGender = Math.floor(Math.random() * gender.length);
-        //console.log(pokemon.name, gender[randomGender]);
         let genderString = '';
-        //console.log(isFemale);
         if (isFemale && pokemon.hasFemaleDifference) {
             genderString = '-f';
         }
