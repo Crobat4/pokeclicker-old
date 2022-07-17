@@ -56,7 +56,7 @@ class PokemonFactory {
         const genderType: number = basePokemon.genderType;
         const hasFemaleDifference: boolean = basePokemon.hasFemaleDifference;
         const isFemale = this.generateGender(basePokemon.genderRatio, genderType);
-        const genderText = this.generateGenderTypeName(genderType, isFemale);
+        const genderText = this.generateGenderTypeName(basePokemon, isFemale);
 
         if (!isTrainer) {
             catchRate = this.catchRateHelper(basePokemon.catchRate);
@@ -161,13 +161,15 @@ class PokemonFactory {
 
     /**
      * Generates text according to the gender. Gender icon if male/female, nothing if genderless.
-     * @param genderType Gender type (Genderless, male only, etc.), should be from GameConstants under Gender types comment
+     * genderType Gender type (Genderless, male only, etc.), should be from GameConstants under Gender types comment
+     * @param pokemon Pokemon object
      * @param isFemale True if female, false if male
      * @returns {string} Gender icon or nothing
      */
-    public static generateGenderTypeName(genderType: number, isFemale: boolean): string {
+    public static generateGenderTypeName(pokemon: DataPokemon, isFemale: boolean): string {
         let genderText = '';
-        if (genderType === GameConstants.GENDERLESS) {
+        // No gender icon if genderless or any of the Nidoran (like main games)
+        if (pokemon.genderType === GameConstants.GENDERLESS || pokemon.id == 29 || pokemon.id == 32) {
             genderText = '';
         } else {
             if (isFemale) {

@@ -32,7 +32,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Kanto Route 3', GameConstants.Region.kanto, 3,
     new RoutePokemon({
-        land: ['Pidgey', 'Spearow', 'Nidoran(F)', 'Nidoran(M)', 'Jigglypuff', 'Mankey'],
+        land: ['Pidgey', 'Spearow', 'Nidoran♀', 'Nidoran♂', 'Jigglypuff', 'Mankey'],
     }),
     [
         new RouteKillRequirement(10, GameConstants.Region.kanto, 2),
@@ -311,7 +311,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Johto Route 35', GameConstants.Region.johto, 35,
     new RoutePokemon({
-        land: ['Pidgey', 'Nidoran(F)', 'Nidoran(M)', 'Abra', 'Drowzee', 'Ditto', 'Hoothoot', 'Yanma'],
+        land: ['Pidgey', 'Nidoran♀', 'Nidoran♂', 'Abra', 'Drowzee', 'Ditto', 'Hoothoot', 'Yanma'],
         water: ['Psyduck', 'Golduck', 'Poliwag', 'Magikarp'],
         headbutt: ['Exeggcute', 'Hoothoot', 'Ledyba', 'Spinarak', 'Pineco'],
     }),
@@ -320,7 +320,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Johto Route 36', GameConstants.Region.johto, 36,
     new RoutePokemon({
-        land: ['Pidgey', 'Nidoran(M)', 'Nidoran(F)', 'Vulpix', 'Growlithe', 'Hoothoot', 'Stantler', 'Sudowoodo'],
+        land: ['Pidgey', 'Nidoran♂', 'Nidoran♀', 'Vulpix', 'Growlithe', 'Hoothoot', 'Stantler', 'Sudowoodo'],
         headbutt: ['Exeggcute', 'Hoothoot', 'Ledyba', 'Spinarak', 'Pineco'],
     }),
     [new GymBadgeRequirement(BadgeEnums.Plain)]
@@ -2426,11 +2426,11 @@ Routes.add(new RegionRoute(
         land: ['Abomasnow', 'Jynx', 'Amaura', 'Audino', 'Mime Jr.', 'Snover', 'Smoochum'],
         special:
       [
-          new SpecialRoutePokemon(['Dubwool', 'Wooloo', 'Nidoran(M)', 'Nidoran(F)', 'Snorlax'],  new WeatherRequirement([WeatherType.Clear])),
-          new SpecialRoutePokemon(['Swablu', 'Sneasel', 'Nidoran(M)', 'Nidoran(F)', 'Weavile', 'Snorlax'],  new WeatherRequirement([WeatherType.Overcast])),
-          new SpecialRoutePokemon(['Cryogonal', 'Vanillish', 'Vanillite', 'Nidoran(M)', 'Nidoran(F)', 'Vanilluxe'],  new WeatherRequirement([WeatherType.Snow])),
-          new SpecialRoutePokemon(['Cryogonal', 'Vanillish', 'Vanillite', 'Nidoran(M)', 'Nidoran(F)', 'Vanilluxe', 'Absol', 'Eevee'],  new WeatherRequirement([WeatherType.Blizzard])),
-          new SpecialRoutePokemon(['Dubwool', 'Magmar', 'Magby', 'Nidoran(M)', 'Nidoran(F)', 'Snorlax', 'Magmar'],  new WeatherRequirement([WeatherType.Sunny])),
+          new SpecialRoutePokemon(['Dubwool', 'Wooloo', 'Nidoran♂', 'Nidoran♀', 'Snorlax'],  new WeatherRequirement([WeatherType.Clear])),
+          new SpecialRoutePokemon(['Swablu', 'Sneasel', 'Nidoran♂', 'Nidoran♀', 'Weavile', 'Snorlax'],  new WeatherRequirement([WeatherType.Overcast])),
+          new SpecialRoutePokemon(['Cryogonal', 'Vanillish', 'Vanillite', 'Nidoran♂', 'Nidoran♀', 'Vanilluxe'],  new WeatherRequirement([WeatherType.Snow])),
+          new SpecialRoutePokemon(['Cryogonal', 'Vanillish', 'Vanillite', 'Nidoran♂', 'Nidoran♀', 'Vanilluxe', 'Absol', 'Eevee'],  new WeatherRequirement([WeatherType.Blizzard])),
+          new SpecialRoutePokemon(['Dubwool', 'Magmar', 'Magby', 'Nidoran♂', 'Nidoran♀', 'Snorlax', 'Magmar'],  new WeatherRequirement([WeatherType.Sunny])),
           new SpecialRoutePokemon(['Hattrem', 'Gothorita', 'Duosion', 'Mimikyu', 'Hatenna', 'Gothita', 'Solosis', 'Hatterene', 'Gothitelle', 'Reuniclus'],  new WeatherRequirement([WeatherType.Fog])),
       ],
         headbutt: ['Skwovet', 'Greedent'],
@@ -2440,7 +2440,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Giants Bed', GameConstants.Region.galar, 43,
     new RoutePokemon({
-        land: ['Nidoran(M)', 'Nidoran(F)', 'Stonjourner', 'Bronzong', 'Audino', 'Mime Jr.', 'Shelmet', 'Nidorino', 'Nidorina', 'Aerodactyl'],
+        land: ['Nidoran♂', 'Nidoran♀', 'Stonjourner', 'Bronzong', 'Audino', 'Mime Jr.', 'Shelmet', 'Nidorino', 'Nidorina', 'Aerodactyl'],
         water: ['Magikarp', 'Barboach', 'Basculin (Red-Striped)', 'Basculin (Blue-Striped)', 'Gyarados', 'Whiscash', 'Lileep', 'Feebas'],
         special:
       [
@@ -2460,7 +2460,7 @@ Routes.add(new RegionRoute(
 Routes.add(new RegionRoute(
     'Old Cemetery', GameConstants.Region.galar, 44,
     new RoutePokemon({
-        land: ['Nidoran(M)', 'Nidoran(F)', 'Sinistea', 'Drakloak', 'Audino', 'Mime Jr.', 'Karrablast'],
+        land: ['Nidoran♂', 'Nidoran♀', 'Sinistea', 'Drakloak', 'Audino', 'Mime Jr.', 'Karrablast'],
         special:
       [
           new SpecialRoutePokemon(['Polteageist', 'Dragapult'],  new WeatherRequirement([WeatherType.Clear])),

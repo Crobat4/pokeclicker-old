@@ -202,6 +202,9 @@ class PokedexHelper {
         } else if (femaleOnly || (maleFemale && isFemale)) {
             genderTooltip = 'Female';
         }
+        if (maleOnly || femaleOnly) {
+            genderTooltip += ' only';
+        }
         return genderTooltip;
     }
 

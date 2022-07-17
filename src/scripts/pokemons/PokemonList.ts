@@ -1112,13 +1112,13 @@ const pokemonList = createPokemonArray(
     },
     {
         'id': 29,
-        'name': 'Nidoran(F)',
+        'name': 'Nidoran♀',
         'catchRate': 235,
         'type': [PokemonType.Poison],
         'levelType': LevelType.mediumslow,
         'exp': 55,
         'eggCycles': 20,
-        'evolutions': [new LevelEvolution('Nidoran(F)', 'Nidorina', 16)],
+        'evolutions': [new LevelEvolution('Nidoran♀', 'Nidorina', 16)],
         'base': {
             'hitpoints': 55,
             'attack': 47,
@@ -1168,13 +1168,13 @@ const pokemonList = createPokemonArray(
     },
     {
         'id': 32,
-        'name': 'Nidoran(M)',
+        'name': 'Nidoran♂',
         'catchRate': 235,
         'type': [PokemonType.Poison],
         'levelType': LevelType.mediumslow,
         'exp': 55,
         'eggCycles': 20,
-        'evolutions': [new LevelEvolution('Nidoran(M)', 'Nidorino', 16)],
+        'evolutions': [new LevelEvolution('Nidoran♂', 'Nidorino', 16)],
         'base': {
             'hitpoints': 46,
             'attack': 57,
@@ -22154,6 +22154,8 @@ pokemonList.forEach(p => {
     (p as PokemonListData).genderType = (p as PokemonListData).genderType === undefined ? GameConstants.MALE_FEMALE : (p as PokemonListData).genderType;
     // Add MALE_50 as default gender ratio
     (p as PokemonListData).genderRatio = (p as PokemonListData).genderRatio === undefined ? GameConstants.MALE_50 : (p as PokemonListData).genderRatio;
+    // Add false as default value in "hasFemaleDifference" property
+    (p as PokemonListData).hasFemaleDifference = (p as PokemonListData).hasFemaleDifference === undefined ? false : (p as PokemonListData).hasFemaleDifference;
     // Calculate this pokemons native region
     (p as PokemonListData).nativeRegion = (p as PokemonListData).nativeRegion || GameConstants.MaxIDPerRegion.findIndex(maxRegionID => maxRegionID >= Math.floor(p.id));
     // Create an index of pokemon
