@@ -190,13 +190,31 @@ class PokemonFactory {
      * Generate a Gym trainer pokemon based on gymName, index and the dataList.
      * @param gymName name of the gym that the player is fighting.
      * @param index index of the Pokémon that is being generated.
-     * @returns {any}
+     * @returns {BattlePokemon}
      */
     public static generateGymPokemon(gym: Gym, index: number): BattlePokemon {
         const pokemon = gym.pokemons[index];
         const basePokemon = PokemonHelper.getPokemonByName(pokemon.name);
         const money = 0;
         const battlePokemonObject = this.battlePokemonGenerator(basePokemon, pokemon.maxHealth, pokemon.level, money, GameConstants.SHINY_CHANCE_BATTLE, GameConstants.GYM_GEMS, true);
+        return battlePokemonObject;
+    }
+
+    /**
+     * Generate a Battle Frontier pokemon.
+     * @returns {BattlePokemon}
+     */
+     public static generateBattleFrontierPokemon(): BattlePokemon {
+        const enemy = pokemonMap.randomRegion(player.highestRegion());
+        // This needs to stay as none so the stage number isn't adjusted
+        const health = PokemonFactory.routeHealth(BattleFrontierRunner.stage() + 10, GameConstants.Region.none);
+        const level = Math.min(100, BattleFrontierRunner.stage());
+        // Don't award money per pokemon defeated, award money at the end
+        const money = 0;
+        // Give 1 extra gem per pokemon defeated after every 80 stages
+        const gems = Math.ceil(BattleFrontierRunner.stage() / 80);
+
+        const battlePokemonObject = this.battlePokemonGenerator(enemy, health, level, money, GameConstants.SHINY_CHANCE_BATTLE, gems, false);
         return battlePokemonObject;
     }
 

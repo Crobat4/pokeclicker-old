@@ -16728,6 +16728,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 42,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 723,
@@ -16746,6 +16747,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 52,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 724,
@@ -16763,6 +16765,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 100,
             'speed': 70,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 725,
@@ -16781,6 +16784,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 40,
             'speed': 70,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 726,
@@ -16799,6 +16803,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 90,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 727,
@@ -16816,6 +16821,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 90,
             'speed': 60,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 728,
@@ -16834,6 +16840,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 56,
             'speed': 40,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 729,
@@ -16852,6 +16859,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 81,
             'speed': 50,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 730,
@@ -16869,6 +16877,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 116,
             'speed': 60,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 731,
@@ -17105,6 +17114,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 93,
         },
+        'genderRatio': GameConstants.MALE_25,
     },
     {
         'id': 741.01,
@@ -17122,6 +17132,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 93,
         },
+        'genderRatio': GameConstants.MALE_25,
     },
     {
         'id': 741.02,
@@ -17139,6 +17150,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 93,
         },
+        'genderRatio': GameConstants.MALE_25,
     },
     {
         'id': 741.03,
@@ -17156,6 +17168,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 93,
         },
+        'genderRatio': GameConstants.MALE_25,
     },
     {
         'id': 742,
@@ -17564,6 +17577,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 40,
             'speed': 77,
         },
+        'genderRatio': GameConstants.MALE_87_5,
     },
     {
         'id': 758,
@@ -17581,6 +17595,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 117,
         },
+        'genderType': GameConstants.FEMALE_ONLY,
     },
     {
         'id': 758.01,
@@ -17598,6 +17613,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 117,
         },
+        'genderType': GameConstants.FEMALE_ONLY,
     },
     {
         'id': 759,
@@ -17651,6 +17667,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 38,
             'speed': 32,
         },
+        'genderType': GameConstants.FEMALE_ONLY,
     },
     {
         'id': 762,
@@ -17669,6 +17686,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 48,
             'speed': 62,
         },
+        'genderType': GameConstants.FEMALE_ONLY,
     },
     {
         'id': 763,
@@ -17686,6 +17704,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 98,
             'speed': 72,
         },
+        'genderType': GameConstants.FEMALE_ONLY,
     },
     {
         'id': 764,
@@ -17703,6 +17722,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 110,
             'speed': 100,
         },
+        'genderRatio':GameConstants.MALE_25,
     },
     {
         'id': 765,
@@ -17842,6 +17862,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 95,
             'speed': 59,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 773,
@@ -17859,6 +17880,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 95,
             'speed': 95,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774,
@@ -17877,6 +17899,7 @@ const pokemonList = createPokemonArray(
             'speed': 60,
         },
         'heldItem': {type: ItemType.underground, id: 'Star Piece'},
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.01,
@@ -17894,6 +17917,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.02,
@@ -17911,6 +17935,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.03,
@@ -17928,6 +17953,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.04,
@@ -17945,6 +17971,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.05,
@@ -17962,6 +17989,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.06,
@@ -17979,6 +18007,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 774.07,
@@ -17996,6 +18025,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 60,
             'speed': 120,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 775,
@@ -18150,6 +18180,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 90,
             'speed': 40,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 782,
@@ -18240,6 +18271,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 75,
             'speed': 130,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 786,
@@ -18257,6 +18289,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 115,
             'speed': 95,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 787,
@@ -18274,6 +18307,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 95,
             'speed': 75,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 788,
@@ -18291,6 +18325,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 130,
             'speed': 85,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 789,
@@ -18309,6 +18344,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 31,
             'speed': 37,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 790,
@@ -18330,6 +18366,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 131,
             'speed': 37,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 791,
@@ -18347,6 +18384,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 89,
             'speed': 97,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 792,
@@ -18364,6 +18402,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 107,
             'speed': 97,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 793,
@@ -18381,6 +18420,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 131,
             'speed': 103,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 794,
@@ -18398,6 +18438,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 53,
             'speed': 79,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 795,
@@ -18415,6 +18456,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 37,
             'speed': 151,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 796,
@@ -18432,6 +18474,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 71,
             'speed': 83,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 797,
@@ -18449,6 +18492,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 101,
             'speed': 61,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 798,
@@ -18466,6 +18510,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 31,
             'speed': 109,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 799,
@@ -18483,6 +18528,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 53,
             'speed': 43,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 800,
@@ -18500,6 +18546,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 89,
             'speed': 79,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 800.01,
@@ -18517,6 +18564,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 109,
             'speed': 77,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 800.02,
@@ -18534,6 +18582,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 127,
             'speed': 77,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 800.03,
@@ -18551,6 +18600,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 97,
             'speed': 129,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 801,
@@ -18568,6 +18618,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 115,
             'speed': 65,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 801.1,
@@ -18585,6 +18636,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 115,
             'speed': 65,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 802,
@@ -18602,6 +18654,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 90,
             'speed': 125,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 803,
@@ -18620,6 +18673,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 67,
             'speed': 73,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 804,
@@ -18637,6 +18691,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 73,
             'speed': 121,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 805,
@@ -18654,6 +18709,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 101,
             'speed': 13,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 806,
@@ -18671,6 +18727,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 79,
             'speed': 107,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 807,
@@ -18688,6 +18745,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 80,
             'speed': 143,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 808,
@@ -18707,6 +18765,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 35,
             'speed': 34,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 809,
@@ -18725,6 +18784,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 65,
             'speed': 34,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     {
         'id': 810,
@@ -21604,6 +21664,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 23,
             'speed': 0,
         },
+        'genderType': GameConstants.GENDERLESS,
     },
     // Megas only between -100 → -199
     {
@@ -22477,6 +22538,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 131,
             'speed': 103,
         },
+        'genderType': GameConstants.GENDERLESS,
     }
 );
 
