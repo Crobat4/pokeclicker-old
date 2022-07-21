@@ -69,6 +69,8 @@ class PokedexHelper {
     }
 
     public static updateList() {
+        $('#pokemon-list').scrollTop(0);
+        PokedexHelper.navigateIndex(1);
         PokedexHelper.filteredList(PokedexHelper.getList());
     }
 
@@ -218,5 +220,8 @@ $(document).ready(() => {
             PokedexHelper.addPokemonItem();
         }
         
+    });
+    $('#pokedexModal').on('hidden.bs.modal', () => {
+        PokedexHelper.navigateIndex(1);
     });
 });

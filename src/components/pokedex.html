@@ -4,16 +4,18 @@ aria-labelledby="pokedexModalLabel">
    <div class="modal-content">
        <div class="modal-header">
            <h4 style="margin-bottom: 0">Pokédex</h4>
-           <button style="float:right;" class="btn btn-secondary" type="button" data-toggle="collapse"
+           <button style="float:right;" class="btn btn-secondary d-block d-md-none" type="button" data-toggle="collapse"
                    data-target="#pokedex-filter-container" aria-expanded="false" aria-controls="pokedex-filter-container">
                Filters
            </button>
        </div>
-       <div class="modal-body" id="pokemon-list">
-            <div class="collapse" id="pokedex-filter-container">
-                <div class="container-fluid" style="border-bottom: 1px solid #eceeef">
+       <div class="modal-body row mx-0" id="pokemon-list">
+            <div class="col-md-3">
+                <div class="collapse dont-collapse-sm container-fluid" id="pokedex-filter-container" style="border-bottom: 1px solid #eceeef">
+                    <div class="w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                        <h4>Filters</h4>
+                    </div>
                     <div class="form-row text-left">
-
                         <!--Name-->
                         <div class="form-group col-md-6 col-6">
                             <label>Name</label>
@@ -32,21 +34,21 @@ aria-labelledby="pokedexModalLabel">
 
                         <!--Types-->
                         <div class="form-group col-md-6 col-6">
-                            <label>Type</label>
+                            <label>Types</label>
                             <select id="pokedex-filter-type1" class="custom-select"
                                     oninput="PokedexHelper.updateList()" style="margin-right: 8px">
                                 <option value="" selected>All</option>
                             </select>
                         </div>
                         <div class="form-group col-md-6 col-6">
-                            <label>Type</label>
+                            <label> </label> <!-- Blank character -->
                             <select id="pokedex-filter-type2" class="custom-select"
                                     oninput="PokedexHelper.updateList()">
                                 <option value="" selected>All</option>
                             </select>
                         </div>
 
-                        <div class="form-group col-md-6 col-6">
+                        <div class="form-group col-md-12 col-12">
                             <label for="pokedex-filter-shiny-caught">Caught Status</label>
                             <select id="pokedex-filter-shiny-caught" autocomplete="off" class="custom-select" onchange="PokedexHelper.updateList()">
                                 <option value="all" selected>All</option>
@@ -58,12 +60,19 @@ aria-labelledby="pokedexModalLabel">
                         </div>
                         <div class="form-group col-md-6 col-6">
                             <!--Rare Hold Item-->
-                            <div class="col-12">
-                                <label class="form-check-label">
-                                    <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
-                                            value="false" onclick="PokedexHelper.updateList()"> Rare Hold Item
-                                </label>
-                            </div>
+                            <span>Rare Hold Item</span>
+                        </div>
+                        <div class="form-group col-md-6 col-6">
+                            <!--Rare Hold Item-->
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="pokedex-filter-held-item"
+                                        value="false" onclick="PokedexHelper.updateList()">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-group col-md-12 col-6">
                             <!--Hide shiny images-->
                             <!--
                             <div class="col-12">
@@ -77,13 +86,19 @@ aria-labelledby="pokedexModalLabel">
 
                    </div>
 
-                   <div class="row justify-content-center">
-                      <h4 data-bind="text: `Showing ${PokedexHelper.filteredList().length} Pokémon`"></h4>
-                   </div>
+                    <div class="row justify-content-center">
+                        <h4 data-bind="text: `Showing ${PokedexHelper.filteredList().length} Pokémon`"></h4>
+                    </div>
                </div>
 
-           </div>
-           <div>
+            </div>
+            <div class="col-md-9">
+                <!-- ko if: PokedexHelper.shortenedListByIndex().length == 0 -->
+                <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                    <h4 data-bind="text: 'No Pokémon found'"></h4>
+                </div>
+                <span>Missing a Pokémon but is not appearing here? Look around the region, you haven't seen yet.</span>
+                <!-- /ko -->
                <ul class="row justify-content-center p-0" id="pokemon-elements" data-bind="foreach: PokedexHelper.shortenedListByIndex()"
                    style="max-width: 100%; padding:0; margin:0;">
                    <li class="col-sm-4 col-md-3 col-lg-2 pokedexEntry"
@@ -119,7 +134,6 @@ aria-labelledby="pokedexModalLabel">
                             <!-- /ko -->
                    </li>
                </ul>
-               <button data-bind="click: PokedexHelper.addPokemonItem()">Add</button>
            </div>
        </div>
 
