@@ -1,8 +1,10 @@
 import TypeColor = GameConstants.TypeColor;
 
 class PokedexHelper {
-    public static toggleStatisticShiny = ko.observable(true);
-    public static hideShinyImages = ko.observable(false);
+    public static toggleStatisticShiny = ko.observable(false);
+    public static toggleAllShiny = ko.observable(true);
+
+    public static navigateIndex: KnockoutObservable<number> = ko.observable(0);
 
     public static getBackgroundColors(name: PokemonNameType): string {
         const pokemon = PokemonHelper.getPokemonByName(name);
@@ -54,7 +56,21 @@ class PokedexHelper {
         }
     }
 
+    public static shortenedListByIndex(id = 0){
+        return this.filteredList().slice(0, (this.navigateIndex() * 50));
+    }
+    public static addPokemonItem(){
+        //this.filteredList().push(this.filteredList().slice(51, 100));
+        this.setNavigateIndex(this.navigateIndex() + 1);
+        //console.log(this.navigateIndex());
+    }
+    public static setNavigateIndex(index: number): void {
+        this.navigateIndex(index);
+    }
+
     public static updateList() {
+        $('#pokemon-list').scrollTop(0);
+        PokedexHelper.navigateIndex(1);
         PokedexHelper.filteredList(PokedexHelper.getList());
     }
 
@@ -157,7 +173,8 @@ class PokedexHelper {
 
     public static getImage(id: number, isFemale = false) {
         let src = 'assets/images/';
-        if (App.game.party.alreadyCaughtPokemon(id, true) && !this.hideShinyImages()) {
+        //if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
+        if (App.game.party.alreadyCaughtPokemon(id, true) && Settings.getSetting('shinyPokedex').observableValue()) {
             src += 'shiny';
         }
 
@@ -246,6 +263,15 @@ class PokedexHelper {
             }
         }
         return !isFemale ? genderRatioMale : genderRatioFemale;
+	}
+	
+    public static toggleStatisticShinyOnModalOpen() {
+        if (Settings.getSetting('shinyPokedex').observableValue()) {
+            this.toggleStatisticShiny(true);
+        }
+        else {
+            this.toggleStatisticShiny(false);
+        }
     }
 
     private static isPureType(pokemon: PokemonListData, type: (PokemonType | null)): boolean {
@@ -255,6 +281,22 @@ class PokedexHelper {
 
 $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
-        PokedexHelper.toggleStatisticShiny(true);
+        if (Settings.getSetting('shinyPokedex').observableValue()) {
+            PokedexHelper.toggleStatisticShiny(true);
+        }
+        else {
+            PokedexHelper.toggleStatisticShiny(false);
+        }
+    });
+    $('#pokemon-list').on('scroll', () => {
+        let scrollY = $('#pokemon-list').scrollTop();
+        let divHeight = $('#pokemon-elements').height();
+        if (scrollY >= divHeight - 500) {
+            PokedexHelper.addPokemonItem();
+        }
+        
+    });
+    $('#pokedexModal').on('hidden.bs.modal', () => {
+        PokedexHelper.navigateIndex(1);
     });
 });
