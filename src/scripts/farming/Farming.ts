@@ -57,10 +57,12 @@ class Farming implements Feature {
         this.externalAuras[AuraType.Egg] = ko.observable<number>(1);
         this.externalAuras[AuraType.Shiny] = ko.observable<number>(1);
         this.externalAuras[AuraType.Roaming] = ko.observable<number>(1);
+        this.externalAuras[AuraType.Ev] = ko.observable<number>(1);
 
         this.multiplier.addBonus('shiny', () => this.externalAuras[AuraType.Shiny]());
         this.multiplier.addBonus('eggStep', () => this.externalAuras[AuraType.Egg]());
         this.multiplier.addBonus('roaming', () => this.externalAuras[AuraType.Roaming]());
+        this.multiplier.addBonus('ev', () => this.externalAuras[AuraType.Ev]());
 
         this.highestUnlockedBerry = ko.pureComputed(() => {
             for (let i = GameHelper.enumLength(BerryType) - 2; i >= 0; i--) {
@@ -391,7 +393,7 @@ class Farming implements Feature {
         this.berryData[BerryType.Rowap]     = new Berry(BerryType.Rowap,    [5760, 9000, 14040, 21240, 42480],
             1, 0.05, 2900, 20,
             [10, 0, 0, 0, 40], BerryColor.Blue,
-            ['In days of old, people worked the top-shaped pieces of this Berry free and used them as toys.'], undefined, ['Flabébé (Blue)']);
+            ['In days of old, people worked the top-shaped pieces of this Berry free and used them as toys.'], new Aura(AuraType.Ev, [1.005, 1.01, 1.015]), ['Flabébé (Blue)']);
         this.berryData[BerryType.Kee]       = new Berry(BerryType.Kee,      [4680, 9360, 18360, 36360, 72720],
             1, 0.05, 3000, 20,
             [30, 30, 10, 10, 10], BerryColor.Yellow,
@@ -1037,6 +1039,7 @@ class Farming implements Feature {
         this.externalAuras[AuraType.Egg](1);
         this.externalAuras[AuraType.Shiny](1);
         this.externalAuras[AuraType.Roaming](1);
+        this.externalAuras[AuraType.Ev](1);
         this.plotList.forEach(plot => plot.clearAuras());
 
         // Handle Boost Auras first
@@ -1232,6 +1235,8 @@ class Farming implements Feature {
 
         plot.mulch = +mulch;
         plot.mulchTimeLeft += GameConstants.MULCH_USE_TIME * amount;
+
+        this.resetAuras();
     }
 
     /**
@@ -1274,7 +1279,7 @@ class Farming implements Feature {
         const berry = GameHelper.getIndexFromDistribution(GameConstants.BerryDistribution);
         if (!disableNotification) {
             Notifier.notify({
-                message: `You got a ${BerryType[berry]} berry!`,
+                message: `You found ${GameHelper.anOrA(BerryType[berry])} ${BerryType[berry]} Berry!`,
                 type: NotificationConstants.NotificationOption.success,
                 setting: NotificationConstants.NotificationSetting.Items.route_item_found,
             });
@@ -1311,10 +1316,12 @@ class Farming implements Feature {
     unlockBerry(berry: BerryType) {
         if (!this.unlockedBerries[berry]()) {
             Notifier.notify({
-                message: `You've discovered a ${BerryType[berry]} Berry!`,
+                message: `You've discovered the ${BerryType[berry]} Berry!`,
                 type: NotificationConstants.NotificationOption.success,
-                setting: NotificationConstants.NotificationSetting.Items.route_item_found,
+                setting: NotificationConstants.NotificationSetting.Farming.berry_discovered,
+                sound: NotificationConstants.NotificationSound.Farming.berry_discovered,
             });
+            App.game.logbook.newLog(LogBookTypes.NEW, `You've registered the ${BerryType[berry]} Berry in your BerryDex!`);
             this.unlockedBerries[berry](true);
         }
     }
@@ -1324,8 +1331,8 @@ class Farming implements Feature {
      * @param berry The Berry type
      * @param stage The stage of the Berry plant. Defaults to PlotStage.Berry
      */
-    berryInFarm(berry: BerryType, stage = PlotStage.Berry) {
-        return this.plotList.some(plot => plot.berry == berry && plot.stage() >= stage);
+    berryInFarm(berry: BerryType, stage = PlotStage.Berry, ignoreFrozen = false) {
+        return this.plotList.some(plot => plot.berry == berry && plot.stage() >= stage && (!ignoreFrozen || plot.mulch !== MulchType.Freeze_Mulch));
     }
 
     toJSON(): Record<string, any> {
@@ -1346,7 +1353,7 @@ class Farming implements Feature {
             return;
         }
 
-        const savedBerries = json['berryList'];
+        const savedBerries = json.berryList;
         if (savedBerries == null) {
             this.berryList = this.defaults.berryList.map((v) => ko.observable<number>(v));
         } else {
@@ -1355,7 +1362,7 @@ class Farming implements Feature {
             });
         }
 
-        const savedUnlockedBerries = json['unlockedBerries'];
+        const savedUnlockedBerries = json.unlockedBerries;
         if (savedUnlockedBerries == null) {
             this.unlockedBerries = this.defaults.unlockedBerries.map((v) => ko.observable<boolean>(v));
         } else {
@@ -1364,7 +1371,7 @@ class Farming implements Feature {
             });
         }
 
-        const savedMulches = json['mulchList'];
+        const savedMulches = json.mulchList;
         if (savedMulches == null) {
             this.mulchList = this.defaults.mulchList.map((v) => ko.observable<number>(v));
         } else {
@@ -1373,7 +1380,7 @@ class Farming implements Feature {
             });
         }
 
-        const savedPlots = json['plotList'];
+        const savedPlots = json.plotList;
         if (savedPlots == null) {
             this.plotList = this.defaults.plotList;
         } else {
@@ -1385,21 +1392,21 @@ class Farming implements Feature {
         }
         this.unlockedPlotCount(this.plotList.filter(p => p.isUnlocked).length);
 
-        const shovelAmt = json['shovelAmt'];
+        const shovelAmt = json.shovelAmt;
         if (shovelAmt == null) {
             this.shovelAmt = ko.observable(this.defaults.shovelAmt);
         } else {
             this.shovelAmt(shovelAmt);
         }
 
-        const mulchShovelAmt = json['mulchShovelAmt'];
+        const mulchShovelAmt = json.mulchShovelAmt;
         if (mulchShovelAmt == null) {
             this.mulchShovelAmt = ko.observable(this.defaults.mulchShovelAmt);
         } else {
             this.mulchShovelAmt(mulchShovelAmt);
         }
 
-        const mutations = json['mutations'];
+        const mutations = json.mutations;
         if (mutations) {
             this.mutations.forEach((mutation, i) => mutation.fromJSON(mutations[i]));
         }

@@ -2,12 +2,12 @@
 
 function ByRegion<EvoClass extends MinimalEvo>(Base: EvoClass) {
     return class extends Base implements LocationRestricted {
-        //region: string
         regions: Array<string>
 
         constructor(...args: any[]) {
             const [region, ...rest] = args;
             super(...rest);
+            this.type.push(EvolutionType.Region);
             this.regions = region;
         }
 
@@ -26,8 +26,7 @@ function ByRegion<EvoClass extends MinimalEvo>(Base: EvoClass) {
 // Utility type so that typescript can figure out
 // the constructor params for our lifted evolution
 type RegionRestrictedT<T extends Constructor<any>> =
-    new (//region: GameConstants.Region,
-        regionArray: Array<GameConstants.Region>,
+    new (regionArray: Array<GameConstants.Region>,
          ...rest: ConstructorParameters<T>
         )
     => InstanceType<T>

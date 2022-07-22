@@ -21,6 +21,7 @@ import ItemType from './enums/ItemType';
 import KeyItemType from './enums/KeyItemType';
 import MulchType from './enums/MulchType';
 import PlotStage from './enums/PlotStage';
+import QuestLineState from './quests/QuestLineState';
 // end enums
 import BooleanSetting from './settings/BooleanSetting';
 import RangeSetting from './settings/RangeSetting';
@@ -65,13 +66,14 @@ import OakItem from './oakItems/OakItem';
 import OakItems from './oakItems/OakItems';
 import BoughtOakItem from './oakItems/BoughtOakItem';
 import OakItemController from './oakItems/OakItemController';
+import OakItemLoadout from './oakItems/OakItemLoadout';
 import OakItemLoadouts from './oakItems/OakItemLoadouts';
 import SpecialRoutePokemon from './routes/SpecialRoutePokemon';
 import RoutePokemon from './routes/RoutePokemon';
 import RegionRoute from './routes/RegionRoute';
 import Routes from './routes/Routes';
 import SubRegion from './subRegion/SubRegion';
-import SubRegions, { AlolaSubRegions } from './subRegion/SubRegions';
+import SubRegions from './subRegion/SubRegions';
 import Requirement from './requirements/Requirement';
 import AchievementRequirement from './requirements/AchievementRequirement';
 import NullRequirement from './requirements/NullRequirement';
@@ -114,6 +116,7 @@ import Achievement from './achievements/Achievement';
 import Gems from './gems/Gems';
 import QuestLineCompletedRequirement from './requirements/QuestLineCompletedRequirement';
 import QuestLineStepCompletedRequirement from './requirements/QuestLineStepCompletedRequirement';
+import QuestLineStartedRequirement from './requirements/QuestLineStartedRequirement';
 import TemporaryBattleRequirement from './requirements/TemporaryBattleRequirement';
 import DayOfWeekRequirement from './requirements/DayOfWeekRequirement';
 import SaveReminder from './saveReminder/SaveReminder';
@@ -140,6 +143,7 @@ Object.assign(<any>window, {
     KeyItemType,
     MulchType,
     PlotStage,
+    QuestLineState,
     BooleanSetting,
     RangeSetting,
     Setting,
@@ -187,6 +191,7 @@ Object.assign(<any>window, {
     OakItems,
     BoughtOakItem,
     OakItemController,
+    OakItemLoadout,
     OakItemLoadouts,
     SpecialRoutePokemon,
     RoutePokemon,
@@ -194,7 +199,6 @@ Object.assign(<any>window, {
     Routes,
     SubRegion,
     SubRegions,
-    AlolaSubRegions,
     Requirement,
     AchievementRequirement,
     NullRequirement,
@@ -238,6 +242,7 @@ Object.assign(<any>window, {
     Gems,
     QuestLineCompletedRequirement,
     QuestLineStepCompletedRequirement,
+    QuestLineStartedRequirement,
     TemporaryBattleRequirement,
     DayOfWeekRequirement,
     SaveReminder,

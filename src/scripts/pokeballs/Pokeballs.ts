@@ -134,8 +134,11 @@ class Pokeballs implements Feature {
                 const amountCaught = App.game.statistics.pokemonCaptured[Battle.enemyPokemon().id]();
 
                 return Math.min(15,Math.pow(amountCaught,2) / 5000);
-            }, 1250, 'Increased catch rate with more catches', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
+            }, 1250, 'Increased catch rate and EV gain rate with more catches', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
 
+            new Pokeball(GameConstants.Pokeball.Beastball, () => {
+                return 10;
+            }, 1000, 'Can only be used on Ultra Beasts', new TemporaryBattleRequirement('Anabel')),
         ];
         this._alreadyCaughtSelection = ko.observable(this.defaults.alreadyCaughtSelection);
         this._alreadyCaughtShinySelection = ko.observable(this.defaults.alreadyCaughtShinySelection);
@@ -214,11 +217,19 @@ class Pokeballs implements Feature {
      * @param isShiny if the Pokémon is shiny.
      * @returns {GameConstants.Pokeball} pokéball to use.
      */
+/*
     public calculatePokeballToUse(enemyPokemon: BattlePokemon, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(enemyPokemon.id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(enemyPokemon.id, true);
+*/
+    public calculatePokeballToUse(id: number, isShiny: boolean): GameConstants.Pokeball {
+        const alreadyCaught = App.game.party.alreadyCaughtPokemon(id);
+        const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(id, true);
+        const pokemon = PokemonHelper.getPokemonById(id);
         let pref: GameConstants.Pokeball;
+
         // just check against alreadyCaughtShiny as this returns false when you don't have the pokemon yet.
+
         if (isShiny) {
             if (!alreadyCaughtShiny) {
                 // if the pokemon is also not caught, use the higher selection since a notCaughtShiny is also a notCaught pokemon
@@ -292,6 +303,20 @@ class Pokeballs implements Feature {
 
         let use: GameConstants.Pokeball = GameConstants.Pokeball.None;
 
+        if (pref == GameConstants.Pokeball.Beastball) {
+            if (GameConstants.UltraBeastType[pokemon.name] != undefined && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+                return GameConstants.Pokeball.Beastball;
+            } else {
+                return GameConstants.Pokeball.None;
+            }
+        } else if (GameConstants.UltraBeastType[pokemon.name] != undefined) {
+            if (pref != GameConstants.Pokeball.None && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+                return GameConstants.Pokeball.Beastball;
+            } else {
+                return GameConstants.Pokeball.None;
+            }
+        }
+
         if (this.pokeballs[pref]?.quantity()) {
             return pref;
         } else if (pref <= GameConstants.Pokeball.Masterball) {
@@ -335,6 +360,11 @@ class Pokeballs implements Feature {
         return pokeball ? pokeball.quantity() : 0;
     }
 
+    getEPBonus(ball: GameConstants.Pokeball): number {
+        const pokeballType = this.pokeballs[ball].type;
+        return pokeballType == GameConstants.Pokeball.Repeatball ? GameConstants.REPEATBALL_EP_MODIFIER : 1;
+    }
+
     canAccess(): boolean {
         return true;
     }
@@ -344,32 +374,32 @@ class Pokeballs implements Feature {
             return;
         }
 
-        if (json['pokeballs'] != null) {
-            json['pokeballs'].map((amt: number, type: number) => this.pokeballs[type].quantity(amt));
+        if (json.pokeballs != null) {
+            json.pokeballs.map((amt: number, type: number) => this.pokeballs[type].quantity(amt));
         }
-        this.notCaughtSelection = json['notCaughtSelection'] ?? this.defaults.notCaughtSelection;
-        this.notCaughtShinySelection = json['notCaughtShinySelection'] ?? this.defaults.notCaughtShinySelection;
-        this.alreadyCaughtSelection = json['alreadyCaughtSelection'] ?? this.defaults.alreadyCaughtSelection;
-        this.alreadyCaughtShinySelection = json['alreadyCaughtShinySelection'] ?? this.defaults.alreadyCaughtShinySelection;
-        //Types
-        this.typeNormalSelection = json['typeNormalSelection'] ?? this.defaults.typeNormalSelection;
-        this.typeFireSelection = json['typeFireSelection'] ?? this.defaults.typeFireSelection;
-        this.typeWaterSelection = json['typeWaterSelection'] ?? this.defaults.typeWaterSelection;
-        this.typeElectricSelection = json['typeElectricSelection'] ?? this.defaults.typeElectricSelection;
-        this.typeGrassSelection = json['typeGrassSelection'] ?? this.defaults.typeGrassSelection;
-        this.typeIceSelection = json['typeIceSelection'] ?? this.defaults.typeIceSelection;
-        this.typeFightingSelection = json['typeFightingSelection'] ?? this.defaults.typeFightingSelection;
-        this.typePoisonSelection = json['typePoisonSelection'] ?? this.defaults.typePoisonSelection;
-        this.typeGroundSelection = json['typeGroundSelection'] ?? this.defaults.typeGroundSelection;
-        this.typeFlyingSelection = json['typeFlyingSelection'] ?? this.defaults.typeFlyingSelection;
-        this.typePsychicSelection = json['typePsychicSelection'] ?? this.defaults.typePsychicSelection;
-        this.typeBugSelection = json['typeBugSelection'] ?? this.defaults.typeBugSelection;
-        this.typeRockSelection = json['typeRockSelection'] ?? this.defaults.typeRockSelection;
-        this.typeGhostSelection = json['typeGhostSelection'] ?? this.defaults.typeGhostSelection;
-        this.typeDragonSelection = json['typeDragonSelection'] ?? this.defaults.typeDragonSelection;
-        this.typeDarkSelection = json['typeDarkSelection'] ?? this.defaults.typeDarkSelection;
-        this.typeSteelSelection = json['typeSteelSelection'] ?? this.defaults.typeSteelSelection;
-        this.typeFairySelection = json['typeFairySelection'] ?? this.defaults.typeFairySelection;
+        this.notCaughtSelection = json.notCaughtSelection ?? this.defaults.notCaughtSelection;
+        this.notCaughtShinySelection = json.notCaughtShinySelection ?? this.defaults.notCaughtShinySelection;
+        this.alreadyCaughtSelection = json.alreadyCaughtSelection ?? this.defaults.alreadyCaughtSelection;
+        this.alreadyCaughtShinySelection = json.alreadyCaughtShinySelection ?? this.defaults.alreadyCaughtShinySelection;
+		//Types
+        this.typeNormalSelection = json.typeNormalSelection ?? this.defaults.typeNormalSelection;
+        this.typeFireSelection = json.typeFireSelection ?? this.defaults.typeFireSelection;
+        this.typeWaterSelection = json.typeWaterSelection ?? this.defaults.typeWaterSelection;
+        this.typeElectricSelection = json.typeElectricSelection ?? this.defaults.typeElectricSelection;
+        this.typeGrassSelection = json.typeGrassSelection ?? this.defaults.typeGrassSelection;
+        this.typeIceSelection = json.typeIceSelection ?? this.defaults.typeIceSelection;
+        this.typeFightingSelection = json.typeFightingSelection ?? this.defaults.typeFightingSelection;
+        this.typePoisonSelection = json.typePoisonSelection ?? this.defaults.typePoisonSelection;
+        this.typeGroundSelection = json.typeGroundSelection ?? this.defaults.typeGroundSelection;
+        this.typeFlyingSelection = json.typeFlyingSelection ?? this.defaults.typeFlyingSelection;
+        this.typePsychicSelection = json.typePsychicSelection ?? this.defaults.typePsychicSelection;
+        this.typeBugSelection = json.typeBugSelection ?? this.defaults.typeBugSelection;
+        this.typeRockSelection = json.typeRockSelection ?? this.defaults.typeRockSelection;
+        this.typeGhostSelection = json.typeGhostSelection ?? this.defaults.typeGhostSelection;
+        this.typeDragonSelection = json.typeDragonSelection ?? this.defaults.typeDragonSelection;
+        this.typeDarkSelection = json.typeDarkSelection ?? this.defaults.typeDarkSelection;
+        this.typeSteelSelection = json.typeSteelSelection ?? this.defaults.typeSteelSelection;
+        this.typeFairySelection = json.typeFairySelection ?? this.defaults.typeFairySelection;
     }
 
     toJSON(): Record<string, any> {

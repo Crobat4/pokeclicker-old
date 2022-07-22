@@ -608,10 +608,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 51,
         'eggCycles': 15,
-        'evolutions': [
-            //new LevelEvolution('Alolan Rattata', 'Alolan Raticate', 20),
-            new NightTimedLevelEvolution('Alolan Rattata', 'Alolan Raticate', 20),
-        ],
+        'evolutions': [new NightTimedLevelEvolution('Alolan Rattata', 'Alolan Raticate', 20)],
         'base': {
             'hitpoints': 30,
             'attack': 56,
@@ -770,7 +767,6 @@ const pokemonList = createPokemonArray(
         'exp': 112,
         'eggCycles': 10,
         'evolutions': [
-            //new StoneEvolution('Pikachu', 'Raichu', GameConstants.StoneType.Thunder_stone),
             new RegionStoneEvolution(allButAlola, 'Pikachu', 'Raichu', GameConstants.StoneType.Thunder_stone),
             new RegionStoneEvolution(alolaOnly, 'Pikachu', 'Alolan Raichu', GameConstants.StoneType.Thunder_stone),
         ],
@@ -1842,7 +1838,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 140,
         'eggCycles': 20,
-        'evolutions': [new StoneEvolution('Kadabra', 'Alakazam', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Kadabra', 'Alakazam', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 40,
             'attack': 35,
@@ -1895,7 +1891,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 142,
         'eggCycles': 20,
-        'evolutions': [new StoneEvolution('Machoke', 'Machamp', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Machoke', 'Machamp', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 80,
             'attack': 100,
@@ -2056,7 +2052,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 137,
         'eggCycles': 15,
-        'evolutions': [new StoneEvolution('Graveler', 'Golem', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Graveler', 'Golem', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 55,
             'attack': 95,
@@ -2076,7 +2072,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 137,
         'eggCycles': 15,
-        'evolutions': [new StoneEvolution('Alolan Graveler', 'Alolan Golem', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Alolan Graveler', 'Alolan Golem', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 55,
             'attack': 95,
@@ -2553,7 +2549,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 142,
         'eggCycles': 20,
-        'evolutions': [new StoneEvolution('Haunter', 'Gengar', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Haunter', 'Gengar', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 45,
             'attack': 50,
@@ -2713,7 +2709,6 @@ const pokemonList = createPokemonArray(
         'exp': 65,
         'eggCycles': 20,
         'evolutions': [
-            //new StoneEvolution('Exeggcute', 'Exeggutor', GameConstants.StoneType.Leaf_stone),
             new RegionStoneEvolution(allButAlola, 'Exeggcute', 'Exeggutor', GameConstants.StoneType.Leaf_stone),
             new RegionStoneEvolution(alolaOnly, 'Exeggcute', 'Alolan Exeggutor', GameConstants.StoneType.Leaf_stone),
         ],
@@ -2770,12 +2765,8 @@ const pokemonList = createPokemonArray(
         'exp': 64,
         'eggCycles': 20,
         'evolutions': [
-            //new LevelEvolution('Cubone', 'Marowak', 28),
-            // TODO: Regional restricted as well as night restricted
-            //TimeRestrictedLevelEvolution(18, 6, 'Cubone', 'Alolan Marowak', 28),
             new RegionLevelEvolution(allButAlola, 'Cubone', 'Marowak', 28),
             new RegionNightTimedLevelEvolution(alolaOnly, 'Cubone', 'Alolan Marowak', 28),
-            //new RegionDayTimedLevelEvolution(alolaOnly, 'Cubone', 'Alolan Marowak', 28),
         ],
         'base': {
             'hitpoints': 50,
@@ -2902,7 +2893,6 @@ const pokemonList = createPokemonArray(
         'exp': 68,
         'eggCycles': 20,
         'evolutions': [
-            //new LevelEvolution('Koffing', 'Weezing', 35),
             new RegionLevelEvolution(allButGalar, 'Koffing', 'Weezing', 35),
             new RegionLevelEvolution(galarOnly, 'Koffing', 'Galarian Weezing', 35),
         ],
@@ -9759,7 +9749,6 @@ const pokemonList = createPokemonArray(
         'evolutions': [
             // Evolves when leveled up while knowing Mimic
             // Learns mimic at level 32
-            //new LevelEvolution('Mime Jr.', 'Mr. Mime', 32),
             new RegionLevelEvolution(allButGalar, 'Mime Jr.', 'Mr. Mime', 32),
             new RegionLevelEvolution(galarOnly, 'Mime Jr.', 'Galarian Mr. Mime', 32),
         ],
@@ -10593,11 +10582,11 @@ const pokemonList = createPokemonArray(
         'catchRate': 45,
         'base': {
             'hitpoints': 50,
-            'attack': 50,
-            'specialAttack': 95,
-            'defense': 77,
-            'specialDefense': 77,
-            'speed': 91,
+            'attack': 65,
+            'specialAttack': 105,
+            'defense': 107,
+            'specialDefense': 107,
+            'speed': 86,
         },
     },
     {
@@ -11720,7 +11709,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 137,
         'catchRate': 120,
-        'evolutions': [new StoneEvolution('Boldore', 'Gigalith', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Boldore', 'Gigalith', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 70,
             'attack': 105,
@@ -11862,7 +11851,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumslow,
         'exp': 142,
         'catchRate': 90,
-        'evolutions': [new StoneEvolution('Gurdurr', 'Conkeldurr', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Gurdurr', 'Conkeldurr', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 85,
             'attack': 105,
@@ -13042,7 +13031,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 63,
         'catchRate': 200,
-        'evolutions': [new StoneEvolution('Karrablast', 'Escavalier', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Karrablast', 'Escavalier', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 50,
             'attack': 75,
@@ -13533,7 +13522,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 61,
         'catchRate': 200,
-        'evolutions': [new StoneEvolution('Shelmet', 'Accelgor', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Shelmet', 'Accelgor', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 50,
             'attack': 40,
@@ -14415,6 +14404,23 @@ const pokemonList = createPokemonArray(
             'defense': 67,
             'specialDefense': 71,
             'speed': 122,
+        },
+    },
+    {
+        'id': 658.01,
+        'name': 'Ash Greninja',
+        'type': [PokemonType.Water, PokemonType.Dark],
+        'eggCycles': 45,
+        'levelType': LevelType.mediumslow,
+        'exp': 239,
+        'catchRate': 45,
+        'base': {
+            'hitpoints': 72,
+            'attack': 145,
+            'specialAttack': 153,
+            'defense': 67,
+            'specialDefense': 71,
+            'speed': 132,
         },
     },
     {
@@ -15798,10 +15804,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 72,
         'catchRate': 45,
-        'evolutions': [
-            //new LevelEvolution('Tyrunt', 'Tyrantrum', 39),
-            new DayTimedLevelEvolution('Tyrunt', 'Tyrantrum', 39),
-        ],
+        'evolutions': [new DayTimedLevelEvolution('Tyrunt', 'Tyrantrum', 39)],
         'base': {
             'hitpoints': 58,
             'attack': 89,
@@ -15836,10 +15839,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 72,
         'catchRate': 45,
-        'evolutions': [
-            //new LevelEvolution('Amaura', 'Aurorus', 39),
-            new NightTimedLevelEvolution('Amaura', 'Aurorus', 39),
-        ],
+        'evolutions': [new NightTimedLevelEvolution('Amaura', 'Aurorus', 39)],
         'base': {
             'hitpoints': 77,
             'attack': 59,
@@ -16013,7 +16013,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 62,
         'catchRate': 120,
-        'evolutions': [new StoneEvolution('Phantump', 'Trevenant', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Phantump', 'Trevenant', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 43,
             'attack': 70,
@@ -16048,7 +16048,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 67,
         'catchRate': 120,
-        'evolutions': [new StoneEvolution('Pumpkaboo', 'Gourgeist', GameConstants.StoneType.Trade_stone)],
+        'evolutions': [new StoneEvolution('Pumpkaboo', 'Gourgeist', GameConstants.StoneType.Linking_cord)],
         'base': {
             'hitpoints': 44,
             'attack': 66,
@@ -16467,10 +16467,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 51,
         'catchRate': 255,
-        'evolutions': [
-            //new LevelEvolution('Yungoos', 'Gumshoos', 20),
-            new DayTimedLevelEvolution('Yungoos', 'Gumshoos', 20),
-        ],
+        'evolutions': [new DayTimedLevelEvolution('Yungoos', 'Gumshoos', 20)],
         'base': {
             'hitpoints': 48,
             'attack': 70,
@@ -17001,10 +16998,7 @@ const pokemonList = createPokemonArray(
         'levelType': LevelType.mediumfast,
         'exp': 50,
         'catchRate': 190,
-        'evolutions': [
-            //new LevelEvolution('Fomantis', 'Lurantis', 34),
-            new DayTimedLevelEvolution('Fomantis', 'Lurantis', 34),
-        ],
+        'evolutions': [new DayTimedLevelEvolution('Fomantis', 'Lurantis', 34)],
         'base': {
             'hitpoints': 40,
             'attack': 55,
@@ -22029,11 +22023,16 @@ pokemonList.forEach(p => {
 
     if ((p as PokemonListData).baby) {
         // Calculate prevolutions/baby pokemon
-        // Egg steos should be lower than evolved form
+        // Egg steps should be lower than evolved form
         (p as PokemonListData).evolutions?.forEach(evo => {
             pokemonBabyPrevolutionMap[evo.getEvolvedPokemon()] = evo.basePokemon;
-            const poke = pokemonList.find(_p => _p.name == evo.getEvolvedPokemon());
-            p.eggCycles = Math.round(poke.eggCycles * 0.8);
+            // Do another loop for adding last stage of evolution on "reproductive" pokemon
+            (pokemonList.find(_p => _p.name == evo.getEvolvedPokemon()) as PokemonListData).evolutions?.forEach(lastStage => {
+                pokemonBabyPrevolutionMap[lastStage.getEvolvedPokemon()] = lastStage.basePokemon;
+            });
+
+            const eggCycles = pokemonList.find(_p => _p.name == evo.getEvolvedPokemon()).eggCycles;
+            p.eggCycles = Math.round(eggCycles * 0.8);
         });
     } else {
         // Calculate evolutions egg steps to be higher than the base forms
