@@ -676,3 +676,12 @@ input:checked + .slider:before {
 .settings-modal{
   max-width: 850px!important;
 }
+
+/* Show collapsed div in desktop */
+@media (min-width: 768px) {
+  .collapse.dont-collapse-sm {
+    display: block !important;
+    height: auto !important;
+    visibility: visible;
+  }
+}
