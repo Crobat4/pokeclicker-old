@@ -35,7 +35,7 @@ class BattlePokemon implements EnemyPokemonInterface {
         public shiny: boolean,
         public gemReward = 1,
         public heldItem?: BagItem,
-        public ep?: number
+        public ep?: number,
         public genderText?: string,
         public hasFemaleDifference?: boolean,
         public isFemale?: boolean

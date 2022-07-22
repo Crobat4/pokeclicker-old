@@ -66,18 +66,18 @@ class PokemonHelper {
         const genderRatio: number = basePokemon['genderRatio'] ?? GameConstants.MALE_50;
         const genderType: number = basePokemon['genderType'] ?? GameConstants.MALE_FEMALE;
         return new DataPokemon(
-            basePokemon['id'],
-            basePokemon['name'],
-            basePokemon['catchRate'],
-            basePokemon['evolutions'],
+            basePokemon.id,
+            basePokemon.name,
+            basePokemon.catchRate,
+            basePokemon.evolutions,
             type1,
             type2,
-            basePokemon['attack'],
-            basePokemon['base']['hitpoints'],
-            basePokemon['levelType'],
-            basePokemon['exp'],
+            basePokemon.attack,
+            basePokemon.base.hitpoints,
+            basePokemon.levelType,
+            basePokemon.exp,
             eggCycles,
-            basePokemon['heldItem'],
+            basePokemon.heldItem,
             genderType,
             hasFemaleDifference,
             genderRatio

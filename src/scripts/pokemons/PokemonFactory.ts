@@ -33,8 +33,8 @@ class PokemonFactory {
         const maxHealth: number = Math.round((PokemonFactory.routeHealth(route, region) - (PokemonFactory.routeHealth(route, region) / 10)) + (PokemonFactory.routeHealth(route, region) / 10 / routeAvgHp(region, route) * basePokemon.hitpoints));
         const level: number = this.routeLevel(route, region);
         const money: number = this.routeMoney(route,region);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_BATTLE, 1, false, GameConstants.ROUTE_HELD_ITEM_MODIFIER, 'wild encounter');
-		if (roaming) {
+        const shiny: boolean = this.generateShiny(GameConstants.SHINY_CHANCE_BATTLE); // Remove
+        if (roaming) {
             Notifier.notify({
                 message: `You encountered a roaming ${name}!`,
                 type: NotificationConstants.NotificationOption.warning,
@@ -44,11 +44,13 @@ class PokemonFactory {
             App.game.logbook.newLog(LogBookTypes.ROAMER, `[${Routes.getRoute(player.region, player.route()).routeName}] You encountered a ${shiny ? 'shiny' : ''} roaming ${name}!`);
         }
         const ep = GameConstants.BASE_EP_YIELD * (roaming ? GameConstants.ROAMER_EP_MODIFIER : 1);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_BATTLE, 1, false, GameConstants.ROUTE_HELD_ITEM_MODIFIER, 'wild encounter', ep);
+		
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, 1, heldItem, ep);
         return battlePokemonObject;
     }
 
-    public static battlePokemonGenerator(basePokemon, maxHealth, level, money, shinyModifier, gems, isTrainer, heldItemModifier = undefined, logEventLabel = '') {
+    public static battlePokemonGenerator(basePokemon, maxHealth, level, money, shinyModifier, gems, isTrainer, heldItemModifier = undefined, logEventLabel = '', ep = undefined) {
         //const basePokemon = PokemonHelper.getPokemonByName(name);
         const name = basePokemon.name;
         const id = basePokemon.id;
@@ -79,6 +81,7 @@ class PokemonFactory {
             shiny,
             gems,
             heldItem,
+            ep,
             genderText,
             hasFemaleDifference,
             isFemale
@@ -231,7 +234,7 @@ class PokemonFactory {
         const money = 0;
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_EP_MODIFIER;
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_GEMS, heldItem, ep);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_GEMS, false, GameConstants.DUNGEON_HELD_ITEM_MODIFIER, 'dungeon encounter');
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_GEMS, false, GameConstants.DUNGEON_HELD_ITEM_MODIFIER, 'dungeon encounter', ep);
         return battlePokemonObject;
     }
 
@@ -254,7 +257,7 @@ class PokemonFactory {
         const money = 0;
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_BOSS_EP_MODIFIER;
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, bossPokemon.level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_BOSS_GEMS, heldItem, ep);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_BOSS_GEMS, false, GameConstants.DUNGEON_BOSS_HELD_ITEM_MODIFIER, 'dungeon boss encounter');
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_BOSS_GEMS, false, GameConstants.DUNGEON_BOSS_HELD_ITEM_MODIFIER, 'dungeon boss encounter', ep);
         return battlePokemonObject;
     }
 
