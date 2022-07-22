@@ -50,12 +50,12 @@ class PokemonFactory {
         return battlePokemonObject;
     }
 
-    public static battlePokemonGenerator(basePokemon, maxHealth, level, money, shinyModifier, gems, isTrainer, heldItemModifier = undefined, logEventLabel = '', ep = undefined) {
+    public static battlePokemonGenerator(basePokemon, maxHealth, level, money, shinyModifier, gems, isTrainer, heldItemModifier = undefined, logEventLabel = '', ep = undefined, isStarter = false) {
         //const basePokemon = PokemonHelper.getPokemonByName(name);
         const name = basePokemon.name;
         const id = basePokemon.id;
         let catchRate = 0;
-        const exp: number = basePokemon.exp; //add *1.5 on gym and temporary
+        let exp: number = basePokemon.exp; //add *1.5 on gym and temporary
         const heldItem: BagItem = this.generateHeldItem(basePokemon.heldItem, heldItemModifier);
         const shiny: boolean = this.generateShiny(shinyModifier);
         const genderType: number = basePokemon.genderType;
@@ -63,11 +63,14 @@ class PokemonFactory {
         const isFemale = this.generateGender(basePokemon.genderRatio, genderType);
         const genderText = this.generateGenderTypeName(basePokemon, isFemale);
 
-        if (!isTrainer) {
+        if (!isTrainer && !isStarter) {
             catchRate = this.catchRateHelper(basePokemon.catchRate);
             this.shinyNotificationAndLog(name, shiny, logEventLabel);
         }
-
+        else if (isStarter) {
+            catchRate = 100;
+            exp = 0;
+        }
         const battlePokemonObject = new BattlePokemon(
             name,
             id,

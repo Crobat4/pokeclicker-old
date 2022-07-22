@@ -19,8 +19,9 @@ class StartSequenceRunner {
         const shiny: boolean = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
 
         App.game.gameState = GameConstants.GameState.fighting;
-
-        const battlePokemon = new BattlePokemon(dataPokemon.name, dataPokemon.id, dataPokemon.type1, dataPokemon.type2, 10, 1, 100, 0, new Amount(0, GameConstants.Currency.money), shiny);
+        
+        const battlePokemon = PokemonFactory.battlePokemonGenerator(dataPokemon, 10, 1, 0, GameConstants.SHINY_CHANCE_BATTLE, 0, false, undefined, undefined, undefined, true);
+        //const battlePokemon = new BattlePokemon(dataPokemon.name, dataPokemon.id, dataPokemon.type1, dataPokemon.type2, 10, 1, 100, 0, new Amount(0, GameConstants.Currency.money), shiny);
         Battle.enemyPokemon(battlePokemon);
 
         // Show the help information text
