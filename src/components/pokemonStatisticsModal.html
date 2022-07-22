@@ -1,5 +1,5 @@
 <div class="modal noselect fade" id="pokemonStatisticsModal" tabindex="-1" role="dialog" aria-labelledby="pokemonStatisticsModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content" data-bind="with: App.game.statistics.selectedPokemonID()">
             <div class="modal-header bg-dark text-light" style='justify-content: space-around;'>
                 <h5 class="modal-title text-muted" data-bind="text: `#${pokemonMap[$data].id <= 0 ? '???' : Math.floor(pokemonMap[$data].id).toString().padStart(3,0)}&nbsp;&nbsp;`"></h5>
@@ -16,7 +16,7 @@
                 <table class="table table-striped table-hover table-bordered table-sm m-0">
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Type</th>
+                      <th class="text-left bg-dark">Pokémon Skills</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>
@@ -73,7 +73,7 @@
                   </tbody>
                   <thead>
                     <tr class="text-light">
-                      <th class="text-left bg-dark">Statistic</th>
+                      <th class="text-left bg-dark">Trainer Memo</th>
                       <th class="text-left bg-dark">Amount</th>
                     </tr>
                   </thead>
