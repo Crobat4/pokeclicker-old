@@ -13,6 +13,10 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, '<div class="w-100 d-flex justify-content-around"><a href="https://github.com/Crobat4/pokeclicker" target="_blank">Repository</a><a href="https://github.com/Crobat4/Pokeclicker-desktop" target="_blank">Desktop build</a><a href="https://github.com/Crobat4/pokeclicker/wiki" target="_blank">Github Wiki</a></div>'),
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
+    new ChangelogUpdate('v0.2.9', new Date(2022, 7 - 1, 22)),
+    new Changelog(changelogType.CHANGE, 'All Pikachu (Cap) and Ash-Greninja gender type changed'),
+    new Changelog(changelogType.CHANGE, 'Both Nidoran\'s name change reverted'),
+    new Changelog(changelogType.FIXED, 'Save file not generating'),
     new ChangelogUpdate('v0.2.8', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.FIXED, 'Nidoran turning into MissingNo. if you have them in the hatchery prior the update'),
     new ChangelogUpdate('v0.2.7', new Date(2022, 7 - 1, 22)),

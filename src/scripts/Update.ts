@@ -910,8 +910,11 @@ class Update implements Saveable {
             });
 
             // Crobat fork: Rename Nidoran
-            Update.renamePokemonInSaveData(saveData, 'Nidoran(F)', 'Nidoran♀');
-            Update.renamePokemonInSaveData(saveData, 'Nidoran(M)', 'Nidoran♂');
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(F)', 'Nidoran♀'); // Remove this later
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(M)', 'Nidoran♂'); // Remove this later
+
+            Update.renamePokemonInSaveData(saveData, 'Nidoran♀', 'Nidoran(F)');
+            Update.renamePokemonInSaveData(saveData, 'Nidoran♂', 'Nidoran(M)');
         },
     };
 

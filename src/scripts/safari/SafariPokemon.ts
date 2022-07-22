@@ -22,9 +22,9 @@ class SafariPokemon implements PokemonInterface {
         name: PokemonNameType,
         weight: number
     }[] = [
-        { name: 'Nidoran♀', weight: 15 },
+        { name: 'Nidoran(F)', weight: 15 },
         { name: 'Nidorina', weight: 10 },
-        { name: 'Nidoran♂', weight: 25 },
+        { name: 'Nidoran(M)', weight: 25 },
         { name: 'Nidorino', weight: 10 },
         { name: 'Exeggcute', weight: 20 },
         { name: 'Paras', weight: 5 },
