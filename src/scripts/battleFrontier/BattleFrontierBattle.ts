@@ -59,17 +59,7 @@ class BattleFrontierBattle extends Battle {
     }
 
     public static generateNewEnemy() {
-        const enemy = pokemonMap.randomRegion(player.highestRegion());
-        // This needs to stay as none so the stage number isn't adjusted
-        const health = PokemonFactory.routeHealth(BattleFrontierRunner.stage() + 10, GameConstants.Region.none);
-        const level = Math.min(100, BattleFrontierRunner.stage());
-        // Don't award money per pokemon defeated, award money at the end
-        const money = 0;
-        const shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_BATTLE);
-        // Give 1 extra gem per pokemon defeated after every 80 stages
-        const gems = Math.ceil(BattleFrontierRunner.stage() / 80);
-
-        const enemyPokemon = new BattlePokemon(enemy.name, enemy.id, enemy.type[0], enemy.type[1], health, level, 0, enemy.exp, new Amount(money, GameConstants.Currency.money), shiny, gems);
-        this.enemyPokemon(enemyPokemon);
+        //Everything here moved to PokemonFactory
+        this.enemyPokemon(PokemonFactory.generateBattleFrontierPokemon());
     }
 }

@@ -19,6 +19,7 @@ class BattlePokemon implements EnemyPokemonInterface {
      * @param reward currency reward for defeating this Pokémon
      * @param shiny is a shiny variant
      * @param [heldItem] item to possibly gain for defeating this Pokémon
+     * @param hasFemaleDifference if has a female variant (only cosmetic purposes)
      */
 
     constructor(
@@ -35,6 +36,9 @@ class BattlePokemon implements EnemyPokemonInterface {
         public gemReward = 1,
         public heldItem?: BagItem,
         public ep?: number
+        public genderText?: string,
+        public hasFemaleDifference?: boolean,
+        public isFemale?: boolean
     ) {
         this.health = ko.observable(maxHealth);
         this.maxHealth = ko.observable(maxHealth);
