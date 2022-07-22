@@ -14,6 +14,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     new ChangelogUpdate('v0.2.7', new Date(2022, 6 - 1, 29)),
+    new Changelog(changelogType.NEW, 'Added Official fork update v.0.9.8'),
     new Changelog(changelogType.NEW, 'Added Gender feature'),
     new Changelog(changelogType.NEW, 'Gender properties of Gen 1 - Gen 7 Pokémon, Meltan and Melmetal defined'),
     new Changelog(changelogType.NEW, 'Added sprites with gender differences in Pokédex and Pokémon battles'),
@@ -24,6 +25,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Misc Pokédex changes'),
     new Changelog(changelogType.CHANGE, '"Hide shiny image" option moved from Pokédex to Settings'),
     new Changelog(changelogType.CHANGE, 'Misc Evolution Items menu changes'),
+    new Changelog(changelogType.REMOVED, 'Removed setting to increase game width as Official fork added it'),
     new ChangelogUpdate('v0.2.6', new Date(2022, 6 - 1, 29)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.7'),
     new Changelog(changelogType.NEW, 'Added button to empty hatchery queue automatically'),
