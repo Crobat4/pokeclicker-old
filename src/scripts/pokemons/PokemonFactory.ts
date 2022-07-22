@@ -45,7 +45,7 @@ class PokemonFactory {
         }
         const ep = GameConstants.BASE_EP_YIELD * (roaming ? GameConstants.ROAMER_EP_MODIFIER : 1);
         const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_BATTLE, 1, false, GameConstants.ROUTE_HELD_ITEM_MODIFIER, 'wild encounter', ep);
-		
+
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, 1, heldItem, ep);
         return battlePokemonObject;
     }
@@ -214,7 +214,7 @@ class PokemonFactory {
      * Generate a Battle Frontier pokemon.
      * @returns {BattlePokemon}
      */
-     public static generateBattleFrontierPokemon(): BattlePokemon {
+    public static generateBattleFrontierPokemon(): BattlePokemon {
         const enemy = pokemonMap.randomRegion(player.highestRegion());
         // This needs to stay as none so the stage number isn't adjusted
         const health = PokemonFactory.routeHealth(BattleFrontierRunner.stage() + 10, GameConstants.Region.none);

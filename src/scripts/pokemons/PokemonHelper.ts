@@ -61,10 +61,10 @@ class PokemonHelper {
         const type2: PokemonType = basePokemon.type[1] ?? PokemonType.None;
 
         //return new DataPokemon(basePokemon.id, basePokemon.name, basePokemon.catchRate, basePokemon.evolutions, type1, type2, basePokemon.attack, basePokemon.base.hitpoints, basePokemon.levelType, basePokemon.exp, eggCycles, basePokemon.heldItem);
-        const eggCycles: number = basePokemon['eggCycles'] || 20;
-        const hasFemaleDifference: boolean = basePokemon['hasFemaleDifference'] ?? false;
-        const genderRatio: number = basePokemon['genderRatio'] ?? GameConstants.MALE_50;
-        const genderType: number = basePokemon['genderType'] ?? GameConstants.MALE_FEMALE;
+        const eggCycles: number = basePokemon.eggCycles || 20;
+        const hasFemaleDifference: boolean = basePokemon.hasFemaleDifference ?? false;
+        const genderRatio: number = basePokemon.genderRatio ?? GameConstants.MALE_50;
+        const genderType: number = basePokemon.genderType ?? GameConstants.MALE_FEMALE;
         return new DataPokemon(
             basePokemon.id,
             basePokemon.name,

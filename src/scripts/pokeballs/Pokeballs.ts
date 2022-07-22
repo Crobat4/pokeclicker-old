@@ -217,7 +217,7 @@ class Pokeballs implements Feature {
      * @param isShiny if the Pokémon is shiny.
      * @returns {GameConstants.Pokeball} pokéball to use.
      */
-/*
+    /*
     public calculatePokeballToUse(enemyPokemon: BattlePokemon, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(enemyPokemon.id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(enemyPokemon.id, true);
@@ -381,7 +381,7 @@ class Pokeballs implements Feature {
         this.notCaughtShinySelection = json.notCaughtShinySelection ?? this.defaults.notCaughtShinySelection;
         this.alreadyCaughtSelection = json.alreadyCaughtSelection ?? this.defaults.alreadyCaughtSelection;
         this.alreadyCaughtShinySelection = json.alreadyCaughtShinySelection ?? this.defaults.alreadyCaughtShinySelection;
-		//Types
+        //Types
         this.typeNormalSelection = json.typeNormalSelection ?? this.defaults.typeNormalSelection;
         this.typeFireSelection = json.typeFireSelection ?? this.defaults.typeFireSelection;
         this.typeWaterSelection = json.typeWaterSelection ?? this.defaults.typeWaterSelection;

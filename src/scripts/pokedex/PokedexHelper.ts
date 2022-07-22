@@ -56,10 +56,10 @@ class PokedexHelper {
         }
     }
 
-    public static shortenedListByIndex(id = 0){
+    public static shortenedListByIndex(id = 0) {
         return this.filteredList().slice(0, (this.navigateIndex() * 50));
     }
-    public static addPokemonItem(){
+    public static addPokemonItem() {
         //this.filteredList().push(this.filteredList().slice(51, 100));
         this.setNavigateIndex(this.navigateIndex() + 1);
         //console.log(this.navigateIndex());
@@ -263,13 +263,12 @@ class PokedexHelper {
             }
         }
         return !isFemale ? genderRatioMale : genderRatioFemale;
-	}
-	
+    }
+
     public static toggleStatisticShinyOnModalOpen() {
         if (Settings.getSetting('shinyPokedex').observableValue()) {
             this.toggleStatisticShiny(true);
-        }
-        else {
+        } else {
             this.toggleStatisticShiny(false);
         }
     }
@@ -283,18 +282,17 @@ $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
         if (Settings.getSetting('shinyPokedex').observableValue()) {
             PokedexHelper.toggleStatisticShiny(true);
-        }
-        else {
+        } else {
             PokedexHelper.toggleStatisticShiny(false);
         }
     });
     $('#pokemon-list').on('scroll', () => {
-        let scrollY = $('#pokemon-list').scrollTop();
-        let divHeight = $('#pokemon-elements').height();
+        const scrollY = $('#pokemon-list').scrollTop();
+        const divHeight = $('#pokemon-elements').height();
         if (scrollY >= divHeight - 500) {
             PokedexHelper.addPokemonItem();
         }
-        
+
     });
     $('#pokedexModal').on('hidden.bs.modal', () => {
         PokedexHelper.navigateIndex(1);

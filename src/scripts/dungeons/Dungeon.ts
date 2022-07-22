@@ -220,6 +220,7 @@ class Dungeon {
     }
 
     public getLootTierWeights(clears: number, highestRegion: GameConstants.Region): Record<LootTier, number> {
+        /*
         if (GameConstants.getDungeonRegion(this.name) < highestRegion - 2) {
             return Object.entries(nerfedLootTierChance).reduce((chances, [tier, chance]) => {
                 if (tier in this.lootTable) {
@@ -228,6 +229,7 @@ class Dungeon {
                 return chances;
             }, {} as Record<LootTier, number>);
         }
+        */
 
         const timesCleared = Math.min(500, Math.max(1, clears));
         const redist = lootRedistibuteAmount * timesCleared / 500;
@@ -256,27 +258,6 @@ class Dungeon {
             }
         });
     }
-
-    /**
-     * Retrieves the weights for all the possible Loot, weight values are utilized as 10^Weight. Should use values in Dungeon Initialization from 0 (least likely) to 4 (most likely), anything > 4 is probably too much
-     */
-	/*
-    get lootWeightList(): number[] {
-        return this.itemList.map((loot) => {
-            if (loot.requirement && !loot.requirement.isCompleted()) {
-                return 0;
-            }
-            //Nerf to early game dungeons
-            if (loot.weight < 2 && GameConstants.getDungeonRegion(this.name) < player.highestRegion() - 2) {
-                return 0.1 * Math.max(0.5,loot.weight);
-            }
-            // Minimum of 1 times cleared for division
-            const timesCleared = Math.min(500, Math.max(1, App.game.statistics.dungeonsCleared[GameConstants.getDungeonIndex(this.name)]()));
-            // Calculate total weight based on times cleared, minimum weight being original number specified
-            return Math.max(loot.weight, Math.pow(15, loot.weight) / timesCleared) + 1 || 1;
-        });
-    }
-	*/
 
     /**
      * Returns the possible minion Pokemon in the dungeon.
@@ -2298,7 +2279,7 @@ dungeonList['Meteor Falls'] = new Dungeon('Meteor Falls',
         common: [
             {loot: 'Lucky_incense', weight: 6},
             {loot: 'Pokeball', weight: 4},
-			{loot: 'Cornn', weight: 4}, //Berries removed in v0.9.4 nerf
+            {loot: 'Cornn', weight: 4}, //Berries removed in v0.9.4 nerf
             {loot: 'Greatball'},
         ],
         rare: [
@@ -2310,12 +2291,12 @@ dungeonList['Meteor Falls'] = new Dungeon('Meteor Falls',
             {loot: 'Iron Plate'},
             {loot: 'Sky Plate'},
             {loot: 'Draco Plate'},
-			//{loot: 'Mystery_egg', weight: 1.5}, //Removed in v0.9.8 update
+            //{loot: 'Mystery_egg', weight: 1.5}, //Removed in v0.9.8 update
         ],
         mythic: [
-			{loot: 'Star Piece'},
-			//{loot: 'Moon_stone', weight: 0}, //Removed in v0.9.8 update
-		],
+            {loot: 'Star Piece'},
+            //{loot: 'Moon_stone', weight: 0}, //Removed in v0.9.8 update
+        ],
     },
     443000,
     [
@@ -2652,7 +2633,7 @@ dungeonList['Magma Hideout'] = new Dungeon('Magma Hideout',
             {loot: 'Pinap'},
         ],
         rare: [
-			{loot: 'Tamato', weight: 2}, //Berries removed in v0.9.4 nerf
+            {loot: 'Tamato', weight: 2}, //Berries removed in v0.9.4 nerf
             {loot: 'Red Shard'},
             {loot: 'Yellow Shard'},
         ],
@@ -2660,9 +2641,9 @@ dungeonList['Magma Hideout'] = new Dungeon('Magma Hideout',
             {loot: 'Flame Plate'},
             {loot: 'Dread Plate'},
             {loot: 'Nestball'},
-			{loot: 'Spelon', weight: 0.5}, //Berries removed in v0.9.4 nerf
-			{loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Fire_egg', weight: 0.5}, //Removed in v0.9.8 update
+            {loot: 'Spelon', weight: 0.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Magma Hideout'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Fire_egg', weight: 0.5}, //Removed in v0.9.8 update
         ],
     },
     490000,
@@ -2846,7 +2827,7 @@ dungeonList['Sky Pillar'] = new Dungeon('Sky Pillar',
         common: [
             {loot: 'xAttack', weight: 4},
             {loot: 'Greatball'},
-			{loot: 'Durin', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Durin', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Yellow Shard'},
@@ -2857,7 +2838,7 @@ dungeonList['Sky Pillar'] = new Dungeon('Sky Pillar',
             {loot: 'Sky Plate'},
             {loot: 'Mind Plate'},
             {loot: 'Draco Plate'},
-			//{loot: 'Dragon_scale', weight: 2}, //Removed in v0.9.8 update
+            //{loot: 'Dragon_scale', weight: 2}, //Removed in v0.9.8 update
         ],
     },
     720000,
@@ -3055,9 +3036,12 @@ dungeonList['Oreburgh Gate'] = new Dungeon('Oreburgh Gate',
         epic: [
             {loot: 'Earth Plate'},
             {loot: 'Fist Plate'},
-			{loot: 'Watmel', weight: 2}, //Berries removed in v0.9.4 nerf
-			{loot: 'Shuca', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate'))}, //Berries removed in v0.9.4 nerf
-			{loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Oreburgh Gate'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Watmel', weight: 2}, //Berries removed in v0.9.4 nerf
+            {loot: 'Shuca', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Oreburgh Gate'))}, //Berries removed in v0.9.4 nerf
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Oreburgh Gate'))},
         ],
     },
     720600,
@@ -3094,14 +3078,14 @@ dungeonList['Valley Windworks'] = new Dungeon('Valley Windworks',
             {loot: 'Lucky_incense'},
             {loot: 'Pokeball'},
             {loot: 'Greatball'},
-			{loot: 'Pamtre', weight: 3.5}, //Berries removed in v0.9.4 nerf
-			{loot: 'Belue', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Pamtre', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Belue', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [{loot: 'Yellow Shard'}],
         epic: [
-			{loot: 'Zap Plate'},
-			//{loot: 'Stone Plate', weight: 2.75},  //Removed in v0.9.8 update
-		],
+            {loot: 'Zap Plate'},
+            //{loot: 'Stone Plate', weight: 2.75},  //Removed in v0.9.8 update
+        ],
         legendary: [{loot: 'SmallRestore'}],
     },
     756000,
@@ -3379,10 +3363,10 @@ dungeonList['Solaceon Ruins'] = new Dungeon('Solaceon Ruins',
         epic: [
             {loot: 'Mind Plate'},
             {loot: 'Sky Plate'},
-			{loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Solaceon Ruins'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Fire_stone', weight: 0}, //Removed in v0.9.8 update
-			//{loot: 'Water_stone', weight: 0}, //Removed in v0.9.8 update
-			//{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
+            {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Solaceon Ruins'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Fire_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Water_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     960000,
@@ -3527,10 +3511,10 @@ dungeonList['Lake Valor'] = new Dungeon('Lake Valor',
         epic: [
             {loot: 'Mind Plate'},
             {loot: 'Lureball'},
-			//{loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
-			{loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Valor'))}, //Berries removed in v0.9.4 nerf
-			{loot: 'Chople', weight: 1, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Lake Valor'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
+            {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Valor'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Chople', weight: 1, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Lake Valor'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     1015000,
@@ -3583,11 +3567,11 @@ dungeonList['Lake Verity'] = new Dungeon('Lake Verity',
             {loot: 'Lime Shard'},
         ],
         epic: [
-			{loot: 'Mind Plate'},
-			//{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
-			{loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Verity'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Fire_stone', weight: 0}, //Removed in v0.9.8 update
-		],
+            {loot: 'Mind Plate'},
+            //{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
+            {loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Verity'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Fire_stone', weight: 0}, //Removed in v0.9.8 update
+        ],
     },
     1068735,
     [
@@ -3606,7 +3590,7 @@ dungeonList['Mt. Coronet North'] = new Dungeon('Mt. Coronet North',
         common: [
             {loot: 'xClick', weight: 2},
             {loot: 'Greatball'},
-			{loot: 'Kelpsy', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Kelpsy', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Yellow Shard'},
@@ -3625,7 +3609,7 @@ dungeonList['Mt. Coronet North'] = new Dungeon('Mt. Coronet North',
         mythic: [
             {loot: 'Max Revive'},
             {loot: 'Protein', requirement: new ClearDungeonRequirement(350, GameConstants.getDungeonIndex('Mt. Coronet North'))},
-			//{loot: 'Sun_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Sun_stone', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     1111500,
@@ -3650,9 +3634,9 @@ dungeonList['Lake Acuity'] = new Dungeon('Lake Acuity',
         epic: [
             {loot: 'Mind Plate'},
             {loot: 'Icicle Plate'},
-			{loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
-			{loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
-			{loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Lake Acuity'))}, //Berries removed in v0.9.4 nerf
         ],
     },
     1261800,
@@ -3829,12 +3813,15 @@ dungeonList['Spear Pillar'] = new Dungeon('Spear Pillar',
             {loot: 'Iron Plate'},
             {loot: 'Draco Plate'},
             {loot: 'Splash Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
-			{loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
-			{loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
-			{loot: 'Apicot', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
-			{loot: 'Lansat', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
+            {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Spear Pillar'))},
+            {loot: 'Apicot', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
+            {loot: 'Lansat', weight: 0, requirement: new ClearDungeonRequirement(1500, GameConstants.getDungeonIndex('Spear Pillar'))},
         ],
     },
     1322100,
@@ -3860,18 +3847,18 @@ dungeonList['Distortion World'] = new Dungeon('Distortion World',
             {loot: 'xClick', weight: 4},
             {loot: 'Lucky_incense', weight: 2},
             {loot: 'Banette'},
-			{loot: 'Nomel', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Nomel', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [{loot: 'Lime Shard'}],
         legendary: [
             {loot: 'Rare Bone'},
             {loot: 'Odd Keystone'},
             {loot: 'Ultraball'},
-			//{loot: 'Spooky Plate', weight: 2.5}, //Removed in v0.9.8 update
-			//{loot: 'Draco Plate', weight: 2.5}, //Removed in v0.9.8 update
-			{loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Distortion World'))}, //Berries removed in v0.9.4 nerf
-			{loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Reaper_cloth', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Spooky Plate', weight: 2.5}, //Removed in v0.9.8 update
+            //{loot: 'Draco Plate', weight: 2.5}, //Removed in v0.9.8 update
+            {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Distortion World'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Haban', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Distortion World'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Reaper_cloth', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     1350400,
@@ -3986,13 +3973,13 @@ dungeonList['Victory Road Sinnoh'] = new Dungeon('Victory Road Sinnoh',
             {loot: 'Lime Shard'},
             {loot: 'White Shard'},
             {loot: 'Black Shard'},
-			{loot: 'Spelon', weight: 2.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Spelon', weight: 2.5}, //Berries removed in v0.9.4 nerf
         ],
         legendary: [
             {loot: 'Ultraball'},
             {loot: 'Repeatball'},
-			//{loot: 'Razor_claw', weight: 0}, //Removed in v0.9.8 update
-			//{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Razor_claw', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [
             {loot: 'Max Revive'},
@@ -4067,8 +4054,10 @@ dungeonList['Hall of Origin'] = new Dungeon('Hall of Origin',
             {loot: 'Stone Plate'},
             {loot: 'Toxic Plate'},
             {loot: 'Zap Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Starf', weight: 0, requirement: new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin'))},
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Starf', weight: 0, requirement: new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin'))},
         ],
     },
     2653000,
@@ -4090,16 +4079,19 @@ dungeonList['Fullmoon Island'] = new Dungeon('Fullmoon Island',
         ],
         rare: [{loot: 'White Shard'}],
         epic: [
-			{loot: 'Mind Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			{loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			{loot: 'Rindo', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			{loot: 'Passho', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			{loot: 'Wacan', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			{loot: 'Yache', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
-			//{loot: 'Dawn_stone', weight: 0}, //Removed in v0.9.8 update
-		],
+            {loot: 'Mind Plate'},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Fullmoon Island'))},
+            //{loot: 'Dawn_stone', weight: 0}, //Removed in v0.9.8 update
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
+            {loot: 'Rindo', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Fullmoon Island'))},
+            {loot: 'Passho', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
+            {loot: 'Wacan', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
+            {loot: 'Yache', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Fullmoon Island'))},
+        ],
     },
     2603000,
     [new DungeonBossPokemon('Clefable', 11000000, 100)],
@@ -4114,15 +4106,18 @@ dungeonList['Newmoon Island'] = new Dungeon('Newmoon Island',
         ],
         rare: [{loot: 'Black Shard'}],
         epic: [
-			{loot: 'Dread Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
-			{loot: 'Shuca', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
-			{loot: 'Coba', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
-			{loot: 'Kebia', weight: 0.5, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island'))},
-			{loot: 'Chople', weight: 0.5, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island'))},
-			//{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
-		],
+            {loot: 'Dread Plate'},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
+            //{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Shuca', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
+            {loot: 'Coba', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Newmoon Island'))},
+            {loot: 'Kebia', weight: 0.5, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Newmoon Island'))},
+            {loot: 'Chople', weight: 0.5, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Newmoon Island'))},
+        ],
     },
     2603000,
     [new DungeonBossPokemon('Darkrai', 11000000, 100)],
@@ -4143,14 +4138,16 @@ dungeonList['Flower Paradise'] = new Dungeon('Flower Paradise',
         epic: [
             {loot: 'Meadow Plate'},
             {loot: 'Sky Plate'},
-			{loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Coba', weight: 0.75, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-			{loot: 'Tanga', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-			{loot: 'Charti', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-			{loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
-			//{loot: 'Leaf_stone', weight: 0}, //Removed in v0.9.8 update
+            {loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
+            //{loot: 'Leaf_stone', weight: 0}, //Removed in v0.9.8 update
+        ],
+        legendary: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Coba', weight: 0.75, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
+            {loot: 'Tanga', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
+            {loot: 'Charti', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
+            {loot: 'Kasib', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Flower Paradise'))},
         ],
     },
     2603000,
@@ -4173,13 +4170,13 @@ dungeonList['Snowpoint Temple'] = new Dungeon('Snowpoint Temple',
             {loot: 'Yellow Shard'},
             {loot: 'White Shard'},
         ],
-        epic: [
-			{loot: 'Icicle Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Chilan', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Snowpoint Temple'))},
-			{loot: 'Roseli', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple'))},
-		],
-        legendary: [{loot: 'LargeRestore'}],
+        epic: [{loot: 'Icicle Plate'}],
+        legendary: [
+            {loot: 'LargeRestore'},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Chilan', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Snowpoint Temple'))},
+            {loot: 'Roseli', weight: 0.5, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Snowpoint Temple'))},
+        ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(350, GameConstants.getDungeonIndex('Snowpoint Temple'))}],
     },
     2603000,
@@ -4348,7 +4345,7 @@ dungeonList['Floccesy Ranch'] = new Dungeon('Floccesy Ranch',
         epic: [
             {loot: 'Nanab'},
             {loot: 'Wepear'},
-			{loot: 'Chilan', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Floccesy Ranch'))}, //Berries removed in v0.9.4 nerf
+            {loot: 'Chilan', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Floccesy Ranch'))}, //Berries removed in v0.9.4 nerf
         ],
     },
     2503000,
@@ -4362,7 +4359,7 @@ dungeonList['Liberty Garden'] = new Dungeon('Liberty Garden',
             {loot: 'Token_collector'},
             {loot: 'Figy', weight: 2},
             {loot: 'Greatball'},
-			{loot: 'Magost', weight: 3}, //Berries removed in v0.9.4 nerf
+            {loot: 'Magost', weight: 3}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Blue Shard'},
@@ -4371,10 +4368,12 @@ dungeonList['Liberty Garden'] = new Dungeon('Liberty Garden',
         epic: [
             {loot: 'Flame Plate'},
             {loot: 'Mind Plate'},
-			//{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
-			{loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Liberty Garden'))}, //Berries removed in v0.9.4 nerf
+            //{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
         ],
-        legendary: [{loot: 'Ultraball'}],
+        legendary: [
+            {loot: 'Ultraball'},
+            {loot: 'Occa', weight: 0.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Liberty Garden'))}, //Berries removed in v0.9.4 nerf
+        ],
     },
     2703000,
     [
@@ -4507,10 +4506,10 @@ dungeonList['Relic Passage'] = new Dungeon('Relic Passage',
             {loot: 'Yellow Shard'},
         ],
         epic: [
-			{loot: 'Stone Plate'},
-			//{loot: 'Ultraball', weight: 2}, //Removed in v0.9.8 update
-			{loot: 'Charti', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Relic Passage'))}, //Berries removed in v0.9.4 nerf
-		],
+            {loot: 'Stone Plate'},
+            //{loot: 'Ultraball', weight: 2}, //Removed in v0.9.8 update
+            {loot: 'Charti', weight: 1.5, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Relic Passage'))}, //Berries removed in v0.9.4 nerf
+        ],
         legendary: [{loot: 'Hard Stone'}],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(300, GameConstants.getDungeonIndex('Relic Passage'))}],
     },
@@ -4541,7 +4540,7 @@ dungeonList['Relic Castle'] = new Dungeon('Relic Castle',
             {loot: 'Token_collector'},
             {loot: 'Mago', weight: 2},
             {loot: 'Greatball'},
-			{loot: 'Hondew', weight: 3.25}, //Berries removed in v0.9.4 nerf
+            {loot: 'Hondew', weight: 3.25}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Blue Shard'},
@@ -4557,13 +4556,13 @@ dungeonList['Relic Castle'] = new Dungeon('Relic Castle',
             {loot: 'Ultraball'},
             {loot: 'MediumRestore', weight: 2},
             {loot: 'LargeRestore'},
-			//{loot: 'Sun_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Sun_stone', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [
             {loot: 'Heart Scale'},
             {loot: 'Darmanitan (Zen)'},
-			//{loot: 'Cover Fossil', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Relic Castle'))}, //Removed in v0.9.8 update
-			//{loot: 'Plume Fossil', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Relic Castle'))}, //Removed in v0.9.8 update
+            //{loot: 'Cover Fossil', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Relic Castle'))}, //Removed in v0.9.8 update
+            //{loot: 'Plume Fossil', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Relic Castle'))}, //Removed in v0.9.8 update
         ],
     },
     2803000,
@@ -4609,14 +4608,14 @@ dungeonList['Lostlorn Forest'] = new Dungeon('Lostlorn Forest',
             {loot: 'xClick', weight: 2},
             {loot: 'Greatball', weight: 2},
             {loot: 'Foongus'},
-			{loot: 'Qualot', weight: 3.75}, //Berries removed in v0.9.4 nerf
+            {loot: 'Qualot', weight: 3.75}, //Berries removed in v0.9.4 nerf
         ],
         rare: [{loot: 'Green Shard'}],
         legendary: [
             {loot: 'Ultraball'},
             {loot: 'Zoroark', requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Lostlorn Forest'))},
-			//{loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
-			//{loot: 'Leaf_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
+            //{loot: 'Leaf_stone', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(300, GameConstants.getDungeonIndex('Lostlorn Forest'))}],
     },
@@ -4695,15 +4694,15 @@ dungeonList['Chargestone Cave'] = new Dungeon('Chargestone Cave',
         epic: [
             {loot: 'Zap Plate'},
             {loot: 'Timerball'},
+            {loot: 'Wacan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Chargestone Cave'))}, //Berries removed in v0.9.4 nerf
         ],
         legendary: [
             {loot: 'Star Piece', weight: 2},
             {loot: 'Revive'},
             {loot: 'LargeRestore'},
-			{loot: 'Wacan', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Chargestone Cave'))}, //Berries removed in v0.9.4 nerf
-			//{loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
-			//{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
-			//{loot: 'Metal_coat', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
+            //{loot: 'Thunder_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Metal_coat', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     3403000,
@@ -4750,7 +4749,7 @@ dungeonList['Mistralton Cave'] = new Dungeon('Mistralton Cave',
         common: [
             {loot: 'xClick', weight: 2},
             {loot: 'Greatball'},
-			{loot: 'Pamtre', weight: 3.75}, //Berries removed in v0.9.4 nerf
+            {loot: 'Pamtre', weight: 3.75}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Red Shard'},
@@ -4767,7 +4766,7 @@ dungeonList['Mistralton Cave'] = new Dungeon('Mistralton Cave',
             {loot: 'Hard Stone'},
             {loot: 'Duskball'},
             {loot: 'LargeRestore'},
-			//{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     3603000,
@@ -4821,11 +4820,11 @@ dungeonList['Celestial Tower'] = new Dungeon('Celestial Tower',
         epic: [
             {loot: 'Spooky Plate'},
             {loot: 'Mind Plate'},
+            {loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Celestial Tower'))}, //Berries removed in v0.9.4 nerf
         ],
         legendary: [
             {loot: 'Revive', weight: 2},
             {loot: 'LargeRestore'},
-			{loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Celestial Tower'))}, //Berries removed in v0.9.4 nerf
         ],
     },
     3803000,
@@ -4923,7 +4922,7 @@ dungeonList['Reversal Mountain'] = new Dungeon('Reversal Mountain',
             {loot: 'Persim', weight: 4},
             {loot: 'Dowsing_machine', weight: 2},
             {loot: 'Ultraball'},
-			{loot: 'Cornn', weight: 3}, //Berries removed in v0.9.4 nerf
+            {loot: 'Cornn', weight: 3}, //Berries removed in v0.9.4 nerf
         ],
         rare: [{loot: 'Red Shard'}],
         epic: [
@@ -4934,7 +4933,7 @@ dungeonList['Reversal Mountain'] = new Dungeon('Reversal Mountain',
             {loot: 'Revive', weight: 2},
             {loot: 'LargeRestore'},
             {loot: 'Star Piece'},
-			//{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
+            //{loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
         ],
     },
     4003000,
@@ -4973,7 +4972,7 @@ dungeonList['Team Plasma Assault'] = new Dungeon('Team Plasma Assault',
         common: [
             {loot: 'xClick', weight: 2},
             {loot: 'Greatball'},
-			{loot: 'Pomeg', weight: 3.75}, //Berries removed in v0.9.4 nerf
+            {loot: 'Pomeg', weight: 3.75}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Blue Shard'},
@@ -4982,10 +4981,10 @@ dungeonList['Team Plasma Assault'] = new Dungeon('Team Plasma Assault',
         epic: [
             {loot: 'Draco Plate'},
             {loot: 'Icicle Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Durin', weight: 2, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
-			{loot: 'Haban', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
-			{loot: 'Yache', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Durin', weight: 2, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
+            {loot: 'Haban', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
+            {loot: 'Yache', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Plasma Assault'))},
         ],
         legendary: [{loot: 'Ultraball'}],
     },
@@ -5335,15 +5334,15 @@ dungeonList['Cave of Being'] = new Dungeon('Cave of Being',
             {loot: 'Blue Shard'},
         ],
         epic: [
-			{loot: 'Mind Plate'},
-			// {loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
-			// {loot: 'Water_egg', weight: 1}, //Removed in v0.9.8 update
-			// {loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
-			// {loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
-			// {loot: 'Fighting_egg', weight: 1}, //Removed in v0.9.8 update
-			// {loot: 'Dragon_egg', weight: 1}, //Removed in v0.9.8 update
-			{loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Cave of Being'))}, //Berries removed in v0.9.4 nerf
-		],
+            {loot: 'Mind Plate'},
+            // {loot: 'Fire_egg', weight: 1}, //Removed in v0.9.8 update
+            // {loot: 'Water_egg', weight: 1}, //Removed in v0.9.8 update
+            // {loot: 'Grass_egg', weight: 1}, //Removed in v0.9.8 update
+            // {loot: 'Electric_egg', weight: 1}, //Removed in v0.9.8 update
+            // {loot: 'Fighting_egg', weight: 1}, //Removed in v0.9.8 update
+            // {loot: 'Dragon_egg', weight: 1}, //Removed in v0.9.8 update
+            {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Cave of Being'))}, //Berries removed in v0.9.4 nerf
+        ],
     },
     4603000,
     [
@@ -5394,7 +5393,7 @@ dungeonList['Abundant Shrine'] = new Dungeon('Abundant Shrine',
             {loot: 'Mago', weight: 3},
             {loot: 'xClick', weight: 3},
             {loot: 'Amoonguss'},
-			{loot: 'Hondew', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Hondew', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Red Shard'},
@@ -5403,14 +5402,14 @@ dungeonList['Abundant Shrine'] = new Dungeon('Abundant Shrine',
         legendary: [
             {loot: 'Ultraball'},
             {loot: 'LargeRestore'},
-			//{loot: 'Fighting_egg', weight: 1}, //Removed in v0.9.8 update
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Micle', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-			{loot: 'Custap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-			{loot: 'Rowap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
-			{loot: 'Jaboca', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine'))},
-			// {loot: 'Razor_fang', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Shiny_stone', weight: 0}, //Removed in v0.9.8 update
+            //{loot: 'Fighting_egg', weight: 1}, //Removed in v0.9.8 update
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Micle', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
+            {loot: 'Custap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
+            {loot: 'Rowap', weight: 0, requirement: new ClearDungeonRequirement(75, GameConstants.getDungeonIndex('Abundant Shrine'))},
+            {loot: 'Jaboca', weight: 0, requirement: new ClearDungeonRequirement(150, GameConstants.getDungeonIndex('Abundant Shrine'))},
+            // {loot: 'Razor_fang', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Shiny_stone', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [{loot: 'Max Revive'}],
     },
@@ -5683,7 +5682,7 @@ dungeonList['Twist Mountain'] = new Dungeon('Twist Mountain',
             {loot: 'Token_collector', weight: 3},
             {loot: 'Lucky_incense', weight: 3},
             {loot: 'Greatball'},
-			{loot: 'Nomel', weight: 3.75}, //Berries removed in v0.9.4 nerf
+            {loot: 'Nomel', weight: 3.75}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Blue Shard'},
@@ -5695,16 +5694,16 @@ dungeonList['Twist Mountain'] = new Dungeon('Twist Mountain',
             {loot: 'Ultraball'},
             {loot: 'Duskball'},
             {loot: 'LargeRestore'},
-			// {loot: 'Helix Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Dome Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Old Amber', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Root Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Claw Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Skull Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Armor Fossil', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Moon_stone', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
-			// {loot: 'Metal_coat', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Helix Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Dome Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Old Amber', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Root Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Claw Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Skull Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Armor Fossil', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Moon_stone', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Dusk_stone', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Metal_coat', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(300, GameConstants.getDungeonIndex('Twist Mountain'))}],
     },
@@ -5793,7 +5792,7 @@ dungeonList['Moor of Icirrus'] = new Dungeon('Moor of Icirrus',
             {loot: 'xAttack', weight: 3},
             {loot: 'Lucky_egg', weight: 3},
             {loot: 'Greatball'},
-			{loot: 'Belue', weight: 3}, //Berries removed in v0.9.4 nerf
+            {loot: 'Belue', weight: 3}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Blue Shard'},
@@ -5808,7 +5807,7 @@ dungeonList['Moor of Icirrus'] = new Dungeon('Moor of Icirrus',
             {loot: 'Heart Scale'},
             {loot: 'Max Revive'},
             {loot: 'Lum', requirement: new ClearDungeonRequirement(200, GameConstants.getDungeonIndex('Moor of Icirrus'))},
-			// {loot: 'Dawn_stone', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Dawn_stone', weight: 0}, //Removed in v0.9.8 update
         ],
     },
     5203000,
@@ -5825,7 +5824,7 @@ dungeonList['Pledge Grove'] = new Dungeon('Pledge Grove',
         common: [
             {loot: 'Lucky_egg'},
             {loot: 'xAttack'},
-			{loot: 'Qualot', weight: 3.5}, //Berries removed in v0.9.4 nerf
+            {loot: 'Qualot', weight: 3.5}, //Berries removed in v0.9.4 nerf
         ],
         rare: [
             {loot: 'Red Shard'},
@@ -5836,15 +5835,15 @@ dungeonList['Pledge Grove'] = new Dungeon('Pledge Grove',
             {loot: 'Fist Plate'},
         ],
         legendary: [
-			{loot: 'Ultraball'},
-			// {loot: 'Fire_stone', weight: 0},
-			// {loot: 'Water_stone', weight: 0},
-			// {loot: 'Leaf_stone', weight: 0},
-			// {loot: 'Thunder_stone', weight: 0},
-			// {loot: 'Trade_stone', weight: 0},
-			// {loot: 'Sun_stone', weight: 0},
-			// {loot: 'Soothe_bell', weight: 0},
-		],
+            {loot: 'Ultraball'},
+            // {loot: 'Fire_stone', weight: 0},
+            // {loot: 'Water_stone', weight: 0},
+            // {loot: 'Leaf_stone', weight: 0},
+            // {loot: 'Thunder_stone', weight: 0},
+            // {loot: 'Trade_stone', weight: 0},
+            // {loot: 'Sun_stone', weight: 0},
+            // {loot: 'Soothe_bell', weight: 0},
+        ],
     },
     5203000,
     [new DungeonBossPokemon('Keldeo (Resolute)', 52000000, 100)],
@@ -6210,7 +6209,10 @@ dungeonList['Parfum Palace'] = new Dungeon('Parfum Palace',
         rare: [
             {loot: 'Blue Shard'},
             {loot: 'Red Shard'},
-			{loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Parfum Palace'))}, //Berries removed in v0.9.4 nerf
+        ],
+        epic: [
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Chilan', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Parfum Palace'))},
         ],
         legendary: [
             {loot: 'Revive', weight: 2},
@@ -6240,9 +6242,9 @@ dungeonList['Connecting Cave'] = new Dungeon('Connecting Cave',
         epic: [
             {loot: 'Toxic Plate'},
             {loot: 'Sky Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
-			{loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
+            {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Connecting Cave'))},
         ],
         legendary: [
             {loot: 'Hard Stone'},
@@ -6584,7 +6586,7 @@ dungeonList['Lost Hotel'] = new Dungeon('Lost Hotel',
         epic: [
             {loot: 'Dread Plate'},
             {loot: 'Duskball'},
-			{loot: 'Wacan', weight: 1}, //Berries removed in v0.9.4 nerf
+            {loot: 'Wacan', weight: 1}, //Berries removed in v0.9.4 nerf
         ],
         legendary: [
             {loot: 'Rotom (heat)'},
@@ -6592,7 +6594,7 @@ dungeonList['Lost Hotel'] = new Dungeon('Lost Hotel',
             {loot: 'Rotom (fan)'},
             {loot: 'Rotom (frost)'},
             {loot: 'Rotom (mow)'},
-			// {loot: 'Protector', weight: 0}, //Removed in v0.9.8 update
+            // {loot: 'Protector', weight: 0}, //Removed in v0.9.8 update
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Lost Hotel'))}],
     },
@@ -6707,9 +6709,9 @@ dungeonList['Frost Cavern'] = new Dungeon('Frost Cavern',
             {loot: 'Insect Plate'},
             {loot: 'Iron Plate'},
             {loot: 'Duskball'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Frost Cavern'))},
-			{loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Frost Cavern'))},
+            {loot: 'Passho', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Frost Cavern'))},
         ],
         legendary: [
             {loot: 'MediumRestore', weight: 2},
@@ -6776,10 +6778,10 @@ dungeonList['Team Flare Secret HQ'] = new Dungeon('Team Flare Secret HQ',
             {loot: 'Pixie Plate'},
             {loot: 'Dread Plate'},
             {loot: 'Sky Plate'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
-			{loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
-			{loot: 'Roseli', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
+            {loot: 'Coba', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
+            {loot: 'Roseli', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Team Flare Secret HQ'))},
         ],
         mythic: [{loot: 'Protein', requirement: new ClearDungeonRequirement(250, GameConstants.getDungeonIndex('Team Flare Secret HQ'))}],
     },
@@ -6899,17 +6901,20 @@ dungeonList['Pokémon Village'] = new Dungeon('Pokémon Village',
         epic: [
             {loot: 'Pixie Plate'},
             {loot: 'Repeatball'},
-			//Berries removed in v0.9.4 nerf
-			{loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Tanga', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village'))},
-			{loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Pokémon Village'))},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Rindo', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Kebia', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Tanga', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Payapa', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Kasib', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Colbur', weight: 1, requirement: new ClearDungeonRequirement(25, GameConstants.getDungeonIndex('Pokémon Village'))},
+            {loot: 'Babiri', weight: 1, requirement: new ClearDungeonRequirement(50, GameConstants.getDungeonIndex('Pokémon Village'))},
         ],
-        legendary: [{loot: 'LargeRestore'}],
+        legendary: [
+            {loot: 'LargeRestore'},
+            //Berries removed in v0.9.4 nerf
+            {loot: 'Chople', weight: 0, requirement: new ClearDungeonRequirement(100, GameConstants.getDungeonIndex('Pokémon Village'))},
+        ],
     },
     9003000,
     [
@@ -7468,7 +7473,7 @@ dungeonList['Lush Jungle'] = new Dungeon('Lush Jungle',
             {loot: 'xClick'},
             {loot: 'xAttack'},
             {loot: 'Mago'},
-			// {loot: 'Dowsing_machine', weight: 4} //Removed in v0.9.8 update
+            // {loot: 'Dowsing_machine', weight: 4} //Removed in v0.9.8 update
         ],
         rare: [{loot: 'Green Shard'}],
         epic: [
