@@ -80,7 +80,7 @@ class Battle {
 
         App.game.breeding.progressEggsBattle(Battle.route, player.region);
         const isShiny: boolean = enemyPokemon.shiny;
-        const pokeBall: GameConstants.Pokeball = App.game.pokeballs.calculatePokeballToUse(enemyPokemon, isShiny);
+        const pokeBall: GameConstants.Pokeball = App.game.pokeballs.calculatePokeballToUse(enemyPokemon.id, isShiny);
 
         if (pokeBall !== GameConstants.Pokeball.None) {
             this.prepareCatch(enemyPokemon, pokeBall);

@@ -246,58 +246,58 @@ class Pokeballs implements Feature {
             }
         }
         //Types
-        if (enemyPokemon.type1 == PokemonType.Normal || enemyPokemon.type2 == PokemonType.Normal) {
+        if (pokemon.type1 == PokemonType.Normal || pokemon.type2 == PokemonType.Normal) {
             pref = Math.max(pref, this.typeNormalSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Fire || enemyPokemon.type2 == PokemonType.Fire) {
+        if (pokemon.type1 == PokemonType.Fire || pokemon.type2 == PokemonType.Fire) {
             pref = Math.max(pref, this.typeFireSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Water || enemyPokemon.type2 == PokemonType.Water) {
+        if (pokemon.type1 == PokemonType.Water || pokemon.type2 == PokemonType.Water) {
             pref = Math.max(pref, this.typeWaterSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Electric || enemyPokemon.type2 == PokemonType.Electric) {
+        if (pokemon.type1 == PokemonType.Electric || pokemon.type2 == PokemonType.Electric) {
             pref = Math.max(pref, this.typeElectricSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Grass || enemyPokemon.type2 == PokemonType.Grass) {
+        if (pokemon.type1 == PokemonType.Grass || pokemon.type2 == PokemonType.Grass) {
             pref = Math.max(pref, this.typeGrassSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Ice || enemyPokemon.type2 == PokemonType.Ice) {
+        if (pokemon.type1 == PokemonType.Ice || pokemon.type2 == PokemonType.Ice) {
             pref = Math.max(pref, this.typeIceSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Fighting || enemyPokemon.type2 == PokemonType.Fighting) {
+        if (pokemon.type1 == PokemonType.Fighting || pokemon.type2 == PokemonType.Fighting) {
             pref = Math.max(pref, this.typeFightingSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Poison || enemyPokemon.type2 == PokemonType.Poison) {
+        if (pokemon.type1 == PokemonType.Poison || pokemon.type2 == PokemonType.Poison) {
             pref = Math.max(pref, this.typePoisonSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Ground || enemyPokemon.type2 == PokemonType.Ground) {
+        if (pokemon.type1 == PokemonType.Ground || pokemon.type2 == PokemonType.Ground) {
             pref = Math.max(pref, this.typeGroundSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Flying || enemyPokemon.type2 == PokemonType.Flying) {
+        if (pokemon.type1 == PokemonType.Flying || pokemon.type2 == PokemonType.Flying) {
             pref = Math.max(pref, this.typeFlyingSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Psychic || enemyPokemon.type2 == PokemonType.Psychic) {
+        if (pokemon.type1 == PokemonType.Psychic || pokemon.type2 == PokemonType.Psychic) {
             pref = Math.max(pref, this.typePsychicSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Bug || enemyPokemon.type2 == PokemonType.Bug) {
+        if (pokemon.type1 == PokemonType.Bug || pokemon.type2 == PokemonType.Bug) {
             pref = Math.max(pref, this.typeBugSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Rock || enemyPokemon.type2 == PokemonType.Rock) {
+        if (pokemon.type1 == PokemonType.Rock || pokemon.type2 == PokemonType.Rock) {
             pref = Math.max(pref, this.typeRockSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Ghost || enemyPokemon.type2 == PokemonType.Ghost) {
+        if (pokemon.type1 == PokemonType.Ghost || pokemon.type2 == PokemonType.Ghost) {
             pref = Math.max(pref, this.typeGhostSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Dragon || enemyPokemon.type2 == PokemonType.Dragon) {
+        if (pokemon.type1 == PokemonType.Dragon || pokemon.type2 == PokemonType.Dragon) {
             pref = Math.max(pref, this.typeDragonSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Dark || enemyPokemon.type2 == PokemonType.Dark) {
+        if (pokemon.type1 == PokemonType.Dark || pokemon.type2 == PokemonType.Dark) {
             pref = Math.max(pref, this.typeDarkSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Steel || enemyPokemon.type2 == PokemonType.Steel) {
+        if (pokemon.type1 == PokemonType.Steel || pokemon.type2 == PokemonType.Steel) {
             pref = Math.max(pref, this.typeSteelSelection);
         }
-        if (enemyPokemon.type1 == PokemonType.Fairy || enemyPokemon.type2 == PokemonType.Fairy) {
+        if (pokemon.type1 == PokemonType.Fairy || pokemon.type2 == PokemonType.Fairy) {
             pref = Math.max(pref, this.typeFairySelection);
         }
 
