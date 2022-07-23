@@ -219,6 +219,7 @@ class PokemonFactory {
      */
     public static generateBattleFrontierPokemon(): BattlePokemon {
         const enemy = pokemonMap.randomRegion(player.highestRegion());
+        const basePokemon = PokemonHelper.getPokemonByName(enemy.name); // This is needed because PokemonListData and DataPokemon handle the types differently
         // This needs to stay as none so the stage number isn't adjusted
         const health = PokemonFactory.routeHealth(BattleFrontierRunner.stage() + 10, GameConstants.Region.none);
         const level = Math.min(100, BattleFrontierRunner.stage());
@@ -227,7 +228,7 @@ class PokemonFactory {
         // Give 1 extra gem per pokemon defeated after every 80 stages
         const gems = Math.ceil(BattleFrontierRunner.stage() / 80);
 
-        const battlePokemonObject = this.battlePokemonGenerator(enemy, health, level, money, GameConstants.SHINY_CHANCE_BATTLE, gems, false);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, health, level, money, GameConstants.SHINY_CHANCE_BATTLE, gems, false);
         return battlePokemonObject;
     }
 
