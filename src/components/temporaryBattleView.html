@@ -4,11 +4,11 @@
         <h2 class="pageItemTitle" style="display: block;">
 
             <knockout class="left">
-                <knockout data-bind="text: TemporaryBattleBattle.battle.name"></knockout>
+                <knockout data-bind="text: TemporaryBattleBattle.battle.getDisplayName()"></knockout>
             </knockout>
 
             <knockout>
-                <knockout data-bind="text: TemporaryBattleBattle.enemyPokemon().name">Pokémon name</knockout>
+                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + TemporaryBattleBattle.enemyPokemon().genderText">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -39,7 +39,7 @@
         </div>
 
         <div>
-            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny) }" src=""/>
+            <img class="enemy" data-bind="attr:{ src: PokemonHelper.getImage(TemporaryBattleBattle.enemyPokemon(), TemporaryBattleBattle.enemyPokemon().shiny, TemporaryBattleBattle.enemyPokemon().isFemale) }" src=""/>
         </div>
 
         <div class="progress hitpoints" style="height: 20px;">

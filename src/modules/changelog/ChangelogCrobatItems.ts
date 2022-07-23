@@ -33,6 +33,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Misc Pokédex changes'),
     new Changelog(changelogType.CHANGE, '"Hide shiny image" option moved from Pokédex to Settings'),
     new Changelog(changelogType.CHANGE, 'Misc Evolution Items menu changes'),
+    new Changelog(changelogType.REMOVED, 'Setting to increase game width (Official fork added it)'),
     new ChangelogUpdate('v0.2.6', new Date(2022, 6 - 1, 29)),
     new Changelog(changelogType.NEW, 'Added Official update v0.9.7'),
     new Changelog(changelogType.NEW, 'Added button to empty hatchery queue automatically'),

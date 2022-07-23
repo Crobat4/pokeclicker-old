@@ -6,4 +6,5 @@ export default interface PokemonInterface {
     type1: PokemonType;
     type2: PokemonType;
     shiny?: boolean;
+    hasFemaleDifference?: boolean;
 }

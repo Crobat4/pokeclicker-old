@@ -244,10 +244,10 @@ class Update implements Saveable {
             if (this.minUpdateVersion('0.6.0', saveData)) {
                 if (saveData.oakItems.purchaseList) {
                     if (saveData.oakItems.purchaseList[OakItemType.Squirtbottle]) {
-                        saveData.oakItems[OakItemType[OakItemType.Squirtbottle]]['purchased'] = true;
+                        saveData.oakItems[OakItemType[OakItemType.Squirtbottle]].purchased = true;
                     }
                     if (saveData.oakItems.purchaseList[OakItemType.Sprinklotad]) {
-                        saveData.oakItems[OakItemType[OakItemType.Sprinklotad]]['purchased'] = true;
+                        saveData.oakItems[OakItemType[OakItemType.Sprinklotad]].purchased = true;
                     }
                 }
             }
@@ -469,7 +469,7 @@ class Update implements Saveable {
                 [240, '40 x Moon Stone'],
                 [250, '6400 x Ultraball'],
                 [251, 'Deoxys (defense)'],
-                [300, '100 x Trade Stone'],
+                [300, '100 x Linking Cord'],
                 [386, 'Deoxys (speed)'],
             ];
             const highestStageCompleted = saveData.statistics?.battleFrontierHighestStageCompleted || 0;
@@ -586,11 +586,11 @@ class Update implements Saveable {
                 gemUpgrades: saveData.shards.shardUpgrades || [],
             };
 
-            delete saveData.keyItems['Shard_case'];
+            delete saveData.keyItems.Shard_case;
 
             // Swapping Shard Case for Gem Case
             if (saveData.badgeCase[8]) {
-                saveData.keyItems['Gem_case'] = true;
+                saveData.keyItems.Gem_case = true;
             }
 
             // Just incase statistics is not set
@@ -730,6 +730,7 @@ class Update implements Saveable {
                 lastReminder: saveData.statistics.secondsPlayed,
                 lastDownloaded: saveData.statistics.secondsPlayed,
             };
+
             // Start Mina's Trial questline if player has cleared Ultra Necrozma already
             if (saveData.statistics.temporaryBattleDefeated[1]) {
                 saveData.quests.questLines.push({state: 1, name: 'Mina\'s Trial', quest: 0});
@@ -756,7 +757,7 @@ class Update implements Saveable {
 
             //Replace Poison Barb with Rocky Helmet
             saveData.oakItems.Rocky_Helmet = saveData.oakItems.Poison_Barb;
-            delete saveData.oakItems['Poison_Barb'];
+            delete saveData.oakItems.Poison_Barb;
 
             // Give the players Dowsing Machines in place of Item Magnets
             playerData._itemList.Dowsing_machine = playerData._itemList.Item_magnet;
@@ -796,6 +797,124 @@ class Update implements Saveable {
 
             // Add Fighting Dojo TemporaryBattle
             saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 0);
+        },
+
+        '0.9.8': ({ playerData, saveData, settingsData }) => {
+            // Add names to oak item loadouts
+            saveData.oakItemLoadouts = saveData.oakItemLoadouts?.map((list, index) => ({ name: `Loadout ${index + 1}`, loadout: list })) || [];
+
+            // Fix pokerus & EVs moved from statistics
+            saveData.party.caughtPokemon.forEach(p => {
+                // If has pokerus, set to "contagious"
+                let status = (p[8]) ? 2 : 0;
+                // Get effort points (0 if not infected), Multiply by 100 for finer control
+                const effortPoints = status ? saveData.statistics.effortPoints?.[p.id] * 100 || 0 : 0;
+                // Set to cured if reached required amount of EVs
+                const requiredForCured = saveData.challenges.list.slowEVs ? 500000 : 50000;
+                if (effortPoints >= requiredForCured) {
+                    status = 3;
+                }
+                // Update status and EVs
+                p[8] = status;
+                p[9] = effortPoints;
+            });
+
+            // Give the players Linking Cords in place of Trade Stones
+            playerData._itemList.Linking_cord = playerData._itemList.Trade_stone || 0;
+            delete playerData._itemList.Trade_stone;
+
+            // Start Sevii questline if player has Volcano Badge already
+            if (saveData.badgeCase[7]) {
+                saveData.quests.questLines.push({state: 1, name: 'Bill\'s Errand', quest: 0});
+            }
+            // Start Persons of Interest questline if player has Earth Badge already
+            if (saveData.badgeCase[8]) {
+                saveData.quests.questLines.push({state: 1, name: 'Persons of Interest', quest: 0});
+            }
+            // Start UB questline if player has beaten Alola Champion already
+            if (saveData.badgeCase[95]) {
+                saveData.quests.questLines.push({state: 1, name: 'Ultra Beast Hunt', quest: 0});
+            }
+            // Start Ash questline if player has beaten Kalos champion already
+            if (saveData.badgeCase[78]) {
+                saveData.quests.questLines.push({state: 1, name: 'The New Kid', quest: 0});
+            }
+
+            // Just incase statistics is not set
+            saveData.statistics = saveData.statistics || {};
+
+            // Add new statistic
+            saveData.statistics.totalProteinsPurchased = saveData.statistics.totalProteinsObtained || 0;
+
+            // Add Mt. Ember Summit
+            saveData.statistics.dungeonsCleared = Update.moveIndex(saveData.statistics.dungeonsCleared, 10);
+
+            // Add Berry Forest
+            saveData.statistics.dungeonsCleared = Update.moveIndex(saveData.statistics.dungeonsCleared, 11);
+
+            // Add Biker Gang Temporary Battles
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 1);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 2);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 3);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 4);
+
+            // Add Galactic Boss Cyrus Temporary Battle
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 5);
+
+            // Add Ash Ketchum Temporary Battles
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 7);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 8);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 9);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 10);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 11);
+            saveData.statistics.temporaryBattleDefeated = Update.moveIndex(saveData.statistics.temporaryBattleDefeated, 12);
+
+            // Update settings
+            if (settingsData) {
+                // Update our default quest location color
+                if (settingsData['--questAtLocation'] === '#34BF45') {
+                    settingsData['--questAtLocation'] = '#55ff00';
+                }
+
+                // Remove current location color
+                delete settingsData['--currentPlace'];
+
+                // Split dungeon loot notifications into two
+                settingsData['notification.common_dungeon_item_found'] = settingsData['notification.dungeon_item_found'] ?? true;
+                settingsData['notification.common_dungeon_item_found.desktop'] = settingsData['notification.dungeon_item_found.desktop'] ?? false;
+                settingsData['notification.rare_dungeon_item_found'] = settingsData['notification.dungeon_item_found'] ?? true;
+                settingsData['notification.rare_dungeon_item_found.desktop'] = settingsData['notification.dungeon_item_found.desktop'] ?? false;
+                delete settingsData['notification.dungeon_item_found'];
+                delete settingsData['notification.dungeon_item_found.desktop'];
+            }
+        },
+
+        '0.9.9': ({ playerData, saveData }) => {
+            // Fix pokemon having Pokérus early (key item not unlocked)
+            if (!saveData.keyItems.Pokerus_virus) {
+                saveData.party.caughtPokemon.forEach(p => {
+                    // Pokérus State
+                    p[8] = 0;
+                    // Effort Points
+                    p[9] = 0;
+                });
+            }
+
+            // If Pokémon doesn't have Pokérus yet, it shouldn't have Effort Points
+            saveData.party.caughtPokemon.forEach(p => {
+                // Check Pokérus state
+                if (p[8] == 0) {
+                    // Reset Effort Points
+                    p[9] = 0;
+                }
+            });
+
+            // Crobat fork: Rename Nidoran
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(F)', 'Nidoran♀'); // Remove this later
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(M)', 'Nidoran♂'); // Remove this later
+
+            Update.renamePokemonInSaveData(saveData, 'Nidoran♀', 'Nidoran(F)');
+            Update.renamePokemonInSaveData(saveData, 'Nidoran♂', 'Nidoran(M)');
         },
     };
 
