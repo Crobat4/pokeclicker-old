@@ -2,7 +2,9 @@ import TypeColor = GameConstants.TypeColor;
 
 class PokedexHelper {
     public static toggleStatisticShiny = ko.observable(false);
-    public static toggleAllShiny = ko.observable(true);
+    public static toggleAllShiny = ko.observable(false);
+    public static showAllPokemon = ko.observable(false);
+    public static toggleFemale = ko.observable(false);
 
     public static navigateIndex: KnockoutObservable<number> = ko.observable(0);
 
@@ -57,7 +59,7 @@ class PokedexHelper {
     }
 
     public static shortenedListByIndex(id = 0) {
-        return this.filteredList().slice(0, (this.navigateIndex() * 50));
+        return this.showAllPokemon() ? this.filteredList() : this.filteredList().slice(0, (this.navigateIndex() * 50));
     }
     public static addPokemonItem() {
         //this.filteredList().push(this.filteredList().slice(51, 100));
@@ -156,6 +158,11 @@ class PokedexHelper {
                 return false;
             }
 
+            // Only pokemon with gender differences
+            if (filter['gender-diff'] && !(pokemon as PokemonListData).hasFemaleDifference) {
+                return false;
+            }
+
             return true;
         });
     }
@@ -168,18 +175,20 @@ class PokedexHelper {
         res.region = $('#pokedex-filter-region').val();
         res['caught-shiny'] = $('#pokedex-filter-shiny-caught').val();
         res['held-item'] = $('#pokedex-filter-held-item').is(':checked');
+        res['gender-diff'] = $('#pokedex-filter-gender-diff').is(':checked');
         return res;
     }
 
     public static getImage(id: number, isFemale = false) {
+        const pokemon = PokemonHelper.getPokemonById(id);
         let src = 'assets/images/';
-        //if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
-        if (App.game.party.alreadyCaughtPokemon(id, true) && Settings.getSetting('shinyPokedex').observableValue()) {
+        if (App.game.party.alreadyCaughtPokemon(id, true) && this.toggleAllShiny()) {
+        //if (App.game.party.alreadyCaughtPokemon(id, true) && Settings.getSetting('shinyPokedex').observableValue()) {
             src += 'shiny';
         }
 
         let genderString = '';
-        if (isFemale) {
+        if (isFemale || this.toggleFemale() && pokemon.hasFemaleDifference) {
             genderString = '-f';
         }
 
@@ -266,11 +275,11 @@ class PokedexHelper {
     }
 
     public static toggleStatisticShinyOnModalOpen() {
-        if (Settings.getSetting('shinyPokedex').observableValue()) {
-            this.toggleStatisticShiny(true);
-        } else {
+        //if (Settings.getSetting('shinyPokedex').observableValue()) {
+        //    this.toggleStatisticShiny(true);
+        //} else {
             this.toggleStatisticShiny(false);
-        }
+        //}
     }
 
     private static isPureType(pokemon: PokemonListData, type: (PokemonType | null)): boolean {
@@ -280,11 +289,11 @@ class PokedexHelper {
 
 $(document).ready(() => {
     $('#pokemonStatisticsModal').on('hidden.bs.modal', () => {
-        if (Settings.getSetting('shinyPokedex').observableValue()) {
-            PokedexHelper.toggleStatisticShiny(true);
-        } else {
+        //if (Settings.getSetting('shinyPokedex').observableValue()) {
+        //    PokedexHelper.toggleStatisticShiny(true);
+        //} else {
             PokedexHelper.toggleStatisticShiny(false);
-        }
+        //}
     });
     $('#pokemon-list').on('scroll', () => {
         const scrollY = $('#pokemon-list').scrollTop();
@@ -296,5 +305,16 @@ $(document).ready(() => {
     });
     $('#pokedexModal').on('hidden.bs.modal', () => {
         PokedexHelper.navigateIndex(1);
+    });
+    $('#pokedex-filter-show-all').on('click', () => {
+        $('#pokemon-list').scrollTop(0);
+        if ($('#pokedex-filter-show-all').is(':checked')) {
+            PokedexHelper.showAllPokemon(true);
+        }
+        else {
+            PokedexHelper.navigateIndex(1);
+            PokedexHelper.showAllPokemon(false);
+        }
+        
     });
 });
