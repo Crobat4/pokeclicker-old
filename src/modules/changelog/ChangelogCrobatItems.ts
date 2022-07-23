@@ -14,6 +14,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 22)),
+    new Changelog(changelogType.CHANGE, 'Misc Pokédex changes'),
     new Changelog(changelogType.FIXED, 'Battle Frontier damage not working properly'),
     new ChangelogUpdate('v0.2.9', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.CHANGE, 'All Pikachu (Cap) and Ash-Greninja gender type changed'),
