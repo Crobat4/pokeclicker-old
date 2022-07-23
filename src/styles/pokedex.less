@@ -61,7 +61,9 @@
   background:rgba(0, 0, 0, 0.5);
 }
 
-#pokedex-filter-container{
+#pokedex-filter-container, #pokemon-list{
+  overflow-y: auto;
+  max-height: calc(100vh - 270px);
   position: sticky;
   top:0;
 }
