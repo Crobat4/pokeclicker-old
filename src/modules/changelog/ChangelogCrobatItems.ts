@@ -14,7 +14,12 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.DEFAULT, 'This will keep being updated as long as the thread is alive...'),
     // ⥂⥄
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 22)),
-    new Changelog(changelogType.CHANGE, 'Misc Pokédex changes'),
+    new Changelog(changelogType.CHANGE, 'Pokédex: UI changes'),
+    new Changelog(changelogType.CHANGE, 'Pokedex: Pokémon with gender differences can now be filtered'),
+    new Changelog(changelogType.CHANGE, 'Pokedex: Added option to show female sprites'),
+    new Changelog(changelogType.CHANGE, 'Pokedex: Added option to load all Pokémon'),
+    new Changelog(changelogType.CHANGE, 'Profile: UI changes'),
+    new Changelog(changelogType.CHANGE, 'Profile: Female Pokémon sprite can now be selected'),
     new Changelog(changelogType.FIXED, 'Battle Frontier damage not working properly'),
     new ChangelogUpdate('v0.2.9', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.CHANGE, 'All Pikachu (Cap) and Ash-Greninja gender type changed'),
