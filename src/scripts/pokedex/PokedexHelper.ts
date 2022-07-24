@@ -278,7 +278,7 @@ class PokedexHelper {
         //if (Settings.getSetting('shinyPokedex').observableValue()) {
         //    this.toggleStatisticShiny(true);
         //} else {
-            this.toggleStatisticShiny(false);
+        this.toggleStatisticShiny(false);
         //}
     }
 
@@ -292,7 +292,7 @@ $(document).ready(() => {
         //if (Settings.getSetting('shinyPokedex').observableValue()) {
         //    PokedexHelper.toggleStatisticShiny(true);
         //} else {
-            PokedexHelper.toggleStatisticShiny(false);
+        PokedexHelper.toggleStatisticShiny(false);
         //}
     });
     $('#pokemon-list').on('scroll', () => {
@@ -310,11 +310,10 @@ $(document).ready(() => {
         $('#pokemon-list').scrollTop(0);
         if ($('#pokedex-filter-show-all').is(':checked')) {
             PokedexHelper.showAllPokemon(true);
-        }
-        else {
+        } else {
             PokedexHelper.navigateIndex(1);
             PokedexHelper.showAllPokemon(false);
         }
-        
+
     });
 });

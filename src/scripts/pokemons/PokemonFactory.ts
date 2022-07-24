@@ -50,7 +50,7 @@ class PokemonFactory {
         return battlePokemonObject;
     }
 
-    public static battlePokemonGenerator(basePokemon: DataPokemon, maxHealth: number, level: number, money: number, shinyModifier: number, gems: number, isTrainer: boolean = false, catchRate: number = 0, exp: number = basePokemon.exp, heldItemModifier: number = undefined, logEventLabel: string = '', ep: number = undefined) {
+    public static battlePokemonGenerator(basePokemon: DataPokemon, maxHealth: number, level: number, money: number, shinyModifier: number, gems: number, isTrainer = false, catchRate = 0, exp: number = basePokemon.exp, heldItemModifier: number = undefined, logEventLabel = '', ep: number = undefined) {
         //const basePokemon = PokemonHelper.getPokemonByName(name);
         const name = basePokemon.name;
         const id = basePokemon.id;
