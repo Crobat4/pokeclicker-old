@@ -44,13 +44,13 @@ class PokemonFactory {
             App.game.logbook.newLog(LogBookTypes.ROAMER, `[${Routes.getRoute(player.region, player.route()).routeName}] You encountered a ${shiny ? 'shiny' : ''} roaming ${name}!`);
         }
         const ep = GameConstants.BASE_EP_YIELD * (roaming ? GameConstants.ROAMER_EP_MODIFIER : 1);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_BATTLE, 1, false, GameConstants.ROUTE_HELD_ITEM_MODIFIER, 'wild encounter', ep);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_BATTLE, 1, false, undefined, undefined, GameConstants.ROUTE_HELD_ITEM_MODIFIER, 'wild encounter', ep);
 
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, 1, heldItem, ep);
         return battlePokemonObject;
     }
 
-    public static battlePokemonGenerator(basePokemon, maxHealth, level, money, shinyModifier, gems, isTrainer = false, catchRate = 0, exp = basePokemon.exp, heldItemModifier = undefined, logEventLabel = '', ep = undefined) {
+    public static battlePokemonGenerator(basePokemon: DataPokemon, maxHealth: number, level: number, money: number, shinyModifier: number, gems: number, isTrainer: boolean = false, catchRate: number = 0, exp: number = basePokemon.exp, heldItemModifier: number = undefined, logEventLabel: string = '', ep: number = undefined) {
         //const basePokemon = PokemonHelper.getPokemonByName(name);
         const name = basePokemon.name;
         const id = basePokemon.id;
@@ -59,12 +59,15 @@ class PokemonFactory {
         const heldItem: BagItem = this.generateHeldItem(basePokemon.heldItem, heldItemModifier);
         const shiny: boolean = this.generateShiny(shinyModifier);
         const genderType: number = basePokemon.genderType;
+        // TODO: Improve generateGender, remove these variables
         const hasFemaleDifference: boolean = basePokemon.hasFemaleDifference;
         const isFemale = this.generateGender(basePokemon.genderRatio, genderType);
         const genderText = this.generateGenderTypeName(basePokemon, isFemale);
 
-        if (!isTrainer) {
-            catchRate = this.catchRateHelper(basePokemon.catchRate);
+        if (!isTrainer) { // isTrainer is also for Battle Frontier
+            if (catchRate == 0) { // If 0, is a normal route/dungeon pokemon (starter catch rate is 100)
+                catchRate = this.catchRateHelper(basePokemon.catchRate);
+            }
             this.shinyNotificationAndLog(name, shiny, logEventLabel);
         }
         const battlePokemonObject = new BattlePokemon(
@@ -85,6 +88,7 @@ class PokemonFactory {
             hasFemaleDifference,
             isFemale
         );
+        console.log(battlePokemonObject);
         return battlePokemonObject;
     }
 
@@ -224,7 +228,7 @@ class PokemonFactory {
         // Give 1 extra gem per pokemon defeated after every 80 stages
         const gems = Math.ceil(BattleFrontierRunner.stage() / 80);
 
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, health, level, money, GameConstants.SHINY_CHANCE_BATTLE, gems, false);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, health, level, money, GameConstants.SHINY_CHANCE_BATTLE, gems, true);
         return battlePokemonObject;
     }
 
@@ -234,7 +238,7 @@ class PokemonFactory {
         const money = 0;
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_EP_MODIFIER;
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_GEMS, heldItem, ep);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_GEMS, false, GameConstants.DUNGEON_HELD_ITEM_MODIFIER, 'dungeon encounter', ep);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_GEMS, false, undefined, undefined, GameConstants.DUNGEON_HELD_ITEM_MODIFIER, 'dungeon encounter', ep);
         return battlePokemonObject;
     }
 
@@ -257,7 +261,7 @@ class PokemonFactory {
         const money = 0;
         const ep = GameConstants.BASE_EP_YIELD * GameConstants.DUNGEON_BOSS_EP_MODIFIER;
         //return new BattlePokemon(name, id, basePokemon.type1, basePokemon.type2, maxHealth, bossPokemon.level, catchRate, exp, new Amount(money, GameConstants.Currency.money), shiny, GameConstants.DUNGEON_BOSS_GEMS, heldItem, ep);
-        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_BOSS_GEMS, false, GameConstants.DUNGEON_BOSS_HELD_ITEM_MODIFIER, 'dungeon boss encounter', ep);
+        const battlePokemonObject = this.battlePokemonGenerator(basePokemon, maxHealth, level, money, GameConstants.SHINY_CHANCE_DUNGEON, GameConstants.DUNGEON_BOSS_GEMS, false, undefined, undefined, GameConstants.DUNGEON_BOSS_HELD_ITEM_MODIFIER, 'dungeon boss encounter', ep);
         return battlePokemonObject;
     }
 
