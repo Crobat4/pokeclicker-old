@@ -18,7 +18,7 @@ export default class Profile implements Saveable {
     public trainer: KnockoutObservable<number>;
     public pokemon: KnockoutObservable<number>;
     public pokemonShiny: KnockoutObservable<boolean>;
-    public shinySelected: KnockoutObservable<boolean>;
+    public femaleSprite: KnockoutObservable<boolean>;
     public background: KnockoutObservable<number>;
     public textColor: KnockoutObservable<string>;
 
@@ -34,7 +34,7 @@ export default class Profile implements Saveable {
         this.trainer.subscribe((t) => document.documentElement.style.setProperty('--trainer-image', `url('../assets/images/profile/trainer-${t}.png')`));
         this.pokemon = ko.observable(pokemon).extend({ numeric: 2 });
         this.pokemonShiny = ko.observable(false).extend({ boolean: null });
-        this.shinySelected = ko.observable(false).extend({ boolean: null });
+        this.femaleSprite = ko.observable(false).extend({ boolean: null });
         this.background = ko.observable(background).extend({ numeric: 0 });
         this.textColor = ko.observable(textColor);
     }
@@ -43,9 +43,8 @@ export default class Profile implements Saveable {
         name = 'Trainer',
         trainer = Rand.floor(Profile.MAX_TRAINER),
         pokemon = Rand.intBetween(1, 151),
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        shinySelected = false,
         pokemonShiny = false,
+        femaleSprite = false,
         background = Rand.floor(Profile.MAX_BACKGROUND),
         textColor = 'whitesmoke',
         badges = 0,
@@ -94,7 +93,7 @@ export default class Profile implements Saveable {
         const trainerTime: HTMLElement = node.querySelector('.trainer-time');
         trainerTime.innerText = GameConstants.formatTimeFullLetters(seconds);
         const trainerPokemonImage: HTMLImageElement = node.querySelector('.trainer-pokemon-image');
-        trainerPokemonImage.src = `assets/images/${pokemonShiny ? 'shiny' : ''}pokemon/${pokemon}.png`;
+        trainerPokemonImage.src = `assets/images/${pokemonShiny ? 'shiny' : ''}pokemon/${pokemon}${femaleSprite ? '-f' : ''}.png`;
         const trainerVersion: HTMLElement = node.querySelector('.trainer-version');
         trainerVersion.innerText = `v${version}`;
         const badgeContainer = node.querySelector('.challenge-badges');
@@ -117,54 +116,12 @@ export default class Profile implements Saveable {
     initialize() {
         const throttledTimePlayed = ko.pureComputed(() => App.game.statistics.secondsPlayed()).extend({ rateLimit: 60 * 1000 });
         // Load trainer card preview
-        /*
-        this.name.subscribe(() => this.updatePreview());
-        this.trainer.subscribe((val) => {
-            this.updatePreview();
-            // Update trainer image in css
-            document.documentElement.style.setProperty('--trainer-image', `url('../assets/images/profile/trainer-${val}.png')`);
-        });
-        */
-        this.pokemon.subscribe((value: number) => {
-            const shiny = App.game.party.alreadyCaughtPokemon(value, true);
-            App.game.party.alreadyCaughtPokemon(value, false);
-            // Update preview after checking for shiny
-            // If shiny option selected and selected pokemon has shiny color unlocked
-            if (this.shinySelected() && shiny) {
-                this.pokemonShiny(true);
-                this.shinySelected(true);
-            } else {
-                this.pokemonShiny(false);
-                this.shinySelected(false);
-            }
-            // this.updatePreview();
-        });
-        this.shinySelected.subscribe((isShiny: boolean) => {
-            let shiny = false;
-            if (isShiny) {
-                shiny = App.game.party.alreadyCaughtPokemon(this.pokemon(), true);
-            }
-            this.pokemonShiny(shiny);
-            // this.updatePreview();
-        });
-        /*
-        this.background.subscribe(() => this.updatePreview());
-        this.textColor.subscribe(() => this.updatePreview());
-        */
-        this.updatePreview(throttledTimePlayed);
-    }
-
-    updatePreview(throttledTimePlayed): void {
-        // const throttledTimePlayed = ko.pureComputed(() => App.game.statistics.secondsPlayed()).extend({ rateLimit: 60 * 1000 });
-        // document.getElementById('profile-trainer-card').innerHTML = '';
-        // document.getElementById('profile-trainer-card').appendChild(Profile.getTrainerCard(
-
         const preview = ko.pureComputed(() => Profile.getTrainerCard(
             this.name(),
             this.trainer(),
             this.pokemon(),
-            this.shinySelected(),
             this.pokemonShiny(),
+            this.femaleSprite(),
             this.background(),
             this.textColor(),
             App.game.badgeCase.badgeList.filter((b: () => boolean) => b()).length,
@@ -189,7 +146,7 @@ export default class Profile implements Saveable {
         if (json.trainer !== undefined) this.trainer(json.trainer);
         if (json.pokemon !== undefined) this.pokemon(json.pokemon);
         if (json.pokemonShiny !== undefined) this.pokemonShiny(json.pokemonShiny);
-        if (json.shinySelected !== undefined) this.shinySelected(json.shinySelected);
+        if (json.femaleSprite !== undefined) this.femaleSprite(json.femaleSprite);
         if (json.background !== undefined) this.background(json.background);
         if (json.textColor) this.textColor(json.textColor);
     }
@@ -200,7 +157,7 @@ export default class Profile implements Saveable {
             trainer: this.trainer(),
             pokemon: this.pokemon(),
             pokemonShiny: this.pokemonShiny(),
-            shinySelected: this.shinySelected(),
+            femaleSprite: this.femaleSprite(),
             background: this.background(),
             textColor: this.textColor(),
         };

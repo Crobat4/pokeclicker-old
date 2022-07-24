@@ -1,5 +1,5 @@
 <div class="modal noselect fade" id="profileModal" tabindex="-1" role="dialog" aria-labelledby="profileModal">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header" style='justify-content: space-around;'>
                 <h5 class="modal-title">Profile</h5>
@@ -9,33 +9,17 @@
             </div>
             <div class="modal-body text-left p-2">
                 <div class="form-row p-0" id="profileEdit">
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <label>Name</label>
                         <input autocomplete="off" class="form-control" oninput="App.game.profile.name(this.value)" placeholder="name" data-bind="value: App.game.profile.name()"/>
                     </div>
-                    <div class="form-group col-12">
-                        <div class="row">
-                            <div class="col-8">
-                                <label>Pokemon</label>
-                                <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value)">
-                                    <!-- ko foreach: App.game.party.caughtPokemon.sort((a, b) => a.id - b.id) -->
-                                    <option data-bind="attr: { value: $data.id, selected: App.game.profile.pokemon() === $data.id }, text: '#'+($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)+' '+$data.name">Pokemon</option>
-                                    <!-- /ko -->
-                                </select>
-                            </div>
-                            <div class="col-4" id="shiny-switch" >
-                                <label>Shiny</label>
-                                <label class="my-0 mx-1" data-bind="tooltip: { title: 'The shiny color will be available only if the selected Pokémon was already caught as shiny', trigger: 'hover', placement:'top' }">
-                                    <i class="bi bi-question-circle rounded-circle bg-info"></i>
-                                </label>
-                                <div>
-                                    <label class="switch m-0">
-                                        <input type="checkbox" class="clickable" data-bind="checked: App.game.profile.shinySelected()" onchange="App.game.profile.shinySelected(this.checked)"/>
-                                        <span class="slider round"></span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group col-6">
+                        <label>Pokemon</label>
+                        <select autocomplete="off" class="custom-select" onchange="App.game.profile.pokemon(+this.value), App.game.profile.pokemonShiny(false), App.game.profile.femaleSprite(false)">
+                            <!-- ko foreach: App.game.party.caughtPokemon.sort((a, b) => a.id - b.id) -->
+                            <option data-bind="attr: { value: $data.id, selected: App.game.profile.pokemon() === $data.id }, text: '#'+($data.id > 0 ? Math.floor($data.id) + '' : '???').padStart(3, 0)+' '+$data.name">Pokemon</option>
+                            <!-- /ko -->
+                        </select>
                     </div>
                     <div class="form-group col-12">
                         <label>Text Color</label>
@@ -43,22 +27,49 @@
                           <label style="width:100%; min-height: 28px; padding:0px; margin: 0px;"><input style="opacity: 0;" type="color" data-bind="value: App.game.profile.textColor"/></label>
                         </p>
                     </div>
-                    <!--
-                    <div class="form-group col-12">
-                        <label>Shiny</label>
-                        <label style="width:100%; min-height: 28px; padding:0px; margin: 0px;">
-                            <input class="clickable" type="checkbox" data-bind="checked: App.game.profile.shinySelected()" onchange="App.game.profile.shinySelected(this.checked)"/>
-                        </label>
+
+                    <div class="row col-12 m-auto p-0">
+                        <!-- Shiny -->
+                        <!-- ko if: App.game.party.alreadyCaughtPokemon(App.game.profile.pokemon(), true) -->
+                        <div class="form-group col-md-3 col-3" style="padding-right:5px; padding-left:5px;">
+                            <span>Shiny</span>
+                        </div>
+                        <div class="form-group col-md-3 col-3" style="padding-right:5px; padding-left:5px;">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="profile-shiny-toggle"
+                                    data-bind="checked: App.game.profile.pokemonShiny">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- /ko -->
+
+                        <!-- Female -->
+                        <!-- ko if: PokemonHelper.getPokemonById(App.game.profile.pokemon()).hasFemaleDifference -->
+                        <div class="form-group col-md-3 col-3" style="padding-right:5px; padding-left:5px;">
+                            <span>Female</span>
+                        </div>
+                        <div class="form-group col-md-3 col-3" style="padding-right:5px; padding-left:5px;">
+                            <label class="form-check-label toggler-wrapper style-1 float-right">
+                                <input class="form-check-input" type="checkbox" id="profile-female-toggle"
+                                    data-bind="checked: App.game.profile.femaleSprite">
+                                <div class="toggler-slider">
+                                    <div class="toggler-knob"></div>
+                                </div>
+                            </label>
+                        </div>
+                        <!-- /ko -->
                     </div>
-                    -->
-                    <div class="form-group col-12">
+
+                    <div class="form-group col-6">
                         <a class="btn btn-block btn-primary text-left" href="#profileTrainerModal" data-toggle="modal">Trainer <img style="position:absolute; right: 10px;" data-bind="attr: { src: `assets/images/profile/trainer-${App.game.profile.trainer() || 0}.png` }"/></a>
                     </div>
-                    <div class="form-group col-12">
+                    <div class="form-group col-6">
                         <a class="btn btn-block btn-primary text-left" href="#profileBackgroundModal" data-toggle="modal">Background <knockout style="position:absolute; right: 10px;" data-bind="text: `#${App.game.profile.background()}`"></knockout></a>
                     </div>
                 </div>
-                <div id="profile-trainer-card"></div>
+                <div id="profile-trainer-card" style="max-width: 330px; margin: auto;"></div>
             </div>
         </div>
     </div>

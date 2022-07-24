@@ -141,7 +141,7 @@ Settings.add(new Setting<string>('saveReminder', 'Save reminder interval (in gam
     (12 * HOUR).toString()));
 
 // Crobat Fork settings
-Settings.add(new BooleanSetting('shinyPokedex', 'Show Shiny Pokémon in Pokédex by default', true));
+// Settings.add(new BooleanSetting('shinyPokedex', 'Show Shiny Pokémon in Pokédex by default', true));
 
 // Settings.add(new BooleanSetting('fullWidthContainer', 'Increase game width', false));
 // Settings.add(new BooleanSetting('enableBallSelectionByType', 'Enable Pokéball selection by type', false));
