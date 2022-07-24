@@ -88,7 +88,6 @@ class PokemonFactory {
             hasFemaleDifference,
             isFemale
         );
-        console.log(battlePokemonObject);
         return battlePokemonObject;
     }
 
