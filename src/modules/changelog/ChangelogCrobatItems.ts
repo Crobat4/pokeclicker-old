@@ -21,6 +21,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Profile: UI changes'),
     new Changelog(changelogType.CHANGE, 'Profile: Female Pokémon sprite can now be selected'),
     new Changelog(changelogType.FIXED, 'Battle Frontier damage not working properly'),
+    new Changelog(changelogType.FIXED, 'Starter not showing its gender'),
     new ChangelogUpdate('v0.2.9', new Date(2022, 7 - 1, 22)),
     new Changelog(changelogType.CHANGE, 'All Pikachu (Cap) and Ash-Greninja gender type changed'),
     new Changelog(changelogType.CHANGE, 'Both Nidoran\'s name change reverted'),
