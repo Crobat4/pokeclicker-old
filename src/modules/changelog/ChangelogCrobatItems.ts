@@ -16,6 +16,7 @@ const ChangelogCrobatItems = [
     new ChangelogUpdate('v0.2.11', new Date(2022, 7 - 1, 24)),
     new Changelog(changelogType.NEW, 'Added options to enable the use of Beast Balls (they can still be used if selected in ball selection)'),
     new Changelog(changelogType.CHANGE, 'Beast Balls won\'t be used automatically with any ball selected anymore'),
+    new Changelog(changelogType.CHANGE, 'Hatchery: UI changes'),
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 24)),    
     new Changelog(changelogType.NEW, 'Pokedex: Pokémon with gender differences can now be filtered'),
     new Changelog(changelogType.NEW, 'Pokedex: Added option to show female sprites'),
