@@ -55,6 +55,7 @@ type PokemonListData = {
   genderType?: number;
   hasFemaleDifference?: boolean;
   genderRatio?: number;
+  visibleName?: string;
 }
 
 function createPokemonArray<T extends readonly PokemonListData[] & Array<{name: V}>, V extends string>(...args: T) {
@@ -1131,6 +1132,7 @@ const pokemonList = createPokemonArray(
             'speed': 41,
         },
         'genderType': GameConstants.FEMALE_ONLY,
+        'visibleName': 'Nidoran♀',
     },
     {
         'id': 30,
@@ -1187,6 +1189,7 @@ const pokemonList = createPokemonArray(
             'speed': 50,
         },
         'genderType': GameConstants.MALE_ONLY,
+        'visibleName': 'Nidoran♂',
     },
     {
         'id': 33,
@@ -12544,6 +12547,7 @@ const pokemonList = createPokemonArray(
             'speed': 98,
         },
         'heldItem': {type: ItemType.item, id: 'Deepsea_tooth'},
+        'visibleName': 'Basculin',
     },
     {
         'id': 550.01,
@@ -12562,6 +12566,7 @@ const pokemonList = createPokemonArray(
             'speed': 98,
         },
         'heldItem': {type: ItemType.item, id: 'Deepsea_scale'},
+        'visibleName': 'Basculin',
     },
     {
         'id': 551,
@@ -22582,6 +22587,9 @@ pokemonList.forEach(p => {
     (p as PokemonListData).genderRatio = (p as PokemonListData).genderRatio === undefined ? GameConstants.MALE_50 : (p as PokemonListData).genderRatio;
     // Add false as default value in "hasFemaleDifference" property
     (p as PokemonListData).hasFemaleDifference = (p as PokemonListData).hasFemaleDifference === undefined ? false : (p as PokemonListData).hasFemaleDifference;
+    // Add name property as default for visibleName
+    (p as PokemonListData).visibleName = (p as PokemonListData).visibleName === undefined ? (p as PokemonListData).name : (p as PokemonListData).visibleName;
+    
     // Calculate this pokemons native region
     (p as PokemonListData).nativeRegion = (p as PokemonListData).nativeRegion || GameConstants.MaxIDPerRegion.findIndex(maxRegionID => maxRegionID >= Math.floor(p.id));
     // Create an index of pokemon
