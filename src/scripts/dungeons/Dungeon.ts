@@ -4055,7 +4055,7 @@ dungeonList['Hall of Origin'] = new Dungeon('Hall of Origin',
             {loot: 'Toxic Plate'},
             {loot: 'Zap Plate'},
         ],
-        legendary: [
+        mythic: [
             //Berries removed in v0.9.4 nerf
             {loot: 'Starf', weight: 0, requirement: new ClearDungeonRequirement(1000, GameConstants.getDungeonIndex('Hall of Origin'))},
         ],
