@@ -8,7 +8,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="html: BattleFrontierBattle.enemyPokemon().visibleName + ' ' + BattleFrontierBattle.enemyPokemon().genderText">Pokémon name</knockout>
+                <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? BattleFrontierBattle.enemyPokemon().visibleName : BattleFrontierBattle.enemyPokemon().name) + ' ' + BattleFrontierBattle.enemyPokemon().genderText">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right" data-bind="html: BattleFrontierRunner.pokemonLeftImages">
