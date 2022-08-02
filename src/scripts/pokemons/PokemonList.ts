@@ -4440,6 +4440,7 @@ const pokemonList = createPokemonArray(
             'speed': 20,
         },
         'genderRatio': GameConstants.MALE_87_5,
+        'visibleName': 'Togepi',
     },
     {
         'id': 175.2,
@@ -4459,6 +4460,7 @@ const pokemonList = createPokemonArray(
             'speed': 20,
         },
         'genderRatio': GameConstants.MALE_87_5,
+        'visibleName': 'Togepi',
     },
     {
         'id': 176,
@@ -4909,6 +4911,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 110,
             'speed': 30,
         },
+        'visibleName': 'Slowking',
     },
     {
         'id': 200,
@@ -4946,6 +4949,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.01,
@@ -4965,6 +4969,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.02,
@@ -4984,6 +4989,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.03,
@@ -5002,6 +5008,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.04,
@@ -5020,6 +5027,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.05,
@@ -5038,6 +5046,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.06,
@@ -5056,6 +5065,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.07,
@@ -5074,6 +5084,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.08,
@@ -5092,6 +5103,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.09,
@@ -5110,6 +5122,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.10,
@@ -5128,6 +5141,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.11,
@@ -5146,6 +5160,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.12,
@@ -5164,6 +5179,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.13,
@@ -5182,6 +5198,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.14,
@@ -5201,6 +5218,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.15,
@@ -5219,6 +5237,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.16,
@@ -5237,6 +5256,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.17,
@@ -5256,6 +5276,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.18,
@@ -5274,6 +5295,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.19,
@@ -5293,6 +5315,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.20,
@@ -5311,6 +5334,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.21,
@@ -5329,6 +5353,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.22,
@@ -5347,6 +5372,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.23,
@@ -5365,6 +5391,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.24,
@@ -5383,6 +5410,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.25,
@@ -5401,6 +5429,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.26,
@@ -5419,6 +5448,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 201.27,
@@ -5437,6 +5467,7 @@ const pokemonList = createPokemonArray(
             'speed': 48,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Unown',
     },
     {
         'id': 202,
@@ -5836,6 +5867,7 @@ const pokemonList = createPokemonArray(
             'speed': 30,
         },
         'genderRatio': GameConstants.MALE_25,
+        'visibleName': 'Corsola',
     },
     {
         'id': 223,
@@ -6390,6 +6422,7 @@ const pokemonList = createPokemonArray(
         },
         'heldItem': {type: ItemType.berry, id: BerryType.Lum},
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Celebi',
     },
     {
         'id': 252,
@@ -6633,6 +6666,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 41,
             'speed': 60,
         },
+        'visibleName': 'Zigzagoon',
     },
     {
         'id': 264,
@@ -6670,6 +6704,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 61,
             'speed': 100,
         },
+        'visibleName': 'Linoone',
     },
     {
         'id': 265,
@@ -8269,6 +8304,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 70,
         },
+        'visibleName': 'Castform',
     },
     {
         'id': 351.2,
@@ -8286,6 +8322,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 70,
         },
+        'visibleName': 'Castform',
     },
     {
         'id': 351.3,
@@ -8303,6 +8340,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 70,
         },
+        'visibleName': 'Castform',
     },
     {
         'id': 352,
@@ -8962,6 +9000,7 @@ const pokemonList = createPokemonArray(
             'speed': 150,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Deoxys',
     },
     {
         'id': 386.2,
@@ -8980,6 +9019,7 @@ const pokemonList = createPokemonArray(
             'speed': 90,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Deoxys',
     },
     {
         'id': 386.3,
@@ -8998,6 +9038,7 @@ const pokemonList = createPokemonArray(
             'speed': 180,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Deoxys',
     },
     {
         'id': 387,
@@ -9489,6 +9530,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 45,
             'speed': 36,
         },
+        'visibleName': 'Burmy',
     },
     {
         'id': 412.1,
@@ -9510,6 +9552,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 45,
             'speed': 36,
         },
+        'visibleName': 'Burmy',
     },
     {
         'id': 412.2,
@@ -9531,6 +9574,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 45,
             'speed': 36,
         },
+        'visibleName': 'Burmy',
     },
     {
         'id': 413,
@@ -9549,6 +9593,7 @@ const pokemonList = createPokemonArray(
             'speed': 36,
         },
         'genderType': GameConstants.FEMALE_ONLY,
+        'visibleName': 'Wormadam',
     },
     {
         'id': 413.1,
@@ -9567,6 +9612,7 @@ const pokemonList = createPokemonArray(
             'speed': 36,
         },
         'genderType': GameConstants.FEMALE_ONLY,
+        'visibleName': 'Wormadam',
     },
     {
         'id': 413.2,
@@ -9585,6 +9631,7 @@ const pokemonList = createPokemonArray(
             'speed': 36,
         },
         'genderType': GameConstants.FEMALE_ONLY,
+        'visibleName': 'Wormadam',
     },
     {
         'id': 414,
@@ -9730,6 +9777,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 78,
             'speed': 85,
         },
+        'visibleName': 'Cherrim',
     },
     {
         'id': 421.1,
@@ -9747,6 +9795,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 78,
             'speed': 85,
         },
+        'visibleName': 'Cherrim',
     },
     {
         'id': 422,
@@ -9765,6 +9814,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 62,
             'speed': 34,
         },
+        'visibleName': 'Shellos',
     },
     {
         'id': 422.1,
@@ -9783,6 +9833,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 62,
             'speed': 34,
         },
+        'visibleName': 'Shellos',
     },
     {
         'id': 423,
@@ -9800,6 +9851,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 82,
             'speed': 39,
         },
+        'visibleName': 'Gastrodon',
     },
     {
         'id': 423.1,
@@ -9817,6 +9869,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 82,
             'speed': 39,
         },
+        'visibleName': 'Gastrodon',
     },
     {
         'id': 424,
@@ -10270,6 +10323,7 @@ const pokemonList = createPokemonArray(
             'speed': 5,
         },
         'genderRatio': GameConstants.MALE_87_5,
+        'visibleName': 'Munchlax',
     },
     {
         'id': 447,
@@ -10888,6 +10942,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 479.2,
@@ -10906,6 +10961,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 479.3,
@@ -10924,6 +10980,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 479.4,
@@ -10942,6 +10999,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 479.5,
@@ -10960,6 +11018,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 479.6,
@@ -10979,6 +11038,7 @@ const pokemonList = createPokemonArray(
             'speed': 86,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Rotom',
     },
     {
         'id': 480,
@@ -11122,6 +11182,7 @@ const pokemonList = createPokemonArray(
             'speed': 90,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Giratina',
     },
     {
         'id': 487.1,
@@ -11140,6 +11201,7 @@ const pokemonList = createPokemonArray(
             'speed': 90,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Giratina',
     },
     {
         'id': 488,
@@ -11234,6 +11296,7 @@ const pokemonList = createPokemonArray(
         },
         'heldItem': {type: ItemType.berry, id: BerryType.Lum},
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Shaymin',
     },
     {
         'id': 492.1,
@@ -11252,6 +11315,7 @@ const pokemonList = createPokemonArray(
             'speed': 127,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Shaymin',
     },
     {
         'id': 493,
@@ -11270,6 +11334,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.01,
@@ -11288,6 +11353,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.02,
@@ -11306,6 +11372,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.03,
@@ -11324,6 +11391,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.04,
@@ -11342,6 +11410,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.05,
@@ -11360,6 +11429,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.06,
@@ -11378,6 +11448,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.07,
@@ -11396,6 +11467,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.08,
@@ -11414,6 +11486,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.09,
@@ -11432,6 +11505,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.10,
@@ -11450,6 +11524,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.11,
@@ -11468,6 +11543,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.12,
@@ -11486,6 +11562,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.13,
@@ -11504,6 +11581,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.14,
@@ -11522,6 +11600,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.15,
@@ -11540,6 +11619,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.16,
@@ -11558,6 +11638,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 493.17,
@@ -11576,6 +11657,7 @@ const pokemonList = createPokemonArray(
             'speed': 120,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Arceus',
     },
     {
         'id': 494,
@@ -12715,6 +12797,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 45,
             'speed': 50,
         },
+        'visibleName': 'Darumaka',
     },
     {
         'id': 555,
@@ -12749,6 +12832,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 105,
             'speed': 55,
         },
+        'visibleName': 'Darmanitan',
     },
     {
         'id': 555.2,
@@ -12767,6 +12851,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 55,
             'speed': 95,
         },
+        'visibleName': 'Darmanitan',
     },
     {
         'id': 555.3,
@@ -12785,6 +12870,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 55,
             'speed': 135,
         },
+        'visibleName': 'Darmanitan',
     },
     {
         'id': 556,
@@ -12928,6 +13014,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 65,
             'speed': 30,
         },
+        'visibleName': 'Yamask',
     },
     {
         'id': 563,
@@ -13343,6 +13430,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 75,
         },
+        'visibleName': 'Deerling',
     },
     {
         'id': 585.01,
@@ -13361,6 +13449,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 75,
         },
+        'visibleName': 'Deerling',
     },
     {
         'id': 585.02,
@@ -13379,6 +13468,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 75,
         },
+        'visibleName': 'Deerling',
     },
     {
         'id': 585.03,
@@ -13397,6 +13487,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 50,
             'speed': 75,
         },
+        'visibleName': 'Deerling',
     },
     {
         'id': 586,
@@ -13414,6 +13505,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 95,
         },
+        'visibleName': 'Sawsbuck',
     },
     {
         'id': 586.01,
@@ -13431,6 +13523,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 95,
         },
+        'visibleName': 'Sawsbuck',
     },
     {
         'id': 586.02,
@@ -13448,6 +13541,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 95,
         },
+        'visibleName': 'Sawsbuck',
     },
     {
         'id': 586.03,
@@ -13465,6 +13559,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 70,
             'speed': 95,
         },
+        'visibleName': 'Sawsbuck',
     },
     {
         'id': 587,
@@ -14051,6 +14146,7 @@ const pokemonList = createPokemonArray(
             'specialDefense': 84,
             'speed': 32,
         },
+        'visibleName': 'Stunfisk',
     },
     {
         'id': 619,
@@ -14480,6 +14576,7 @@ const pokemonList = createPokemonArray(
             'speed': 121,
         },
         'genderType': GameConstants.MALE_ONLY,
+        'visibleName': 'Tornadus',
     },
     {
         'id': 642,
@@ -14516,6 +14613,7 @@ const pokemonList = createPokemonArray(
             'speed': 101,
         },
         'genderType': GameConstants.MALE_ONLY,
+        'visibleName': 'Thundurus',
     },
     {
         'id': 643,
@@ -14590,6 +14688,7 @@ const pokemonList = createPokemonArray(
             'speed': 91,
         },
         'genderType': GameConstants.MALE_ONLY,
+        'visibleName': 'Landorus',
     },
     {
         'id': 646,
@@ -14630,6 +14729,7 @@ const pokemonList = createPokemonArray(
             'speed': 95,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Kyurem',
     },
     {
         'id': 646.2,
@@ -14648,6 +14748,7 @@ const pokemonList = createPokemonArray(
             'speed': 95,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Kyurem',
     },
     {
         'id': 647,
@@ -14684,6 +14785,7 @@ const pokemonList = createPokemonArray(
             'speed': 108,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Keldeo',
     },
     {
         'id': 648,
@@ -14703,6 +14805,7 @@ const pokemonList = createPokemonArray(
         },
         'heldItem': {type: ItemType.underground, id: 'Star Piece'},
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Meloetta',
     },
     {
         'id': 648.1,
@@ -14721,6 +14824,7 @@ const pokemonList = createPokemonArray(
             'speed': 128,
         },
         'genderType': GameConstants.GENDERLESS,
+        'visibleName': 'Meloetta',
     },
     {
         'id': 649,
@@ -14911,6 +15015,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 658.01,
         'name': 'Ash Greninja',
+        'visibleName': 'Greninja',
         'type': [PokemonType.Water, PokemonType.Dark],
         'eggCycles': 45,
         'levelType': LevelType.mediumslow,
@@ -15053,6 +15158,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666,
         'name': 'Vivillon (Meadow)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         'eggCycles': 15,
         'levelType': LevelType.mediumfast,
@@ -15070,6 +15176,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.01,
         'name': 'Vivillon (Pokéball)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15088,6 +15195,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.02,
         'name': 'Vivillon (Polar)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15106,6 +15214,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.03,
         'name': 'Vivillon (Tundra)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15124,6 +15233,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.04,
         'name': 'Vivillon (Continental)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15142,6 +15252,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.05,
         'name': 'Vivillon (Garden)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15160,6 +15271,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.06,
         'name': 'Vivillon (Elegant)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15178,6 +15290,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.07,
         'name': 'Vivillon (Icy Snow)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15196,6 +15309,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.08,
         'name': 'Vivillon (Modern)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15214,6 +15328,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.09,
         'name': 'Vivillon (Marine)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15232,6 +15347,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.10,
         'name': 'Vivillon (Archipelago)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15250,6 +15366,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.11,
         'name': 'Vivillon (High Plains)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15268,6 +15385,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.12,
         'name': 'Vivillon (Sandstorm)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15286,6 +15404,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.13,
         'name': 'Vivillon (River)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15304,6 +15423,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.14,
         'name': 'Vivillon (Monsoon)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15322,6 +15442,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.15,
         'name': 'Vivillon (Savanna)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15340,6 +15461,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.16,
         'name': 'Vivillon (Sun)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15358,6 +15480,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.17,
         'name': 'Vivillon (Ocean)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15376,6 +15499,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.18,
         'name': 'Vivillon (Jungle)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15394,6 +15518,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 666.19,
         'name': 'Vivillon (Fancy)',
+        'visibleName': 'Vivillon',
         'type': [PokemonType.Bug, PokemonType.Flying],
         // Boosted to match standard Vivillon (Meadow)
         'eggCycles': 35,
@@ -15450,6 +15575,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 669,
         'name': 'Flabébé (Red)',
+        'visibleName': 'Flabébé',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15469,6 +15595,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 669.01,
         'name': 'Flabébé (Yellow)',
+        'visibleName': 'Flabébé',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15488,6 +15615,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 669.02,
         'name': 'Flabébé (Blue)',
+        'visibleName': 'Flabébé',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15507,6 +15635,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 669.03,
         'name': 'Flabébé (Orange)',
+        'visibleName': 'Flabébé',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15526,6 +15655,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 669.04,
         'name': 'Flabébé (White)',
+        'visibleName': 'Flabébé',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15545,6 +15675,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670,
         'name': 'Floette (Red)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15564,6 +15695,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670.01,
         'name': 'Floette (Yellow)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15583,6 +15715,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670.02,
         'name': 'Floette (Blue)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15602,6 +15735,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670.03,
         'name': 'Floette (Orange)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15621,6 +15755,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670.04,
         'name': 'Floette (White)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15640,6 +15775,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 670.05,
         'name': 'Floette (Eternal)',
+        'visibleName': 'Floette',
         'type': [PokemonType.Fairy],
         'eggCycles': 30,
         'levelType': LevelType.mediumfast,
@@ -15658,6 +15794,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 671,
         'name': 'Florges (Red)',
+        'visibleName': 'Florges',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15676,6 +15813,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 671.01,
         'name': 'Florges (Yellow)',
+        'visibleName': 'Florges',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15694,6 +15832,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 671.02,
         'name': 'Florges (Blue)',
+        'visibleName': 'Florges',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15712,6 +15851,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 671.03,
         'name': 'Florges (Orange)',
+        'visibleName': 'Florges',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15730,6 +15870,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 671.04,
         'name': 'Florges (White)',
+        'visibleName': 'Florges',
         'type': [PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15835,6 +15976,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.01,
         'name': 'Furfrou (Heart)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15852,6 +15994,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.02,
         'name': 'Furfrou (Star)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15869,6 +16012,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.03,
         'name': 'Furfrou (Diamond)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15886,6 +16030,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.04,
         'name': 'Furfrou (Debutante)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15903,6 +16048,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.05,
         'name': 'Furfrou (Matron)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15920,6 +16066,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.06,
         'name': 'Furfrou (Dandy)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15937,6 +16084,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.07,
         'name': 'Furfrou (La Reine)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15954,6 +16102,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.08,
         'name': 'Furfrou (Kabuki)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -15971,6 +16120,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 676.09,
         'name': 'Furfrou (Pharaoh)',
+        'visibleName': 'Furfrou',
         'type': [PokemonType.Normal],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17041,6 +17191,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 735.01,
         'name': 'Totem Gumshoos',
+        'visibleName': 'Gumshoos',
         'type': [PokemonType.Normal],
         'eggCycles': 23,
         'levelType': LevelType.mediumfast,
@@ -17117,6 +17268,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 738.01,
         'name': 'Totem Vikavolt',
+        'visibleName': 'Vikavolt',
         'type': [PokemonType.Bug, PokemonType.Electric],
         'eggCycles': 35,
         'levelType': LevelType.mediumfast,
@@ -17169,6 +17321,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 741,
         'name': 'Oricorio (Baile)',
+        'visibleName': 'Oricorio',
         'type': [PokemonType.Fire, PokemonType.Flying],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17187,6 +17340,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 741.01,
         'name': 'Oricorio (Pom-pom)',
+        'visibleName': 'Oricorio',
         'type': [PokemonType.Electric, PokemonType.Flying],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17205,6 +17359,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 741.02,
         'name': 'Oricorio (Pa\'u)',
+        'visibleName': 'Oricorio',
         'type': [PokemonType.Psychic, PokemonType.Flying],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17223,6 +17378,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 741.03,
         'name': 'Oricorio (Sensu)',
+        'visibleName': 'Oricorio',
         'type': [PokemonType.Ghost, PokemonType.Flying],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -17276,6 +17432,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 743.01,
         'name': 'Totem Ribombee',
+        'visibleName': 'Ribombee',
         'type': [PokemonType.Bug, PokemonType.Fairy],
         'eggCycles': 30,
         'levelType': LevelType.mediumfast,
@@ -17316,6 +17473,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 745,
         'name': 'Lycanroc (Midday)',
+        'visibleName': 'Lycanroc',
         'type': [PokemonType.Rock],
         'eggCycles': 15,
         'levelType': LevelType.mediumfast,
@@ -17333,6 +17491,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 745.01,
         'name': 'Lycanroc (Midnight)',
+        'visibleName': 'Lycanroc',
         'type': [PokemonType.Rock],
         'eggCycles': 15,
         'levelType': LevelType.mediumfast,
@@ -17350,6 +17509,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 745.02,
         'name': 'Lycanroc (Dusk)',
+        'visibleName': 'Lycanroc',
         'type': [PokemonType.Rock],
         'eggCycles': 15,
         'levelType': LevelType.mediumfast,
@@ -17367,6 +17527,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 746,
         'name': 'Wishiwashi (Solo)',
+        'visibleName': 'Wishiwashi',
         'type': [PokemonType.Water],
         'eggCycles': 15,
         'levelType': LevelType.fast,
@@ -17385,6 +17546,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 746.01,
         'name': 'Wishiwashi (School)',
+        'visibleName': 'Wishiwashi',
         'type': [PokemonType.Water],
         'eggCycles': 15,
         'levelType': LevelType.fast,
@@ -17402,6 +17564,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 746.02,
         'name': 'Totem Wishiwashi',
+        'visibleName': 'Wishiwashi',
         'type': [PokemonType.Water],
         'eggCycles': 23,
         'levelType': LevelType.fast,
@@ -17524,6 +17687,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 752.01,
         'name': 'Totem Araquanid',
+        'visibleName': 'Araquanid',
         'type': [PokemonType.Water, PokemonType.Bug],
         'eggCycles': 23,
         'levelType': LevelType.mediumfast,
@@ -17576,6 +17740,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 754.01,
         'name': 'Totem Lurantis',
+        'visibleName': 'Lurantis',
         'type': [PokemonType.Grass],
         'eggCycles': 30,
         'levelType': LevelType.mediumfast,
@@ -17665,6 +17830,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 758.01,
         'name': 'Totem Salazzle',
+        'visibleName': 'Salazzle',
         'type': [PokemonType.Poison, PokemonType.Fire],
         'eggCycles': 30,
         'levelType': LevelType.mediumfast,
@@ -17950,6 +18116,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774,
         'name': 'Minior (Meteor)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -17969,6 +18136,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.01,
         'name': 'Minior (Blue-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -17987,6 +18155,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.02,
         'name': 'Minior (Green-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18005,6 +18174,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.03,
         'name': 'Minior (Indigo-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18023,6 +18193,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.04,
         'name': 'Minior (Orange-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18041,6 +18212,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.05,
         'name': 'Minior (Red-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18059,6 +18231,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.06,
         'name': 'Minior (Violet-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18077,6 +18250,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 774.07,
         'name': 'Minior (Yellow-core)',
+        'visibleName': 'Minior',
         'type': [PokemonType.Rock, PokemonType.Flying],
         'eggCycles': 25,
         'levelType': LevelType.mediumslow,
@@ -18146,6 +18320,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 777.01,
         'name': 'Totem Togedemaru',
+        'visibleName': 'Togedemaru',
         'type': [PokemonType.Electric, PokemonType.Steel],
         'eggCycles': 10,
         'levelType': LevelType.mediumfast,
@@ -18180,6 +18355,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 778.01,
         'name': 'Totem Mimikyu',
+        'visibleName': 'Mimikyu',
         'type': [PokemonType.Ghost, PokemonType.Fairy],
         'eggCycles': 20,
         'levelType': LevelType.mediumfast,
@@ -18306,6 +18482,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 784.01,
         'name': 'Totem Kommo-o',
+        'visibleName': 'Kommo-o',
         'type': [PokemonType.Dragon, PokemonType.Fighting],
         'eggCycles': 90,
         'levelType': LevelType.slow,
@@ -18616,6 +18793,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 800.01,
         'name': 'Necrozma (Dusk Mane)',
+        'visibleName': 'Necrozma',
         'type': [PokemonType.Psychic, PokemonType.Steel],
         'eggCycles': 120,
         'levelType': LevelType.slow,
@@ -18634,6 +18812,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 800.02,
         'name': 'Necrozma (Dawn Wings)',
+        'visibleName': 'Necrozma',
         'type': [PokemonType.Psychic, PokemonType.Ghost],
         'eggCycles': 120,
         'levelType': LevelType.slow,
@@ -18652,6 +18831,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 800.03,
         'name': 'Necrozma (Ultra)',
+        'visibleName': 'Necrozma',
         'type': [PokemonType.Psychic, PokemonType.Dragon],
         'eggCycles': 120,
         'levelType': LevelType.slow,
@@ -18688,6 +18868,7 @@ const pokemonList = createPokemonArray(
     {
         'id': 801.1,
         'name': 'Magearna (Original Color)',
+        'visibleName': 'Magearna',
         'type': [PokemonType.Steel, PokemonType.Fairy],
         'eggCycles': 120,
         'levelType': LevelType.slow,
