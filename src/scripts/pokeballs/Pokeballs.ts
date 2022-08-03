@@ -10,7 +10,7 @@ class Pokeballs implements Feature {
         alreadyCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
-        /*Types*/
+        // Types
         typeNormalSelection: GameConstants.Pokeball.None,
         typeFireSelection: GameConstants.Pokeball.None,
         typeWaterSelection: GameConstants.Pokeball.None,
@@ -36,7 +36,7 @@ class Pokeballs implements Feature {
     private _alreadyCaughtShinySelection: KnockoutObservable<GameConstants.Pokeball>;
     private _notCaughtSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _notCaughtShinySelection: KnockoutObservable<GameConstants.Pokeball>;
-    /*Types*/
+    // Types
     private _typeNormalSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeFireSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeWaterSelection: KnockoutObservable<GameConstants.Pokeball>;
@@ -55,6 +55,10 @@ class Pokeballs implements Feature {
     private _typeDarkSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeSteelSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeFairySelection: KnockoutObservable<GameConstants.Pokeball>;
+
+    // Beast Ball Toggles
+    public catchUltraBeast: KnockoutObservable<boolean>;
+    public catchUltraBeastShiny: KnockoutObservable<boolean>;
 
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
@@ -144,7 +148,7 @@ class Pokeballs implements Feature {
         this._alreadyCaughtShinySelection = ko.observable(this.defaults.alreadyCaughtShinySelection);
         this._notCaughtSelection = ko.observable(this.defaults.notCaughtSelection);
         this._notCaughtShinySelection = ko.observable(this.defaults.notCaughtShinySelection);
-        /*Types*/
+        // Types
         this._typeNormalSelection = ko.observable(this.defaults.typeNormalSelection);
         this._typeFireSelection = ko.observable(this.defaults.typeFireSelection);
         this._typeWaterSelection = ko.observable(this.defaults.typeWaterSelection);
@@ -163,6 +167,9 @@ class Pokeballs implements Feature {
         this._typeDarkSelection = ko.observable(this.defaults.typeDarkSelection);
         this._typeSteelSelection = ko.observable(this.defaults.typeSteelSelection);
         this._typeFairySelection = ko.observable(this.defaults.typeFairySelection);
+        // Beast Ball Toggles
+        this.catchUltraBeast = ko.observable(false);
+        this.catchUltraBeastShiny = ko.observable(false);
 
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable(this._alreadyCaughtSelection);
@@ -174,7 +181,7 @@ class Pokeballs implements Feature {
             this._alreadyCaughtShinySelection,
             this._notCaughtSelection,
             this._notCaughtShinySelection,
-            /*Types*/
+            // Types
             this._typeNormalSelection,
             this._typeFireSelection,
             this._typeWaterSelection,
@@ -221,7 +228,7 @@ class Pokeballs implements Feature {
     public calculatePokeballToUse(enemyPokemon: BattlePokemon, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(enemyPokemon.id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(enemyPokemon.id, true);
-*/
+    */
     public calculatePokeballToUse(id: number, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(id, true);
@@ -310,9 +317,19 @@ class Pokeballs implements Feature {
                 return GameConstants.Pokeball.None;
             }
         } else if (GameConstants.UltraBeastType[pokemon.name] != undefined) {
-            if (pref != GameConstants.Pokeball.None && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
-                return GameConstants.Pokeball.Beastball;
-            } else {
+            //if (pref != GameConstants.Pokeball.None && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+            if (this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+                if (this.catchUltraBeast()) {
+                    return GameConstants.Pokeball.Beastball;
+                }
+                else if (isShiny && this.catchUltraBeastShiny()) {
+                    return GameConstants.Pokeball.Beastball;
+                }
+                else {
+                    return GameConstants.Pokeball.None;
+                }
+            } 
+            else {
                 return GameConstants.Pokeball.None;
             }
         }
@@ -381,7 +398,10 @@ class Pokeballs implements Feature {
         this.notCaughtShinySelection = json.notCaughtShinySelection ?? this.defaults.notCaughtShinySelection;
         this.alreadyCaughtSelection = json.alreadyCaughtSelection ?? this.defaults.alreadyCaughtSelection;
         this.alreadyCaughtShinySelection = json.alreadyCaughtShinySelection ?? this.defaults.alreadyCaughtShinySelection;
-        //Types
+        // Beast Ball
+        this.catchUltraBeast(json.catchUltraBeast ?? false),
+        this.catchUltraBeastShiny(json.catchUltraBeastShiny ?? false),
+        // Types
         this.typeNormalSelection = json.typeNormalSelection ?? this.defaults.typeNormalSelection;
         this.typeFireSelection = json.typeFireSelection ?? this.defaults.typeFireSelection;
         this.typeWaterSelection = json.typeWaterSelection ?? this.defaults.typeWaterSelection;
@@ -409,7 +429,10 @@ class Pokeballs implements Feature {
             'notCaughtShinySelection': this.notCaughtShinySelection,
             'alreadyCaughtSelection': this.alreadyCaughtSelection,
             'alreadyCaughtShinySelection': this.alreadyCaughtShinySelection,
-            //Types
+            // Beast Ball Toggles
+            'catchUltraBeast': this.catchUltraBeast(),
+            'catchUltraBeastShiny': this.catchUltraBeastShiny(),
+            // Types
             'typeNormalSelection': this.typeNormalSelection,
             'typeFireSelection': this.typeFireSelection,
             'typeWaterSelection': this.typeWaterSelection,
@@ -468,7 +491,7 @@ class Pokeballs implements Feature {
         this._alreadyCaughtShinySelection(ball);
     }
 
-    //Types
+    // Types
     get typeNormalSelection() {
         return this._typeNormalSelection();
     }

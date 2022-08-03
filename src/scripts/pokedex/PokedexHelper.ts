@@ -239,7 +239,7 @@ class PokedexHelper {
         const genderRatio = pokemon.genderRatio;
         let genderRatioMale = '';
         let genderRatioFemale = '';
-        console.log(pokemon);
+        // console.log(pokemon);
         if (genderType === GameConstants.MALE_ONLY) {
             genderRatioMale = '100';
             genderRatioFemale = '0';

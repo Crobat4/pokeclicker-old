@@ -222,7 +222,7 @@ class Breeding implements Feature {
         return this.multiplier.getBonus('eggStep');
     }
 
-    //Fill queue button
+    // Fill queue button
     public fillHatcheryQueue() {
         const hatcheryList = PartyController.hatcherySortedList;
         const hatcheryListFiltered = [];
