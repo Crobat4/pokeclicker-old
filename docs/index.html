@@ -17,10 +17,10 @@
     <script src="libs/Sortable.min.js"></script>
 
     <!-- New module-based code from './modules' -->
-    <script src="scripts/modules.min.js?v=0.9.9"></script>
+    <script src="scripts/modules.min.js?v=0.9.10"></script>
 
     <!--Minified scripts-->
-    <script src="scripts/script.min.js?v=0.9.9"></script>
+    <script src="scripts/script.min.js?v=0.9.10"></script>
 
     <!--Popper.js-->
     <script src="libs/popper.min.js"></script>
@@ -41,7 +41,7 @@
     <link href="libs/introjs-modern.css" rel="stylesheet">
 
     <!--Minified styles-->
-    <link href="styles/styles.min.css?v=0.9.9" rel="stylesheet">
+    <link href="styles/styles.min.css?v=0.9.10" rel="stylesheet">
 
     <!-- Google Analytics-->
     <style>
@@ -742,6 +742,44 @@
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.notCaughtSelection)}"></td>
                     <td data-bind="template: {name: 'selectedPokeballCountTemplate', data: App.game.pokeballs.getBallQuantity(App.game.pokeballs.notCaughtShinySelection)}"></td>
                 </tr>
+                <!-- ko if: new TemporaryBattleRequirement('Anabel').isCompleted() -->
+                <tr>
+                    <td class="align-middle" width="20%"
+                        data-bind="tooltip: {
+                                title: 'Enable this option to catch Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ` Beast Ball${App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) != 1 ? 's' : ''} remaining`,
+                                trigger:'hover',
+                                html:true
+                        }">
+                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">
+                    </td>
+                    <td class="align-middle">
+                        <label class="form-check-label toggler-wrapper style-1 m-auto">
+                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub"
+                                data-bind="checked: App.game.pokeballs.catchUltraBeast">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                    </td>
+                    <td class="align-middle" width="20%"
+                        data-bind="tooltip: {
+                            title: 'Enable this option to catch only Shiny Ultra Beasts<br/>' + App.game.pokeballs.getBallQuantity(GameConstants.Pokeball.Beastball) + ' Beast Balls remaining',
+                            trigger:'hover',
+                            html:true
+                        }">
+                        <img class="pokeball-small pokeball-selected" src="assets/images/pokeball/Beastball.svg">✨
+                    </td>
+                    <td class="align-middle">
+                        <label class="form-check-label toggler-wrapper style-1 m-auto">
+                            <input class="form-check-input" type="checkbox" id="pokeball-catch-ub-shiny"
+                                data-bind="checked: App.game.pokeballs.catchUltraBeastShiny">
+                            <div class="toggler-slider">
+                                <div class="toggler-knob"></div>
+                            </div>
+                        </label>
+                    </td>
+                </tr>
+                <!-- /ko -->
             </thead>
         </table>
     </div>
@@ -1248,7 +1286,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
+                                    <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? Battle.enemyPokemon().visibleName : Battle.enemyPokemon().name) + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 
@@ -1285,7 +1323,7 @@
         data-bind="click: function() { DungeonRunner.handleClick() }">
         <h2 class="pageItemTitle" style="display: block;">
             <knockout data-bind="if: DungeonBattle.enemyPokemon() && DungeonBattle.enemyPokemon().health()">
-                <knockout data-bind="html: DungeonBattle.enemyPokemon().name + ' ' + DungeonBattle.enemyPokemon().genderText">Pokémon name</knockout>
+                <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? DungeonBattle.enemyPokemon().visibleName : DungeonBattle.enemyPokemon().name) + ' ' + DungeonBattle.enemyPokemon().genderText">Pokémon name</knockout>
                 <!-- ko if: !DungeonBattle.trainer() -->
                 <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(DungeonBattle.enemyPokemon().id)}}"></knockout>
                 <!-- /ko -->
@@ -1410,7 +1448,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="html: GymBattle.enemyPokemon().name + ' ' + GymBattle.enemyPokemon().genderText">Pokémon name</knockout>
+                <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? GymBattle.enemyPokemon().visibleName : GymBattle.enemyPokemon().name) + ' ' + GymBattle.enemyPokemon().genderText">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -1474,7 +1512,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="html: TemporaryBattleBattle.enemyPokemon().name + ' ' + TemporaryBattleBattle.enemyPokemon().genderText">Pokémon name</knockout>
+                <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? TemporaryBattleBattle.enemyPokemon().visibleName : TemporaryBattleBattle.enemyPokemon().name) + ' ' + TemporaryBattleBattle.enemyPokemon().genderText">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right">
@@ -1530,7 +1568,7 @@
             </knockout>
 
             <knockout>
-                <knockout data-bind="html: BattleFrontierBattle.enemyPokemon().name + ' ' + BattleFrontierBattle.enemyPokemon().genderText">Pokémon name</knockout>
+                <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? BattleFrontierBattle.enemyPokemon().visibleName : BattleFrontierBattle.enemyPokemon().name) + ' ' + BattleFrontierBattle.enemyPokemon().genderText">Pokémon name</knockout>
             </knockout>
 
             <knockout class="right" data-bind="html: BattleFrontierRunner.pokemonLeftImages">
@@ -1931,8 +1969,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.kanto, 'Kanto').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/kanto-kanto.png?v=0.9.9',
-            href:'assets/images/kanto-kanto.png?v=0.9.9'
+            'xlink:href':'assets/images/kanto-kanto.png?v=0.9.10',
+            href:'assets/images/kanto-kanto.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -3902,8 +3940,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.kanto, 'Sevii Islands 123').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/kanto-sevii123.png?v=0.9.9',
-            href:'assets/images/kanto-sevii123.png?v=0.9.9'
+            'xlink:href':'assets/images/kanto-sevii123.png?v=0.9.10',
+            href:'assets/images/kanto-sevii123.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -4245,8 +4283,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.johto'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/johto.png?v=0.9.9',
-        href:'assets/images/johto.png?v=0.9.9'
+        'xlink:href':'assets/images/johto.png?v=0.9.10',
+        href:'assets/images/johto.png?v=0.9.10'
     }"></image>
 
     <!-- ------ -->
@@ -6264,8 +6302,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.hoenn'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/hoenn.png?v=0.9.9',
-        href:'assets/images/hoenn.png?v=0.9.9'
+        'xlink:href':'assets/images/hoenn.png?v=0.9.10',
+        href:'assets/images/hoenn.png?v=0.9.10'
     }"></image>
 
     <!-- ------ -->
@@ -8869,8 +8907,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.sinnoh'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/sinnoh.png?v=0.9.9',
-        href:'assets/images/sinnoh.png?v=0.9.9'
+        'xlink:href':'assets/images/sinnoh.png?v=0.9.10',
+        href:'assets/images/sinnoh.png?v=0.9.10'
     }"></image>
 
     <!-- ------ -->
@@ -11542,8 +11580,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.unova'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/unova.png?v=0.9.9',
-        href:'assets/images/unova.png?v=0.9.9'
+        'xlink:href':'assets/images/unova.png?v=0.9.10',
+        href:'assets/images/unova.png?v=0.9.10'
     }"></image>
 
     <!-- ------ -->
@@ -14213,8 +14251,8 @@
 
                             <g data-bind='visible: player.region == GameConstants.Region.kalos'>
     <image width="1600" height="960" data-bind="attr: {
-        'xlink:href':'assets/images/kalos.png?v=0.9.9',
-        href:'assets/images/kalos.png?v=0.9.9'
+        'xlink:href':'assets/images/kalos.png?v=0.9.10',
+        href:'assets/images/kalos.png?v=0.9.10'
     }"></image>
 
     <!-- ------ -->
@@ -16288,8 +16326,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Melemele island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-melemele.png?v=0.9.9',
-            href:'assets/images/alola-melemele.png?v=0.9.9'
+            'xlink:href':'assets/images/alola-melemele.png?v=0.9.10',
+            href:'assets/images/alola-melemele.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -19459,8 +19497,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Akala island').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola-akala.png?v=0.9.9',
-            href:'assets/images/alola-akala.png?v=0.9.9'
+            'xlink:href':'assets/images/alola-akala.png?v=0.9.10',
+            href:'assets/images/alola-akala.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -21499,8 +21537,8 @@
 
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.alola, 'Ula\'ula & Poni islands').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/alola2.png?v=0.9.9',
-            href:'assets/images/alola2.png?v=0.9.9'
+            'xlink:href':'assets/images/alola2.png?v=0.9.10',
+            href:'assets/images/alola2.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -23076,8 +23114,8 @@
                             <g data-bind='visible: player.region == GameConstants.Region.galar'>
     <g data-bind="visible: player.subregion == SubRegions.getSubRegion(GameConstants.Region.galar, 'Galar').id">
         <image width="1600" height="960" data-bind="attr: {
-            'xlink:href':'assets/images/galar.png?v=0.9.9',
-            href:'assets/images/galar.png?v=0.9.9'
+            'xlink:href':'assets/images/galar.png?v=0.9.10',
+            href:'assets/images/galar.png?v=0.9.10'
         }"></image>
 
         <!-- ------ -->
@@ -25906,6 +25944,7 @@ aria-labelledby="AchievementsModalLabel" aria-hidden="true">
                     <div class="tab-pane" id="settings-crobat">
                         <table class="table table-striped table-hover m-0">
                             <tbody>
+                                <!--<tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('shortNames')}"></tr>-->
                                 <!--
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('shinyPokedex')}"></tr>
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('fullWidthContainer')}"></tr>
@@ -26703,18 +26742,20 @@ aria-labelledby="hallOfFameModalLabel" aria-hidden="true">
 <!-- Breeding Modal-->
 <div class="modal fade" id="breedingModal" tabindex="-1" role="dialog"
 aria-labelledby="breedingModalLabel" aria-hidden="true">
-<div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+<div class="modal-dialog modal-dialog-scrollable modal-lg pokedex-modal" role="document">
    <div class="modal-content">
        <div class="modal-header justify-content-start align-items-center">
             <h5 class="modal-title" id="breedingModalLabel">Day Care</h5>
-            <button class="btn btn-secondary" type="button" data-toggle="collapse" style="margin-left: 25px;"
+            <button class="btn btn-secondary d-md-none d-block" type="button" data-toggle="collapse" style="margin-left: 25px;"
                     data-target="#breeding-filter" aria-expanded="false" aria-controls="breeding-filter">
                 Filters
             </button>
+            <!--
             <button class="btn btn-secondary" type="button" data-toggle="collapse" style="margin-left: 25px;"
                     data-target="#breeding-settings" aria-expanded="false" aria-controls="breeding-settings">
                 Settings
             </button>
+            -->
             <button class="btn btn-secondary" type="button" style="margin-left: 25px;" href="#categoryModal" data-toggle="modal">
                 Categories
             </button>
@@ -26738,140 +26779,197 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                 <li class="nav-item" data-bind="visible: App.game.breeding.hatcheryHelpers.isUnlocked()"><a class="nav-link" href="#breeding-helpers" data-toggle="tab">Helpers (BETA)</a></li>
                 <li class="nav-item"><a class="nav-link" href="#breeding-help" data-toggle="tab">Help</a></li>
             </ul>
-
+            <!--
             <p class="bg-warning my-0" data-bind="visible: !App.game.breeding.hasFreeEggSlot()">
                 You don't have any free egg slots.
             </p>
             <p class="bg-danger my-0" data-bind="visible: !App.game.breeding.hasFreeQueueSlot() && App.game.breeding.queueSlots()">
                 Your breeding queue is full.
             </p>
-
+            -->
             <div class="tab-content p-3">
-                <div class="tab-pane active" id="breeding-pokemon">
-                    <div class="text-left">
-                        <div class="form-row collapse" id="breeding-filter">
-                            <div class="form-group col-md-6 col-6">
-                                <label>Search</label>
-                                <input autocomplete="off" class="form-control" oninput="BreedingFilters.search.value(new RegExp(`(${this.value})`, 'i'))" placeholder="search here"/>
+                <div class="tab-pane active mx-0" id="breeding-pokemon">
+                    <div class="row">
+                        <div class="col-md-3 collapse dont-collapse-sm" id="breeding-filter"> <!--text-left-->
+                            <div class="w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                                <h4>Filters and Settings</h4>
                             </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Category</label>
-                                <select name="breedingCategoryFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.category.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <option value="-1">All</option>
-                                    <!-- ko foreach: PokemonCategories.categories -->
-                                    <option style="color: whitesmoke" data-bind="attr: { value: $index, selected: Settings.getSetting('breedingCategoryFilter').value == $index() }, text: $data.name, style: { background: $data.color }">Category</option>
+                            <div id="hatchery-filter-container">
+                                <div class="col-12 " id="">
+                                    <div class="form-row text-left">
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Name</label>
+                                            <input autocomplete="off" class="form-control" oninput="BreedingFilters.search.value(new RegExp(`(${this.value})`, 'i'))" placeholder="Crobat"/>
+                                        </div>
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Region</label>
+                                            <select name="breedingRegionFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.region.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <!-- ko foreach: Settings.getSetting('breedingRegionFilter').options.filter(r => r.value <= player.highestRegion()) -->
+                                                <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingRegionFilter').value === $data.value }, text: $data.text">Region</option>
+                                                <!-- /ko -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Shiny Status</label>
+                                            <select name="breedingShinyFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.shinyStatus.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <option value="-1" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '-1' }">All</option>
+                                                <option value="0" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '0' }">Not Shiny</option>
+                                                <option value="1" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '1' }">Shiny</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Pokérus Status</label>
+                                            <select name="breedingPokerusFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.pokerus.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <!-- ko foreach: Settings.getSetting('breedingPokerusFilter').options -->
+                                                <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingPokerusFilter').value === $data.value }, text: $data.text"></option>
+                                                <!-- /ko -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Type</label>
+                                            <select name="breedingTypeFilter1" autocomplete="off" class="custom-select" onchange="BreedingFilters.type1.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <!-- ko foreach: Settings.getSetting('breedingTypeFilter1').options -->
+                                                <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingTypeFilter1').value === $data.value }, text: $data.text">Type</option>
+                                                <!-- /ko -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-6 col-6">
+                                            <label>Type</label>
+                                            <select name="breedingTypeFilter2" autocomplete="off" class="custom-select" onchange="BreedingFilters.type2.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <!-- ko foreach: Settings.getSetting('breedingTypeFilter2').options -->
+                                                <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingTypeFilter2').value === $data.value }, text: $data.text">Type</option>
+                                                <!-- /ko -->
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-12 col-6">
+                                            <label>Category</label>
+                                            <select name="breedingCategoryFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.category.value(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                                <option value="-1">All</option>
+                                                <!-- ko foreach: PokemonCategories.categories -->
+                                                <option style="color: whitesmoke" data-bind="attr: { value: $index, selected: Settings.getSetting('breedingCategoryFilter').value == $index() }, text: $data.name, style: { background: $data.color }">Category</option>
+                                                <!-- /ko -->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <hr style="margin-top:0; border-color:white;"/>
+                                </div>
+                                <div class="col-12 dont-collapse-sm" id="breeding-settings"> <!-- collapse -->
+                                    <div class="form-row text-left" >
+                                    <div class="form-group col-md-12 col-6">
+                                        <label>Display Value</label>
+                                        <select name="breedingDisplayFilter" autocomplete="off" class="custom-select" onchange="BreedingController.displayValue(this.value), Settings.setSettingByName(this.name, this.value)">
+                                            <!-- ko foreach: Settings.getSetting('breedingDisplayFilter').options -->
+                                            <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingDisplayFilter').value === $data.value }, text: $data.text">Type</option>
+                                            <!-- /ko -->
+                                        </select>
+                                    </div>
+                                    <!-- ko if: App.game.challenges.list.regionalAttackDebuff.active() -->
+                                    <div class="form-group col-md-12 col-6">
+                                        <label>Regional Debuff</label>
+                                        <select name="breedingRegionalAttackDebuffSetting" autocomplete="off" class="custom-select" onchange="BreedingController.regionalAttackDebuff(+this.value), Settings.setSettingByName(this.name, this.value)">
+                                            <!-- ko foreach: Settings.getSetting('breedingRegionalAttackDebuffSetting').options.filter(r => r.value <= player.highestRegion()) -->
+                                            <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingRegionalAttackDebuffSetting').value === $data.value }, text: $data.text">Type</option>
+                                            <!-- /ko -->
+                                        </select>
+                                    </div>
                                     <!-- /ko -->
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Region</label>
-                                <select name="breedingRegionFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.region.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingRegionFilter').options.filter(r => r.value <= player.highestRegion()) -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingRegionFilter').value === $data.value }, text: $data.text">Region</option>
-                                    <!-- /ko -->
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Shiny Status</label>
-                                <select name="breedingShinyFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.shinyStatus.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <option value="-1" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '-1' }">All</option>
-                                    <option value="0" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '0' }">Not Shiny</option>
-                                    <option value="1" data-bind="attr: { selected: Settings.getSetting('breedingShinyFilter').value === '1' }">Shiny</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Type</label>
-                                <select name="breedingTypeFilter1" autocomplete="off" class="custom-select" onchange="BreedingFilters.type1.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingTypeFilter1').options -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingTypeFilter1').value === $data.value }, text: $data.text">Type</option>
-                                    <!-- /ko -->
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Type</label>
-                                <select name="breedingTypeFilter2" autocomplete="off" class="custom-select" onchange="BreedingFilters.type2.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingTypeFilter2').options -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingTypeFilter2').value === $data.value }, text: $data.text">Type</option>
-                                    <!-- /ko -->
-                                </select>
-                            </div>
-                            <div class="form-group col-md-3 col-6">
-                                <label>Pokérus Status</label>
-                                <select name="breedingPokerusFilter" autocomplete="off" class="custom-select" onchange="BreedingFilters.pokerus.value(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingPokerusFilter').options -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingPokerusFilter').value === $data.value }, text: $data.text"></option>
-                                    <!-- /ko -->
-                                </select>
+                                    <div class="form-group col-md-12 col-12" style="max-width: 100%; flex-grow: 1" data-bind="with: Settings.getSetting('hatcherySort')">
+                                        <label>Sort</label>
+                                        <div class="input-group">
+                                            <select autocomplete="off" class="custom-select" onchange="Settings.setSettingByName(this.name, SortOptions[SortOptions[this.value]])"
+                                                data-bind="foreach: $data.options, attr: {name}, selectedOptions: [$data.observableValue()]">
+                                                <option data-bind="text: $data.text, value: $data.value"></option>
+                                            </select>
+                                            <div class="input-group-append bg-primary text-light">
+                                                <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
+                                                html: Settings.getSetting('hatcherySortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
+                                                tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
+
+                                                ">⥂⥄</label>
+                                                <input id="hatcherySortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
+                                                    data-bind="checked: Settings.getSetting('hatcherySortDirection').observableValue()"
+                                                    onchange="Settings.setSettingByName('hatcherySortDirection', this.checked)"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-row collapse" id="breeding-settings">
-                            <div class="form-group col-md-3 col-6">
-                                <label>Display Value</label>
-                                <select name="breedingDisplayFilter" autocomplete="off" class="custom-select" onchange="BreedingController.displayValue(this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingDisplayFilter').options -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingDisplayFilter').value === $data.value }, text: $data.text">Type</option>
-                                    <!-- /ko -->
-                                </select>
+                        <div class="col-md-9">
+                            <!-- Check if the player has any level 100 Pokémon or if they have any eggs -->
+                            <!--
+                            <p class="bg-danger my-0" data-bind="visible: App.game.party.hasMaxLevelPokemon()">
+                                Unfortunately, you don't have any Pokémon of level 100 to breed.
+                            </p>
+                            -->
+                            <div class="row justify-content-center w-100 mb-2" style="border-bottom: 1px solid #eceeef">
+                                <div class="col-3 d-md-block d-none">
+                                    <h4>Hatchery Status: </h4>
+                                </div>
+                                <div class="col-md-9 col-12">
+                                    <div class="row hatchery-status">
+                                        <!-- ko if: App.game.breeding.hasFreeEggSlot() -->
+                                        <div class="col-md-3 col-6 mt-md-1"
+                                            data-bind="tooltip: { title: 'Your Egg Slots and Bredding Queue are free', trigger: 'hover', placement:'bottom' }">
+                                            <div class="bg-success rounded">Available</div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: !App.game.breeding.hasFreeEggSlot() -->
+                                        <div class="col-md-3 col-6 mt-md-1"
+                                            data-bind="tooltip: { title: 'You don\'t have any free egg slots', trigger: 'hover', placement:'bottom' }">
+                                            <div class="bg-warning rounded">Full Egg Slots</div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: !App.game.breeding.hasFreeQueueSlot() && App.game.breeding.queueSlots() -->
+                                        <div class="col-md-3 col-6 mt-md-1"
+                                            data-bind="tooltip: { title: 'Your breeding queue is full', trigger: 'hover', placement:'bottom' }">
+                                            <div class="bg-danger rounded">Full Queue</div>
+                                        </div>
+                                        <!-- /ko -->
+                                        <!-- ko if: !App.game.party.hasMaxLevelPokemon() -->
+                                        <div class="col-md-3 col-6 mt-md-1"
+                                            data-bind="tooltip: { title: 'Unfortunately, you don\'t have any Pokémon of level 100 to breed', trigger: 'hover', placement:'bottom' }">
+                                            <div class="bg-danger rounded">No Lv. 100 Pokémon</div>
+                                        </div>
+                                        <!-- /ko -->
+                                    </div>
+                                </div>
                             </div>
-                            <!-- ko if: App.game.challenges.list.regionalAttackDebuff.active() -->
-                            <div class="form-group col-md-3 col-6">
-                                <label>Regional Debuff</label>
-                                <select name="breedingRegionalAttackDebuffSetting" autocomplete="off" class="custom-select" onchange="BreedingController.regionalAttackDebuff(+this.value), Settings.setSettingByName(this.name, this.value)">
-                                    <!-- ko foreach: Settings.getSetting('breedingRegionalAttackDebuffSetting').options.filter(r => r.value <= player.highestRegion()) -->
-                                    <option data-bind="attr: { value: $data.value, selected: Settings.getSetting('breedingRegionalAttackDebuffSetting').value === $data.value }, text: $data.text">Type</option>
-                                    <!-- /ko -->
-                                </select>
+                            <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
+                            <div id="hatchery-pokemon-list">
+                                <!-- ko if: App.game.breeding.isModalOpen() -->
+                                <ul class="row justify-content-center p-0" id="hatchery-pokemon-elements" data-bind="foreach: PartyController.getHatcherySortedList(BreedingController.regionalAttackDebuff())"
+                                style="max-width: 100%; padding:0; margin:0;">
+                                    <!--li class: eggSlot-->
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-3 entry-container" data-bind="visible: BreedingController.visible($data)">
+                                        <li class="pokemon-slot hatcheryEntry text-nowrap" data-bind="visible: BreedingController.visible($data), style:{background: PokedexHelper.getBackgroundColors($data.name)}, class: App.game.breeding.hasFreeEggSlot() || App.game.breeding.hasFreeQueueSlot() ? '' : 'disabled'">
+                                            <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: $data.name">name</span>
+                                            <div data-bind="visible: App.game.party.alreadyCaughtPokemon($data.id, true)" style="position: absolute;right: 1px;top: -2px;height: 24px">✨</div>
+                                            <div data-bind="if: App.game.party.getPokemon($data.id)?.pokerus" style="position: absolute;left: 2px;top:10px;">
+                                                <img width="30px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id).pokerus]}.png`}"/>
+                                            </div>
+                                            <img src="" width="80px" data-bind="attr:{ src: PokedexHelper.getImage($data.id)}">
+                                            <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: BreedingController.getDisplayValue($data)">value</span>
+                                            <a class="overlay" href="#breed" data-bind="click: function() { App.game.breeding.addPokemonToHatchery($data); App.game.breeding.checkCloseModal();}"></a>
+                                            <div class="pokemonCategory dropdown">
+                                                <button data-toggle="dropdown" data-bind="class: `category-${$data.category + 1}`"></button>
+                                                <div class="dropdown-menu p-0">
+                                                    <!-- ko foreach: PokemonCategories.categories -->
+                                                    <a class="dropdown-item category" href="#" data-bind="text: $data.name, click: () => { $parent.category = $index() }">Category</a>
+                                                    <!-- /ko -->
+                                                    <a class="dropdown-item bg-dark py-1" href="#categoryModal" data-toggle="modal"><i>Edit</i></a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </div>
+                                </ul>
+                                <!-- /ko -->
                             </div>
                             <!-- /ko -->
-                            <div class="form-group col-md-6 col-12" style="max-width: 100%; flex-grow: 1" data-bind="with: Settings.getSetting('hatcherySort')">
-                                <label>Sort</label>
-                                <div class="input-group">
-                                    <select autocomplete="off" class="custom-select" onchange="Settings.setSettingByName(this.name, SortOptions[SortOptions[this.value]])"
-                                        data-bind="foreach: $data.options, attr: {name}, selectedOptions: [$data.observableValue()]">
-                                        <option data-bind="text: $data.text, value: $data.value"></option>
-                                    </select>
-                                    <div class="input-group-append bg-primary text-light">
-                                        <label for="hatcherySortDirection" class="clickable m-0 pl-2 pr-2 sort-icons" style="font-size: 22px;" data-bind="
-                                        html: Settings.getSetting('hatcherySortDirection').observableValue() ? '<i class=\'bi bi-sort-down\'>' : '<i class=\'bi bi-sort-up\'>',
-                                        tooltip: { title: Settings.getSetting('hatcherySortDirection').observableValue() ? 'Descending (highest value first)' : 'Ascending (lowest value first)', trigger: 'hover', placement:'top', html: true }
-
-                                        ">⥂⥄</label>
-                                        <input id="hatcherySortDirection" style="vertical-align: middle" class="hidden" type='checkbox'
-                                            data-bind="checked: Settings.getSetting('hatcherySortDirection').observableValue()"
-                                            onchange="Settings.setSettingByName('hatcherySortDirection', this.checked)"/>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <!-- Check if the player has any level 100 Pokémon or if they have any eggs -->
-                        <p class="bg-danger my-0" data-bind="visible: !App.game.party.hasMaxLevelPokemon()">
-                            Unfortunately, you don't have any Pokémon of level 100 to breed.
-                        </p>
-                        <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
-                        <ul class="row justify-content-center p-0" data-bind="foreach: PartyController.getHatcherySortedList(BreedingController.regionalAttackDebuff())">
-                            <li class="eggSlot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="visible: BreedingController.visible($data), style:{background: PokedexHelper.getBackgroundColors($data.name)}, class: App.game.breeding.hasFreeEggSlot() || App.game.breeding.hasFreeQueueSlot() ? '' : 'disabled'">
-                                <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: $data.name">name</span>
-                                <div data-bind="visible: App.game.party.alreadyCaughtPokemon($data.id, true)" style="position: absolute;right: 1px;top: -2px;height: 24px">✨</div>
-                                <div data-bind="if: App.game.party.getPokemon($data.id)?.pokerus" style="position: absolute;left: 2px;top:10px;">
-                                    <img width="30px" src="" data-bind="attr: { src: `assets/images/breeding/pokerus/${GameConstants.Pokerus[App.game.party.getPokemon($data.id).pokerus]}.png`}"/>
-                                </div>
-                                <img src="" width="80px" data-bind="attr:{ src: PokedexHelper.getImage($data.id)}">
-                                <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: BreedingController.getDisplayValue($data)">value</span>
-                                <a class="overlay" href="#breed" data-bind="click: function() { App.game.breeding.addPokemonToHatchery($data); App.game.breeding.checkCloseModal();}"></a>
-                                <div class="pokemonCategory dropdown">
-                                    <button data-toggle="dropdown" data-bind="class: `category-${$data.category + 1}`"></button>
-                                    <div class="dropdown-menu p-0">
-                                        <!-- ko foreach: PokemonCategories.categories -->
-                                        <a class="dropdown-item category" href="#" data-bind="text: $data.name, click: () => { $parent.category = $index() }">Category</a>
-                                        <!-- /ko -->
-                                        <a class="dropdown-item bg-dark py-1" href="#categoryModal" data-toggle="modal"><i>Edit</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- /ko -->
                     </div>
                 </div>
 
@@ -26881,7 +26979,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                     </p>
                     <!-- ko if: Object.keys(GameConstants.EggItemType).filter(e=>isNaN(e)).filter(x=>player._itemList[x]()).length -->
                     <ul class="row justify-content-center p-0" data-bind="foreach: Object.keys(GameConstants.EggItemType).filter(e=>isNaN(e)).filter(x=>player._itemList[x]())">
-                        <li class="eggSlot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="class: App.game.breeding.hasFreeEggSlot() ? '' : 'disabled'">
+                        <li class="egg-fossil-slot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="class: App.game.breeding.hasFreeEggSlot() ? '' : 'disabled'">
                             <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: GameConstants.camelCaseToString(GameConstants.humanifyString($data))">egg</span>
                             <img src="" width="80px" data-bind="attr:{ src: `assets/images/breeding/${$data}.png` }">
                             <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: 'Amount: ' + player._itemList[$data]().toLocaleString('en-US')">amount</span>
@@ -26900,7 +26998,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
 
                     <!-- ko if: Object.keys(GameConstants.FossilToPokemon).filter(f => player.mineInventory().find(i => i.name == f && i.amount())).length -->
                     <ul class="row justify-content-center p-0" data-bind="foreach: Object.keys(GameConstants.FossilToPokemon).map(f => player.mineInventory().find(i => i.name == f)).filter(f => f ? f.amount() : false)">
-                        <li class="eggSlot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="class: App.game.breeding.hasFreeEggSlot() ? '' : 'disabled'">
+                        <li class="egg-fossil-slot col-sm-4 col-md-3 col-lg-2 pokedexEntry text-nowrap" data-bind="class: App.game.breeding.hasFreeEggSlot() ? '' : 'disabled'">
                             <span style="top: 0; border-top-left-radius: 6px; border-top-right-radius: 6px;" data-bind="text: GameConstants.humanifyString($data.name)">fossil</span>
                             <img src="" width="80px" data-bind="attr:{ src: `assets/images/breeding/${$data.name}.png` }">
                             <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: 'Amount: ' + $data.amount().toLocaleString('en-US')">amount</span>
@@ -26914,7 +27012,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
 
                 <div class="tab-pane" id="breeding-helpers">
                     <div class="row m-0 justify-content-center" data-bind="foreach: App.game.breeding.hatcheryHelpers.available()" style="max-width: 100%;">
-                        <div class="card text-left col-md-4 col-sm-6 col-xs-12 p-0">
+                        <div class="card text-left col-md-3 col-sm-6 col-xs-12 p-0 m-2">
                             <h5 class="card-header">
                                 <knockout data-bind="text: $data.name">Name</knockout>
                                 <img class="float-right pixelated" src="" height="24px" data-bind="attr:{ src: `assets/images/profile/trainer-${$data.trainerSprite}.png` }">
@@ -27411,7 +27509,7 @@ aria-labelledby="pokedexModalLabel">
        <div class="modal-body row mx-0">
             <div class="col-md-3 collapse dont-collapse-sm" id="pokedex-filter-collapse">
                 <div class="w-100 mb-2" style="border-bottom: 1px solid #eceeef">
-                    <h4>Filters</h4>
+                    <h4>Filters and Settings</h4>
                 </div>
                 <div class="container-fluid" id="pokedex-filter-container"> <!-- style="border-bottom: 1px solid #eceeef" -->
                     <div class="form-row text-left">
@@ -27564,7 +27662,7 @@ aria-labelledby="pokedexModalLabel">
                                     <!-- /ko -->
                                     <img src="" width="80px" data-bind="css: { 'pokemon-not-seen': !PokedexHelper.pokemonSeen($data.id)(), 'pokemon-seen-but-not-caught': !App.game.party.alreadyCaughtPokemonByName(name) && PokedexHelper.pokemonSeen($data.id)() }, attr:{ src: PokedexHelper.getImage($data.id)}">
                                     <!-- ko if: PokedexHelper.pokemonSeen($data.id) -->
-                                    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: $data.name">name</span>
+                                    <span style="bottom: 0; border-bottom-left-radius: 6px; border-bottom-right-radius: 6px" data-bind="text: ($data.id == 29 || $data.id == 32) ? $data.visibleName : $data.name">name</span>
                                     <a class="overlay" href="#pokemonStatisticsModal" data-toggle="modal" data-bind="click: () => { App.game.statistics.selectedPokemonID($data.id), PokedexHelper.toggleStatisticShinyOnModalOpen() },
                                         tooltip: {
                                             html: true,
@@ -27600,7 +27698,7 @@ aria-labelledby="pokedexModalLabel">
         <div class="modal-content" data-bind="with: App.game.statistics.selectedPokemonID()">
             <div class="modal-header bg-dark text-light" style='justify-content: space-around;'>
                 <h5 class="modal-title text-muted" data-bind="text: `#${pokemonMap[$data].id <= 0 ? '???' : Math.floor(pokemonMap[$data].id).toString().padStart(3,0)}&nbsp;&nbsp;`"></h5>
-                <h5 class="modal-title text-light" data-bind="text: pokemonMap[$data].name">Pokémon Statistics</h5>&nbsp;
+                <h5 class="modal-title text-light" data-bind="text: (pokemonMap[$data].id == 29 || pokemonMap[$data].id == 32) ? pokemonMap[$data].visibleName : pokemonMap[$data].name">Pokémon Statistics</h5>&nbsp;
                 <h5 class="modal-title text-light" data-bind="if: App.game.party.getPokemon(pokemonMap[$data].id)">
                     <img width="18px" src="" data-bind="attr: { src: `assets/images/pokeball/Pokeball${App.game.party.alreadyCaughtPokemon(pokemonMap[$data].id, true) && PokedexHelper.toggleStatisticShiny() ? '-shiny' : ''}.svg`}, click: () => PokedexHelper.toggleStatisticShiny(!PokedexHelper.toggleStatisticShiny())"/>
                 </h5>
@@ -29037,7 +29135,7 @@ aria-labelledby="badgeCaseModalLabel">
                           </knockout>
 
                           <knockout>
-                              <knockout data-bind="text: SafariBattle.enemy.name">Pokémon name</knockout>
+                              <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? SafariBattle.enemy.visibleName : SafariBattle.enemy.name) + ' ' + SafariBattle.enemy.genderText">Pokémon name</knockout>
                               <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(SafariBattle.enemy.id)}}"></knockout>
                           </knockout>
 
