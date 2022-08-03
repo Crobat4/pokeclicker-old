@@ -25,11 +25,15 @@ class Breeding implements Feature {
 
     public hatchList: { [name: number]: PokemonNameType[][] } = {};
 
+    public isModalOpen: KnockoutObservable<boolean>;
+
     constructor(private multiplier: Multiplier) {
         this._eggList = this.defaults.eggList;
         this._eggSlots = ko.observable(this.defaults.eggSlots);
         this.queueList = ko.observableArray(this.defaults.queueList);
         this.queueSlots = ko.observable(this.defaults.queueSlots);
+
+        this.isModalOpen = ko.observable(false);
 
         this._eggList.forEach((egg) => {
             egg.extend({deferred: true});
@@ -228,7 +232,8 @@ class Breeding implements Feature {
         const hatcheryListFiltered = [];
 
         for (const partyPokemonObject of hatcheryList) {
-            if (this.filterFillQueue(partyPokemonObject)) {
+            //if (this.filterFillQueue(partyPokemonObject)) {
+            if (BreedingController.visible(partyPokemonObject)()) {
                 //console.log(partyPokemonObject);
                 hatcheryListFiltered.push(partyPokemonObject);
             }
@@ -252,59 +257,6 @@ class Breeding implements Feature {
                 break;
             }
         }
-
-    }
-
-    //Return pokemon list according to current filters
-    public filterFillQueue(partyPokemon) {
-        // Only breedable Pokemon
-        if (partyPokemon.breeding || partyPokemon.level < 100) {
-            return false;
-        }
-
-        if (!BreedingFilters.search.value().test(partyPokemon.name)) {
-            return false;
-        }
-
-        // Check based on category
-        if (BreedingFilters.category.value() >= 0) {
-            if (partyPokemon.category !== BreedingFilters.category.value()) {
-                return false;
-            }
-        }
-
-        // Check based on shiny status
-        //if (BreedingController.filter.shinyStatus() >= 0) {
-        //    if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
-
-        if (BreedingFilters.shinyStatus.value() >= 0) {
-            if (+partyPokemon.shiny !== BreedingFilters.shinyStatus.value()) {
-                return false;
-            }
-        }
-
-        // Check based on native region
-        if (BreedingFilters.region.value() > -2) {
-            if (PokemonHelper.calcNativeRegion(partyPokemon.name) !== BreedingFilters.region.value()) {
-                return false;
-            }
-        }
-
-        // Check if either of the types match
-        const type1: (PokemonType | null) = BreedingFilters.type1.value() > -2 ? BreedingFilters.type1.value() : null;
-        const type2: (PokemonType | null) = BreedingFilters.type2.value() > -2 ? BreedingFilters.type2.value() : null;
-        if (type1 !== null || type2 !== null) {
-            const { type: types } = pokemonMap[partyPokemon.name];
-            if ([type1, type2].includes(PokemonType.None)) {
-                const type = (type1 == PokemonType.None) ? type2 : type1;
-                if (!BreedingController.isPureType(partyPokemon, type)) {
-                    return false;
-                }
-            } else if ((type1 !== null && !types.includes(type1)) || (type2 !== null && !types.includes(type2))) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public removeAllPokemonFromQueue() {
@@ -551,3 +503,11 @@ class Breeding implements Feature {
     }
 
 }
+$(document).ready(() => {
+    $('#breedingModal').on('shown.bs.modal', () => {
+        App.game.breeding.isModalOpen(true);
+    });
+    $('#breedingModal').on('hidden.bs.modal', () => {
+        App.game.breeding.isModalOpen(false);
+    });
+});

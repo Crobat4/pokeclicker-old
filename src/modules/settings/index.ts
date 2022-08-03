@@ -140,9 +140,9 @@ Settings.add(new Setting<string>('saveReminder', 'Save reminder interval (in gam
     ],
     (12 * HOUR).toString()));
 
-// Crobat Fork settings
+// Crobat Fork settings ( Settings.getSetting('shinyPokedex').observableValue() )
+Settings.add(new BooleanSetting('shortNames', 'Remove the form name from Pokémon forms (and adds gender icons to Nidoran)', true));
 // Settings.add(new BooleanSetting('shinyPokedex', 'Show Shiny Pokémon in Pokédex by default', true));
-
 // Settings.add(new BooleanSetting('fullWidthContainer', 'Increase game width', false));
 // Settings.add(new BooleanSetting('enableBallSelectionByType', 'Enable Pokéball selection by type', false));
 // Settings.add(new BooleanSetting('enableDockButtonInShortcutsPanel', 'Enable the "Dock" button in Shortcuts panel', false));

@@ -154,9 +154,6 @@ class BreedingController {
             }
 
             // Check based on shiny status
-            //if (BreedingController.filter.shinyStatus() >= 0) {
-            //    if (+partyPokemon.shiny !== BreedingController.filter.shinyStatus()) {
-
             if (BreedingFilters.shinyStatus.value() >= 0) {
                 if (+partyPokemon.shiny !== BreedingFilters.shinyStatus.value()) {
                     return false;

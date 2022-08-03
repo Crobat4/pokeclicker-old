@@ -249,7 +249,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
+                                    <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? Battle.enemyPokemon().visibleName : Battle.enemyPokemon().name) + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 
