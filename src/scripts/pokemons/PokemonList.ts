@@ -398,7 +398,7 @@ const pokemonList = createPokemonArray(
             'speed': 58,
         },
         'genderRatio': GameConstants.MALE_87_5,
-        
+
     },
     {
         'id': 8.1,
@@ -22828,7 +22828,7 @@ pokemonList.forEach(p => {
     (p as PokemonListData).hasFemaleDifference = (p as PokemonListData).hasFemaleDifference === undefined ? false : (p as PokemonListData).hasFemaleDifference;
     // Add name property as default for visibleName
     (p as PokemonListData).visibleName = (p as PokemonListData).visibleName === undefined ? (p as PokemonListData).name : (p as PokemonListData).visibleName;
-    
+
     // Calculate this pokemons native region
     (p as PokemonListData).nativeRegion = (p as PokemonListData).nativeRegion || GameConstants.MaxIDPerRegion.findIndex(maxRegionID => maxRegionID >= Math.floor(p.id));
     // Create an index of pokemon

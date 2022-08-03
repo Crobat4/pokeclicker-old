@@ -908,13 +908,18 @@ class Update implements Saveable {
                     p[9] = 0;
                 }
             });
-
-            // Crobat fork: Rename Nidoran
-            Update.renamePokemonInSaveData(saveData, 'Nidoran(F)', 'Nidoran♀'); // Remove this later
-            Update.renamePokemonInSaveData(saveData, 'Nidoran(M)', 'Nidoran♂'); // Remove this later
-
-            Update.renamePokemonInSaveData(saveData, 'Nidoran♀', 'Nidoran(F)');
-            Update.renamePokemonInSaveData(saveData, 'Nidoran♂', 'Nidoran(M)');
+        },
+        '0.9.10': ({ playerData, saveData }) => {
+            // Crobat fork:
+            // Then replace all the pokemon names with their IDs
+            saveData.breeding.eggList?.forEach(pokemonName => {
+                const pokemonEgg = PokemonHelper.getPokemonByName(pokemonName);
+                Update.renamePokemonInSaveData(saveData, pokemonName, pokemonEgg.id);
+            });
+            saveData.breeding.queueList?.forEach(pokemonName => {
+                const pokemonQueue = PokemonHelper.getPokemonByName(pokemonName);
+                Update.renamePokemonInSaveData(saveData, pokemonName, pokemonQueue.id);
+            });
         },
     };
 

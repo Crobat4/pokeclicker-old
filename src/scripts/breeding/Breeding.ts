@@ -20,7 +20,7 @@ class Breeding implements Feature {
     private _eggList: Array<KnockoutObservable<Egg>>;
     private _eggSlots: KnockoutObservable<number>;
 
-    private queueList: KnockoutObservableArray<PokemonNameType>;
+    private queueList: KnockoutObservableArray<number>;
     private queueSlots: KnockoutObservable<number>;
 
     public hatchList: { [name: number]: PokemonNameType[][] } = {};
@@ -299,7 +299,7 @@ class Breeding implements Feature {
         const queueSize = this.queueList().length;
         if (queueSize < this.queueSlots()) {
             pokemon.breeding = true;
-            this.queueList.push(pokemon.name);
+            this.queueList.push(pokemon.id);
             return true;
         }
         return false;
@@ -308,8 +308,8 @@ class Breeding implements Feature {
     public removeFromQueue(index: number): boolean {
         const queueSize = this.queueList().length;
         if (queueSize > index) {
-            const pokemonName = this.queueList.splice(index, 1)[0];
-            App.game.party._caughtPokemon().find(p => p.name == pokemonName).breeding = false;
+            const pokemonId = this.queueList.splice(index, 1)[0];
+            App.game.party._caughtPokemon().find(p => p.id == pokemonId).breeding = false;
             return true;
         }
         return false;
@@ -339,7 +339,8 @@ class Breeding implements Feature {
             this._eggList[index](new Egg());
             this.moveEggs();
             if (this.queueList().length) {
-                const nextEgg = this.createEgg(this.queueList.shift());
+                const nextEggPokemonName = PokemonHelper.getPokemonById(this.queueList.shift());
+                const nextEgg = this.createEgg(nextEggPokemonName.name);
                 this.gainEgg(nextEgg);
                 if (!this.queueList().length) {
                     Notifier.notify({
@@ -364,7 +365,7 @@ class Breeding implements Feature {
 
     public createEgg(pokemonName: PokemonNameType, type = EggType.Pokemon): Egg {
         const dataPokemon: DataPokemon = PokemonHelper.getPokemonByName(pokemonName);
-        return new Egg(type, this.getSteps(dataPokemon.eggCycles), pokemonName);
+        return new Egg(type, this.getSteps(dataPokemon.eggCycles), dataPokemon.id);
     }
 
     public createTypedEgg(type: EggType): Egg {
