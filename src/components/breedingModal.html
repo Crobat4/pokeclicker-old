@@ -198,6 +198,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                             </div>
                             <!-- ko if: App.game.party.hasMaxLevelPokemon() -->
                             <div id="hatchery-pokemon-list">
+                                <!-- ko if: App.game.breeding.isModalOpen() -->
                                 <ul class="row justify-content-center p-0" id="hatchery-pokemon-elements" data-bind="foreach: PartyController.getHatcherySortedList(BreedingController.regionalAttackDebuff())"
                                 style="max-width: 100%; padding:0; margin:0;">
                                     <!--li class: eggSlot-->
@@ -223,6 +224,7 @@ aria-labelledby="breedingModalLabel" aria-hidden="true">
                                         </li>
                                     </div>
                                 </ul>
+                                <!-- /ko -->
                             </div>
                             <!-- /ko -->
                         </div>
