@@ -911,15 +911,20 @@ class Update implements Saveable {
         },
         '0.9.10': ({ playerData, saveData }) => {
             // Crobat fork:
+            // Rename Nidoran first
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(F)', 'Nidoran♀');
+            Update.renamePokemonInSaveData(saveData, 'Nidoran(M)', 'Nidoran♂');
             // Then replace all the pokemon names with their IDs
-            saveData.breeding.eggList?.forEach(pokemonName => {
-                const pokemonEgg = PokemonHelper.getPokemonByName(pokemonName);
-                Update.renamePokemonInSaveData(saveData, pokemonName, pokemonEgg.id);
-            });
-            saveData.breeding.queueList?.forEach(pokemonName => {
-                const pokemonQueue = PokemonHelper.getPokemonByName(pokemonName);
-                Update.renamePokemonInSaveData(saveData, pokemonName, pokemonQueue.id);
-            });
+            if (saveData.breeding) {
+                saveData.breeding.eggList?.forEach(eggMon => {
+                    const pokemonEgg = PokemonHelper.getPokemonByName(eggMon.pokemon);
+                    Update.renamePokemonInSaveData(saveData, eggMon.pokemon, pokemonEgg.id);
+                });
+                saveData.breeding.queueList?.forEach(pokemonName => {
+                    const pokemonQueue = PokemonHelper.getPokemonByName(pokemonName);
+                    Update.renamePokemonInSaveData(saveData, pokemonName, pokemonQueue.id);
+                });
+            }
         },
     };
 

@@ -1146,13 +1146,13 @@ const pokemonList = createPokemonArray(
     },
     {
         'id': 29,
-        'name': 'Nidoran(F)',
+        'name': 'Nidoran♀',
         'catchRate': 235,
         'type': [PokemonType.Poison],
         'levelType': LevelType.mediumslow,
         'exp': 55,
         'eggCycles': 20,
-        'evolutions': [new LevelEvolution('Nidoran(F)', 'Nidorina', 16)],
+        'evolutions': [new LevelEvolution('Nidoran♀', 'Nidorina', 16)],
         'base': {
             'hitpoints': 55,
             'attack': 47,
@@ -1203,13 +1203,13 @@ const pokemonList = createPokemonArray(
     },
     {
         'id': 32,
-        'name': 'Nidoran(M)',
+        'name': 'Nidoran♂',
         'catchRate': 235,
         'type': [PokemonType.Poison],
         'levelType': LevelType.mediumslow,
         'exp': 55,
         'eggCycles': 20,
-        'evolutions': [new LevelEvolution('Nidoran(M)', 'Nidorino', 16)],
+        'evolutions': [new LevelEvolution('Nidoran♂', 'Nidorino', 16)],
         'base': {
             'hitpoints': 46,
             'attack': 57,
