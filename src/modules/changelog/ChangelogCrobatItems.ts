@@ -20,6 +20,7 @@ const ChangelogCrobatItems = [
 	new Changelog(changelogType.CHANGE, 'Removed form name from Pokémon with forms in battles'),
 	new Changelog(changelogType.CHANGE, 'Nidoran(M) renamed to Nidoran♂'),
     new Changelog(changelogType.CHANGE, 'Nidoran(F) renamed to Nidoran♀'),
+    new Changelog(changelogType.CHANGE, 'Game optimized when hatchery window closes'),
 	new Changelog(changelogType.FIXED, 'Pokémon in Safari not showing its gender'),
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 24)),    
     new Changelog(changelogType.NEW, 'Pokedex: Pokémon with gender differences can now be filtered'),
