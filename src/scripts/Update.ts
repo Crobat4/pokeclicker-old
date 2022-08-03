@@ -913,14 +913,14 @@ class Update implements Saveable {
             // Crobat fork:
             // Then replace all the pokemon names with their IDs
             saveData.breeding.eggList?.forEach(pokemonName => {
-                let pokemonEgg = PokemonHelper.getPokemonByName(pokemonName);
+                const pokemonEgg = PokemonHelper.getPokemonByName(pokemonName);
                 Update.renamePokemonInSaveData(saveData, pokemonName, pokemonEgg.id);
             });
             saveData.breeding.queueList?.forEach(pokemonName => {
-                let pokemonQueue = PokemonHelper.getPokemonByName(pokemonName);
+                const pokemonQueue = PokemonHelper.getPokemonByName(pokemonName);
                 Update.renamePokemonInSaveData(saveData, pokemonName, pokemonQueue.id);
             });
-        }
+        },
     };
 
     constructor() {

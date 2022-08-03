@@ -17,7 +17,7 @@ class DataPokemon implements PokemonInterface {
         public genderType: number,
         public hasFemaleDifference: boolean,
         public genderRatio: number,
-        public visibleName: string,
+        public visibleName: string
     ) {
         this.shiny = false;
     }

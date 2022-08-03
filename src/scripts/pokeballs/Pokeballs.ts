@@ -321,15 +321,12 @@ class Pokeballs implements Feature {
             if (this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
                 if (this.catchUltraBeast()) {
                     return GameConstants.Pokeball.Beastball;
-                }
-                else if (isShiny && this.catchUltraBeastShiny()) {
+                } else if (isShiny && this.catchUltraBeastShiny()) {
                     return GameConstants.Pokeball.Beastball;
-                }
-                else {
+                } else {
                     return GameConstants.Pokeball.None;
                 }
-            } 
-            else {
+            } else {
                 return GameConstants.Pokeball.None;
             }
         }
