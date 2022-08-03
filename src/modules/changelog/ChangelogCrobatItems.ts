@@ -23,7 +23,7 @@ const ChangelogCrobatItems = [
     new Changelog(changelogType.CHANGE, 'Nidoran(M) renamed to Nidoran♂'),
     new Changelog(changelogType.CHANGE, 'Nidoran(F) renamed to Nidoran♀'),
     new Changelog(changelogType.FIXED, 'Pokémon in Safari not showing its gender'),
-    new Changelog(changelogType.FIXED, 'Fill hatchery queue button ignoring Pokérus filters'),
+    new Changelog(changelogType.FIXED, 'Fill hatchery button ignoring Pokérus filters'),
     new ChangelogUpdate('v0.2.10', new Date(2022, 7 - 1, 24)),
     new Changelog(changelogType.NEW, 'Pokedex: Pokémon with gender differences can now be filtered'),
     new Changelog(changelogType.NEW, 'Pokedex: Added option to show female sprites'),
