@@ -24,6 +24,8 @@ export const WANDER_TICK = 1.5 * SECOND;
 export const TEMP_BATTLE_TIME = 60 * SECOND;
 export const TEMP_BATTLE_TICK = 0.1 * SECOND;
 
+export const DAY_NIGHT_TICK = 1 * SECOND;
+
 export enum Region {
     none = -1,
     kanto = 0,

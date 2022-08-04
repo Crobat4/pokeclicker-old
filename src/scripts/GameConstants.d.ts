@@ -30,6 +30,9 @@ namespace GameConstants {
     declare const GYM_COUNTDOWN: number;
     declare const GYM_TICK: number;
     declare const ACHIEVEMENT_TICK: number;
+
+    declare const DAY_NIGHT_TICK: number;
+
     declare const MIN_LOAD_TIME: number;
     declare const MAX_LOAD_TIME: number;
     declare const MUTATION_TICK: number;
