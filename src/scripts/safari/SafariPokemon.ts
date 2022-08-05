@@ -6,6 +6,8 @@ class SafariPokemon implements PokemonInterface {
     shiny: boolean;
     baseCatchFactor: number;
     baseEscapeFactor: number;
+    visibleName: string;
+    genderText: string;
 
     // Used for overworld sprites
     x = 0;
@@ -22,9 +24,9 @@ class SafariPokemon implements PokemonInterface {
         name: PokemonNameType,
         weight: number
     }[] = [
-        { name: 'Nidoran(F)', weight: 15 },
+        { name: 'Nidoran♀', weight: 15 },
         { name: 'Nidorina', weight: 10 },
-        { name: 'Nidoran(M)', weight: 25 },
+        { name: 'Nidoran♂', weight: 25 },
         { name: 'Nidorino', weight: 10 },
         { name: 'Exeggcute', weight: 20 },
         { name: 'Paras', weight: 5 },
@@ -51,12 +53,18 @@ class SafariPokemon implements PokemonInterface {
         const data = PokemonHelper.getPokemonByName(name);
 
         this.name = data.name;
+        this.visibleName = data.visibleName;
         this.id = data.id;
         this.type1 = data.type1;
         this.type2 = data.type2;
         this.shiny = PokemonFactory.generateShiny(GameConstants.SHINY_CHANCE_SAFARI);
         GameHelper.incrementObservable(App.game.statistics.pokemonEncountered[this.id]);
         GameHelper.incrementObservable(App.game.statistics.totalPokemonEncountered);
+
+        // Generate gender
+        const isFemale = PokemonFactory.generateGender(data.genderRatio, data.genderType);
+        const genderText = PokemonFactory.generateGenderTypeName(data, isFemale);
+        this.genderText = genderText;
 
         if (this.shiny) {
             GameHelper.incrementObservable(App.game.statistics.shinyPokemonEncountered[this.id]);

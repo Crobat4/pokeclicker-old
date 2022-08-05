@@ -50,9 +50,10 @@ class PokemonFactory {
         return battlePokemonObject;
     }
 
-    public static battlePokemonGenerator(basePokemon: DataPokemon, maxHealth: number, level: number, money: number, shinyModifier: number, gems: number, isTrainer: boolean = false, catchRate: number = 0, exp: number = basePokemon.exp, heldItemModifier: number = undefined, logEventLabel: string = '', ep: number = undefined) {
+    public static battlePokemonGenerator(basePokemon: DataPokemon, maxHealth: number, level: number, money: number, shinyModifier: number, gems: number, isTrainer = false, catchRate = 0, exp: number = basePokemon.exp, heldItemModifier: number = undefined, logEventLabel = '', ep: number = undefined) {
         //const basePokemon = PokemonHelper.getPokemonByName(name);
         const name = basePokemon.name;
+        const visibleName = basePokemon.visibleName;
         const id = basePokemon.id;
         //let catchRate = 0;
         //let exp: number = basePokemon.exp; //add *1.5 on gym and temporary
@@ -86,9 +87,9 @@ class PokemonFactory {
             ep,
             genderText,
             hasFemaleDifference,
-            isFemale
+            isFemale,
+            visibleName
         );
-        console.log(battlePokemonObject);
         return battlePokemonObject;
     }
 

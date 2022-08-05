@@ -8,6 +8,8 @@
 class Game {
     frameRequest;
     public static achievementCounter = 0;
+    public static dayNightCounter = 0; // Crobat
+    public static isNight: KnockoutObservable<boolean> = ko.observable(false);
 
     // Features
 
@@ -215,6 +217,13 @@ class Game {
                 quest.initial(quest.focus());
             }
         });
+        // Check for breeding pokemons not in queue
+        const breeding = [...App.game.breeding.eggList.map((l) => l().pokemon), ...App.game.breeding.queueList()];
+        App.game.party._caughtPokemon().filter((p) => p.breeding).forEach((p) => {
+            if (!breeding.includes(p.id)) {
+                p.breeding = false;
+            }
+        });
     }
 
     start() {
@@ -311,6 +320,44 @@ class Game {
             Game.achievementCounter = 0;
             AchievementHandler.checkAchievements();
             GameHelper.incrementObservable(App.game.statistics.secondsPlayed);
+        }
+
+        // Day/Night Cycle // TODO: change boolean for number if dawn/dusk is used
+        Game.dayNightCounter += GameConstants.TICK_TIME;
+        if (Game.dayNightCounter >= GameConstants.DAY_NIGHT_TICK) {
+            Game.dayNightCounter = 0;
+            //console.log(Game.dayNightCounter);
+            //Game.isNight(true);
+
+            const currentTime = new Date().getHours();
+            //const currentMinutes = new Date().getMinutes();
+            // Day
+            if (currentTime >= 6 && currentTime < 17) {
+                Game.isNight(false);
+            }
+            // Dusk/Dawn
+            //else if ((currentTime >= 17 && currentTime < 18) || (currentTime >= 5 && currentTime < 6)) {
+            else if (currentTime >= 17 && currentTime < 18) {
+                Game.isNight(false);
+            }
+            else if (currentTime >= 5 && currentTime < 6) {
+                Game.isNight(true);
+            }
+            // Night
+            else if ((currentTime >= 18 && currentTime < 24) || (currentTime >= 0 && currentTime < 5)) {
+                Game.isNight(true);
+            }
+
+            // For test purposes
+            /*
+            if (currentMinutes >= 54) {
+                Game.isNight(false);
+            }
+            else {
+                Game.isNight(true);
+            }
+            */
+
         }
 
         // Battles

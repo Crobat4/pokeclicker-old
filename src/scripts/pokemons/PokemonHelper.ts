@@ -80,7 +80,8 @@ class PokemonHelper {
             basePokemon.heldItem,
             genderType,
             hasFemaleDifference,
-            genderRatio
+            genderRatio,
+            basePokemon.visibleName
         );
     }
 

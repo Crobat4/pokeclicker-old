@@ -38,7 +38,8 @@ class BattlePokemon implements EnemyPokemonInterface {
         public ep?: number,
         public genderText?: string,
         public hasFemaleDifference?: boolean,
-        public isFemale?: boolean
+        public isFemale?: boolean,
+        public visibleName?: string
     ) {
         this.health = ko.observable(maxHealth);
         this.maxHealth = ko.observable(maxHealth);

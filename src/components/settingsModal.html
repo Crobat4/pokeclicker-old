@@ -145,15 +145,15 @@
                                 </tr>
                             </tbody>
                             <thead>
-                                <tr><th colspan="2">Pokéball Selector</th></tr>
+                                <tr><th colspan="2">Poké Ball Selector</th></tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="p-2">
-                                        <knockout>Select Pokéball Type:</knockout>
+                                        <knockout>Select Poké Ball Type:</knockout>
                                     </td>
                                     <td class="p-0" data-bind="tooltip: {
-                                        title: 'Each number refers to a specific Pokéball',
+                                        title: 'Each number refers to a specific Poké Ball',
                                         trigger: 'hover',
                                     }">
                                         <kbd class="btn-block" style="padding: 10px 0;" ><code>Number Keys</code></kbd>
@@ -264,6 +264,7 @@
                         <table class="table table-striped table-hover m-0">
                             <tbody>
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('pixelBattleBackgrounds')}"></tr>
+                                <!--<tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('shortNames')}"></tr>-->
                                 <!--
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('shinyPokedex')}"></tr>
                                 <tr data-bind="template: { name: 'BooleanSettingTemplate', data: Settings.getSetting('fullWidthContainer')}"></tr>

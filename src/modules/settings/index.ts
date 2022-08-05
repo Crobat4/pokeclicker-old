@@ -140,9 +140,9 @@ Settings.add(new Setting<string>('saveReminder', 'Save reminder interval (in gam
     ],
     (12 * HOUR).toString()));
 
-// Crobat Fork settings
+// Crobat Fork settings ( Settings.getSetting('shinyPokedex').observableValue() )
 Settings.add(new BooleanSetting('pixelBattleBackgrounds', 'Gen 3/4 style battle backgrounds', false));
-
+Settings.add(new BooleanSetting('shortNames', 'Remove the form name from Pokémon forms (and adds gender icons to Nidoran)', true));
 // Settings.add(new BooleanSetting('shinyPokedex', 'Show Shiny Pokémon in Pokédex by default', true));
 // Settings.add(new BooleanSetting('fullWidthContainer', 'Increase game width', false));
 // Settings.add(new BooleanSetting('enableBallSelectionByType', 'Enable Pokéball selection by type', false));
@@ -276,7 +276,7 @@ Settings.add(new HotkeySetting('hotkey.farm', 'Farm', 'F'));
 Settings.add(new HotkeySetting('hotkey.hatchery', 'Hatchery', 'H'));
 Settings.add(new HotkeySetting('hotkey.oakItems', 'Oak Items', 'O'));
 Settings.add(new HotkeySetting('hotkey.underground', 'Underground', 'U'));
-Settings.add(new HotkeySetting('hotkey.pokeballSelection', 'Pokéball Selection', 'P', { suffix: ' + Number' }));
+Settings.add(new HotkeySetting('hotkey.pokeballSelection', 'Poké Ball Selection', 'P', { suffix: ' + Number' }));
 
 Settings.add(new HotkeySetting('hotkey.farm.toggleShovel', 'Toggle Shovel', 'S'));
 

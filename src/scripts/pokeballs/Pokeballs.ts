@@ -10,7 +10,7 @@ class Pokeballs implements Feature {
         alreadyCaughtShinySelection: GameConstants.Pokeball.Pokeball,
         notCaughtSelection: GameConstants.Pokeball.Pokeball,
         notCaughtShinySelection: GameConstants.Pokeball.Pokeball,
-        /*Types*/
+        // Types
         typeNormalSelection: GameConstants.Pokeball.None,
         typeFireSelection: GameConstants.Pokeball.None,
         typeWaterSelection: GameConstants.Pokeball.None,
@@ -36,7 +36,7 @@ class Pokeballs implements Feature {
     private _alreadyCaughtShinySelection: KnockoutObservable<GameConstants.Pokeball>;
     private _notCaughtSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _notCaughtShinySelection: KnockoutObservable<GameConstants.Pokeball>;
-    /*Types*/
+    // Types
     private _typeNormalSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeFireSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeWaterSelection: KnockoutObservable<GameConstants.Pokeball>;
@@ -56,12 +56,16 @@ class Pokeballs implements Feature {
     private _typeSteelSelection: KnockoutObservable<GameConstants.Pokeball>;
     private _typeFairySelection: KnockoutObservable<GameConstants.Pokeball>;
 
+    // Beast Ball Toggles
+    public catchUltraBeast: KnockoutObservable<boolean>;
+    public catchUltraBeastShiny: KnockoutObservable<boolean>;
+
     public selectedSelection: KnockoutObservable<KnockoutObservable<GameConstants.Pokeball>>;
     public selectedTitle: KnockoutObservable<string>;
 
     constructor() {
         this.pokeballs = [
-            new Pokeball(GameConstants.Pokeball.Pokeball, () => 0, 1250, 'A standard Pokéball', undefined, 25),
+            new Pokeball(GameConstants.Pokeball.Pokeball, () => 0, 1250, 'A standard Poké Ball', undefined, 25),
             new Pokeball(GameConstants.Pokeball.Greatball, () => 5, 1000, '+5% chance to catch'),
             new Pokeball(GameConstants.Pokeball.Ultraball, () => 10, 750, '+10% chance to catch'),
             new Pokeball(GameConstants.Pokeball.Masterball, () => 100, 500, '100% chance to catch'),
@@ -100,7 +104,7 @@ class Pokeballs implements Feature {
                 return 0;
             }, 1000, 'Increased catch rate at night time or in dungeons', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
             // TODO: this needs some sort of bonus, possibly extra dungeon tokens
-            new Pokeball(GameConstants.Pokeball.Luxuryball, () => 0, 1250, 'A Luxury Pokéball', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
+            new Pokeball(GameConstants.Pokeball.Luxuryball, () => 0, 1250, 'A Luxury Poké Ball', new RouteKillRequirement(10, GameConstants.Region.johto, 34)),
 
             new Pokeball(GameConstants.Pokeball.Diveball, () => {
 
@@ -123,7 +127,8 @@ class Pokeballs implements Feature {
             }, 1250, 'Increased catch rate on fished Pokémon', new RouteKillRequirement(10, GameConstants.Region.hoenn, 101)),
 
             new Pokeball(GameConstants.Pokeball.Nestball, () => {
-                const maxRoute = MapHelper.normalizeRoute(Routes.getRoute(player.highestRegion(), Routes.getRoutesByRegion(player.highestRegion()).length - 1).number, player.highestRegion());
+                const highestRegionRoutes = Routes.getRoutesByRegion(player.highestRegion());
+                const maxRoute = MapHelper.normalizeRoute(highestRegionRoutes[highestRegionRoutes.length - 1].number, player.highestRegion());
                 const currentRoute = MapHelper.normalizeRoute(player.route(),player.region);
 
                 // Increased rate for earlier routes, scales with regional progression
@@ -144,7 +149,7 @@ class Pokeballs implements Feature {
         this._alreadyCaughtShinySelection = ko.observable(this.defaults.alreadyCaughtShinySelection);
         this._notCaughtSelection = ko.observable(this.defaults.notCaughtSelection);
         this._notCaughtShinySelection = ko.observable(this.defaults.notCaughtShinySelection);
-        /*Types*/
+        // Types
         this._typeNormalSelection = ko.observable(this.defaults.typeNormalSelection);
         this._typeFireSelection = ko.observable(this.defaults.typeFireSelection);
         this._typeWaterSelection = ko.observable(this.defaults.typeWaterSelection);
@@ -163,6 +168,9 @@ class Pokeballs implements Feature {
         this._typeDarkSelection = ko.observable(this.defaults.typeDarkSelection);
         this._typeSteelSelection = ko.observable(this.defaults.typeSteelSelection);
         this._typeFairySelection = ko.observable(this.defaults.typeFairySelection);
+        // Beast Ball Toggles
+        this.catchUltraBeast = ko.observable(false);
+        this.catchUltraBeastShiny = ko.observable(false);
 
         this.selectedTitle = ko.observable('');
         this.selectedSelection = ko.observable(this._alreadyCaughtSelection);
@@ -174,7 +182,7 @@ class Pokeballs implements Feature {
             this._alreadyCaughtShinySelection,
             this._notCaughtSelection,
             this._notCaughtShinySelection,
-            /*Types*/
+            // Types
             this._typeNormalSelection,
             this._typeFireSelection,
             this._typeWaterSelection,
@@ -200,7 +208,7 @@ class Pokeballs implements Feature {
                     selection(GameConstants.Pokeball.Ultraball);
                     Notifier.notify({
                         title: 'Challenge Mode',
-                        message: 'Masterballs are disabled!',
+                        message: 'Master Balls are disabled!',
                         type: NotificationConstants.NotificationOption.danger,
                     });
                 } else if (!this.pokeballs[value]?.unlocked()) {
@@ -221,7 +229,7 @@ class Pokeballs implements Feature {
     public calculatePokeballToUse(enemyPokemon: BattlePokemon, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(enemyPokemon.id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(enemyPokemon.id, true);
-*/
+    */
     public calculatePokeballToUse(id: number, isShiny: boolean): GameConstants.Pokeball {
         const alreadyCaught = App.game.party.alreadyCaughtPokemon(id);
         const alreadyCaughtShiny = App.game.party.alreadyCaughtPokemon(id, true);
@@ -232,11 +240,9 @@ class Pokeballs implements Feature {
 
         if (isShiny) {
             if (!alreadyCaughtShiny) {
-                // if the pokemon is also not caught, use the higher selection since a notCaughtShiny is also a notCaught pokemon
-                pref = !alreadyCaught ? Math.max(this.notCaughtSelection, this.notCaughtShinySelection) : this.notCaughtShinySelection;
+                pref = this.notCaughtShinySelection;
             } else {
-                // if the shiny is already caught, use the higher selection since the pokemon is also a caught pokemon
-                pref = Math.max(this.alreadyCaughtSelection, this.alreadyCaughtShinySelection);
+                pref = this.alreadyCaughtShinySelection;
             }
         } else {
             if (!alreadyCaught) {
@@ -310,8 +316,15 @@ class Pokeballs implements Feature {
                 return GameConstants.Pokeball.None;
             }
         } else if (GameConstants.UltraBeastType[pokemon.name] != undefined) {
-            if (pref != GameConstants.Pokeball.None && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
-                return GameConstants.Pokeball.Beastball;
+            //if (pref != GameConstants.Pokeball.None && this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+            if (this.pokeballs[GameConstants.Pokeball.Beastball].quantity() > 0) {
+                if (this.catchUltraBeast()) {
+                    return GameConstants.Pokeball.Beastball;
+                } else if (isShiny && this.catchUltraBeastShiny()) {
+                    return GameConstants.Pokeball.Beastball;
+                } else {
+                    return GameConstants.Pokeball.None;
+                }
             } else {
                 return GameConstants.Pokeball.None;
             }
@@ -342,7 +355,7 @@ class Pokeballs implements Feature {
         GameHelper.incrementObservable(this.pokeballs[ball].quantity, amount);
         GameHelper.incrementObservable(App.game.statistics.pokeballsObtained[ball],amount);
         if (purchase === true) {
-            GameHelper.incrementObservable(App.game.statistics.pokeballsBought[ball],amount);
+            GameHelper.incrementObservable(App.game.statistics.pokeballsPurchased[ball],amount);
         }
     }
 
@@ -381,7 +394,10 @@ class Pokeballs implements Feature {
         this.notCaughtShinySelection = json.notCaughtShinySelection ?? this.defaults.notCaughtShinySelection;
         this.alreadyCaughtSelection = json.alreadyCaughtSelection ?? this.defaults.alreadyCaughtSelection;
         this.alreadyCaughtShinySelection = json.alreadyCaughtShinySelection ?? this.defaults.alreadyCaughtShinySelection;
-        //Types
+        // Beast Ball
+        this.catchUltraBeast(json.catchUltraBeast ?? false),
+        this.catchUltraBeastShiny(json.catchUltraBeastShiny ?? false),
+        // Types
         this.typeNormalSelection = json.typeNormalSelection ?? this.defaults.typeNormalSelection;
         this.typeFireSelection = json.typeFireSelection ?? this.defaults.typeFireSelection;
         this.typeWaterSelection = json.typeWaterSelection ?? this.defaults.typeWaterSelection;
@@ -409,7 +425,10 @@ class Pokeballs implements Feature {
             'notCaughtShinySelection': this.notCaughtShinySelection,
             'alreadyCaughtSelection': this.alreadyCaughtSelection,
             'alreadyCaughtShinySelection': this.alreadyCaughtShinySelection,
-            //Types
+            // Beast Ball Toggles
+            'catchUltraBeast': this.catchUltraBeast(),
+            'catchUltraBeastShiny': this.catchUltraBeastShiny(),
+            // Types
             'typeNormalSelection': this.typeNormalSelection,
             'typeFireSelection': this.typeFireSelection,
             'typeWaterSelection': this.typeWaterSelection,
@@ -468,7 +487,7 @@ class Pokeballs implements Feature {
         this._alreadyCaughtShinySelection(ball);
     }
 
-    //Types
+    // Types
     get typeNormalSelection() {
         return this._typeNormalSelection();
     }

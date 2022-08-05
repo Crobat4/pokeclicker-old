@@ -222,7 +222,8 @@
                 <div class="card-body p-0 justify-content-center no-gutters no-select"
                     data-bind="if: (App.game.gameState === GameConstants.GameState.fighting || App.game.gameState === GameConstants.GameState.dungeon || App.game.gameState === GameConstants.GameState.paused || App.game.gameState === GameConstants.GameState.town || App.game.gameState === GameConstants.GameState.gym || App.game.gameState == GameConstants.GameState.battleFrontier || App.game.gameState == GameConstants.GameState.temporaryBattle),
                         class: MapHelper.calculateBattleCssClass(),
-                        attr: { 'class': Settings.getSetting('pixelBattleBackgrounds').observableValue() ? 'battle-view-gen3' : 'battle-view' }">
+                        attr: { 'class': Settings.getSetting('pixelBattleBackgrounds').observableValue() ? 'battle-view-gen3' : 'battle-view' },
+                        css: { 'night-time': Game.isNight() }">
 
                     <!-- Route Battles -->
                     <div class="row justify-content-center no-gutters" data-bind="if: App.game.gameState === GameConstants.GameState.fighting">
@@ -250,7 +251,7 @@
                                 </knockout>
 
                                 <knockout>
-                                    <knockout data-bind="html: Battle.enemyPokemon().name + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
+                                    <knockout data-bind="html: (Settings.getSetting('shortNames').observableValue() ? Battle.enemyPokemon().visibleName : Battle.enemyPokemon().name) + ' ' + Battle.enemyPokemon().genderText">Pokémon name</knockout>
                                     <knockout data-bind="template: { name: 'caughtStatusTemplate', data: {'status': PartyController.getCaughtStatus(Battle.enemyPokemon().id)}}"></knockout>
                                 </knockout>
 
@@ -365,11 +366,11 @@
                 <div class="card-header p-0">
                     <div style="position: absolute; left: 2px">
                         <img title="Chests opened in current dungeon" src="assets/images/dungeons/chest.png" height="25px" />
-                        <span data-bind="text: `${DungeonRunner.chestsOpened()}/${DungeonRunner.map.size}`"></span>
+                        <span data-bind="text: `${DungeonRunner.chestsOpened()}/${DungeonRunner.map.totalChests()}`"></span>
                     </div>
                     <div style="position: absolute; right: 4px">
                         <img title="Encounters won in current dungeon" src="assets/images/dungeons/encounter.png" height="25px" />
-                        <span data-bind="text: `${DungeonRunner.encountersWon()}/${DungeonRunner.map.size * 2 + 3}`"></span>
+                        <span data-bind="text: `${DungeonRunner.encountersWon()}/${DungeonRunner.map.totalFights()}`"></span>
                     </div>
                     <span data-bind="text: `${DungeonRunner.dungeon.name}`"></span>
                 </div>
@@ -452,7 +453,7 @@
                         <div class='col-12'>
                             <i>NOTE: These colors can be customized in the settings menu</i>
                         </div>
-                    </div>" 
+                    </div>"
                     data-placement="bottom">ⓘ</button>
                     <button class='btn btn-sm' style="position: absolute; right: 0px; top: 0px; width: auto; height: 41px;"
                     data-bind='style: { background: Weather.color() },

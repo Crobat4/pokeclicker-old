@@ -12,7 +12,7 @@
 
             <div class="modal-body p-0">
                 <ul class="nav nav-tabs nav-fill">
-                    <li class="nav-item"><a data-toggle='tab' class='nav-link active' href="#evoStones">Evolution Stones</a></li>
+                    <li class="nav-item"><a data-toggle='tab' class='nav-link active' href="#evoStones">Evolution Items</a></li>
                     <li class="nav-item"><a data-toggle='tab' class='nav-link' href="#itemBag">Item Bag</a></li>
                     <li class='nav-item'><a data-toggle='tab' class='nav-link' href="#keyItems">Key Items</a></li>
                 </ul>
@@ -37,7 +37,7 @@
                                                     visible: ItemList[$data].unlockedRegion <= player.highestRegion() || player.amountOfItem($data) > 0">
                                             <img data-bind="attr: {src: ItemList[$data].image }" style="max-width: 32px; margin: -10px; padding: 12px 0px;">
                                             <div class="d-inline-block" data-bind="text: ItemList[$data].displayName" style="margin-left: 20px; margin-top:8px;"></div>
-                                            <span data-bind="text: player._itemList[$data]()" style="float:right; margin-top:8px;"></span>
+                                            <span data-bind="text: player._itemList[$data]().toLocaleString('en-US')" style="float:right; margin-top:8px;"></span>
                                         </button>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                             <!-- Amount buttons -->
                             <div class="col-12 scrolling-div ">
                                 <div class="pt-3">
-                                    <i>Stops using evolution stones once a shiny is encountered</i>
+                                    <i>Stops using evolution items once a shiny is encountered</i>
                                 </div>
                                 <!--
                                 // Since Pikachu and Exeggcute fix, random evolution is not possible anymore
@@ -96,7 +96,7 @@
                                     <div class="col-md-6 col-12">
                                         <div class="row no-gutters justify-content-center">
                                             <div class="row justify-content-center" style="padding:15px;">
-                                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution stones!</button>
+                                                <button data-bind="click: function(){ItemHandler.useStones()}" class="btn btn-lg btn-success">Use evolution items!</button>
                                             </div>
                                         </div>
                                     </div>

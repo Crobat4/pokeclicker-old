@@ -750,14 +750,31 @@ input:checked + .slider:before {
   /*background-size: cover;*/
   background-position: top;
   background-repeat: repeat-x;
+}
+
+/* Day/Night transition */
+.battle-view,
+.battle-view .enemy{
+  transition: 2s;
+}
+.battle-view.night-time .enemy {
+  /*filter: brightness(0.8);*/
+}
+/* Night Backgrounds */
+.battle-view.night-time {
+  min-height: 220px !important;
+
+  background-image: url(../assets/images/battleBackground/default-n.png);
+  background-size: cover;
+  background-position: bottom;
 
   &.forest {
-      background-image: url(../assets/images/battleBackground/forest.png);
+      background-image: url(../assets/images/battleBackground/forest-n.png);
       background-position: top;
   }
 
   &.water {
-      background-image: url(../assets/images/battleBackground/water.png);
+      background-image: url(../assets/images/battleBackground/water-n.png);
       background-position: top;
   }
 
