@@ -30,6 +30,9 @@ namespace GameConstants {
     declare const GYM_COUNTDOWN: number;
     declare const GYM_TICK: number;
     declare const ACHIEVEMENT_TICK: number;
+
+    declare const DAY_NIGHT_TICK: number;
+
     declare const MIN_LOAD_TIME: number;
     declare const MAX_LOAD_TIME: number;
     declare const MUTATION_TICK: number;
@@ -92,7 +95,7 @@ namespace GameConstants {
         'Hatch',
         'Pokeball',
         'Click',
-        'Route Kill',
+        'Route Defeat',
         'Clear Gym',
         'Clear Dungeon',
         'Farming',
@@ -513,6 +516,7 @@ namespace GameConstants {
         'Accumula Town',
         'Nuvema Town',
         'Camphrier Town',
+        'Parfum Palace',
         'Ambrette Town',
         'Cyllage City',
         'Geosenge Town',

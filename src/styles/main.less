@@ -741,3 +741,96 @@ input:checked + .slider:before {
   top: 3px;
   background-color: #fff;
 }
+
+/* Day/Night transition */
+.battle-view,
+.battle-view .enemy{
+  transition: 2s;
+}
+.battle-view.night-time .enemy {
+  /*filter: brightness(0.8);*/
+}
+/* Night Backgrounds */
+.battle-view.night-time {
+  min-height: 220px !important;
+
+  background-image: url(../assets/images/battleBackground/default-n.png);
+  background-size: cover;
+  background-position: bottom;
+
+  &.forest {
+      background-image: url(../assets/images/battleBackground/forest-n.png);
+      background-position: top;
+  }
+
+  &.water {
+      background-image: url(../assets/images/battleBackground/water-n.png);
+      background-position: top;
+  }
+
+  &.ice {
+      background-image: url(../assets/images/battleBackground/ice.png);
+      background-position: top;
+  }
+
+  &.fire {
+      background-image: url(../assets/images/battleBackground/fire.png);
+      background-position: 0px -20px;
+  }
+
+  &.cave {
+      background-image: url(../assets/images/battleBackground/cave.png);
+      background-position: top;
+  }
+
+  &.gem, &.cave-gem {
+      background-image: url(../assets/images/battleBackground/cave-gem.png);
+      background-position: center;
+  }
+
+  &.power-plant {
+      background-image: url(../assets/images/battleBackground/power-plant.png);
+      background-position: center;
+  }
+
+  &.mansion {
+      background-image: url(../assets/images/battleBackground/mansion.png);
+      background-position: center;
+  }
+
+  &.graveyard {
+      background-image: url(../assets/images/battleBackground/graveyard.png);
+      background-position: center;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  span {
+    line-height: 1.5;
+  }
+
+  .timer {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    top: 36px;
+  }
+
+  .pokeball-animated {
+    margin-top: 25px;
+  }
+
+  .catchChance {
+    color: black;
+  }
+
+  .hitpoints {
+    height: 20px;
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
+    left: 5%;
+  }
+}

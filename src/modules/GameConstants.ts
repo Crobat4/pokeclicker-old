@@ -24,6 +24,8 @@ export const WANDER_TICK = 1.5 * SECOND;
 export const TEMP_BATTLE_TIME = 60 * SECOND;
 export const TEMP_BATTLE_TICK = 0.1 * SECOND;
 
+export const DAY_NIGHT_TICK = 1 * SECOND;
+
 export enum Region {
     none = -1,
     kanto = 0,
@@ -132,7 +134,7 @@ export enum AchievementType {
     'Hatch',
     'Pokeball',
     'Click',
-    'Route Kill',
+    'Route Defeat',
     'Clear Gym',
     'Clear Dungeon',
     'Farming',
@@ -588,7 +590,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.hoenn]: new Set(['Mauville City', 'New Mauville', 'Weather Institute']),
         [Region.sinnoh]: new Set(['Sunyshore City', 'Valley Windworks', 'Team Galactic Eterna Building', 'Team Galactic HQ']),
         [Region.unova]: new Set(['Castelia Sewers', 'Virbank City', 'Nimbasa City']),
-        [Region.kalos]: new Set(['Lumiose City', 'Kalos Power Plant', 'Pokéball Factory', 'Team Flare Secret HQ']),
+        [Region.kalos]: new Set(['Lumiose City', 'Kalos Power Plant', 'Poké Ball Factory', 'Team Flare Secret HQ']),
         [Region.alola]: new Set(['Aether Paradise', 'Hokulani Observatory', 'Aether Foundation']),
         [Region.galar]: new Set(['Spikemuth']),
     },
@@ -599,7 +601,7 @@ export const Environments: Record<string, EnvironmentData> = {
         [Region.hoenn]: new Set(['Petalburg City', 'Jagged Pass']),
         [Region.sinnoh]: new Set(['Veilstone City', 'Canalave City', 'Snowpoint Temple']),
         [Region.unova]: new Set(['Castelia City', 'Mistralton City', 'Opelucid City', 'Liberty Garden', 'Dragonspiral Tower', 'Dreamyard']),
-        [Region.kalos]: new Set(['Parfum Palace', 'Lost Hotel']),
+        [Region.kalos]: new Set(['Lost Hotel']),
         [Region.alola]: new Set(['Trainers\' School', 'Thrifty Megamart', 'Po Town', 'Ruins of Conflict', 'Ruins of Life', 'Ruins of Abundance', 'Ruins of Hope']),
         [Region.galar]: new Set(['Rose Tower', 'Hammerlocke', 'Stow-on-Side']),
     },
@@ -723,11 +725,11 @@ export enum PokemonItemType {
     'Beldum',
     'Skorupi',
     'Combee',
-    'Burmy (plant)',
+    'Burmy (Plant)',
     'Spiritomb',
     'Cherubi',
     'Zorua',
-    'Meloetta (pirouette)',
+    'Meloetta (Pirouette)',
     'Type: Null',
     'Poipole',
     'Toxel',
@@ -1105,14 +1107,13 @@ export const UnovaDungeons = [
 
 export const KalosDungeons = [
     'Santalune Forest',
-    'Parfum Palace',
     'Connecting Cave',
     'Glittering Cave',
     'Reflection Cave',
     // 'Tower of Mastery',
     'Sea Spirit\'s Den',
     'Kalos Power Plant',
-    'Pokéball Factory',
+    'Poké Ball Factory',
     'Lost Hotel',
     'Frost Cavern',
     'Team Flare Secret HQ',
@@ -1314,6 +1315,7 @@ export enum ShardTraderLocations {
     'Accumula Town',
     'Nuvema Town',
     'Camphrier Town',
+    'Parfum Palace',
     'Ambrette Town',
     'Cyllage City',
     'Geosenge Town',
